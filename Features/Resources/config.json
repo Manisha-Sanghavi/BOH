@@ -1,0 +1,23 @@
+{
+  "driver_path": "Features/Resources/chromedriver.exe",
+  "app_Url": "https://www.calculator.net/",
+  "Username": "slc02_1@versionsolutions.com",
+  "Password": "Welcome123",
+  "AppURL": "https://stage-slc.bsdspeclink.com",
+  "ApiURL": "https://stage-slc-api.bsdspeclink.com/api",
+  "AuthURL": "https://stage-sharedservices.bsdspeclink.com/api",
+  "user1": "slc02_1@versionsolutions.com",
+  "password1": "Welcome123",
+
+ "Browser_executionMode": "Local",
+  "browserstack.user":"bsuser63347",
+  "browserstack.key":"SGrCFbxD56NyvAeq1iSu",
+  "browser": "Chrome",
+  "browser_version": "84",
+  "os":"Windows",
+  "os_version":"10",
+  "build": "Build1",
+  "browserstack.local": "false",
+  "browserstack.selenium_version": "3.1.0",
+  "browser_executables": "Features/Resources/chromedriver.exe"
+}
