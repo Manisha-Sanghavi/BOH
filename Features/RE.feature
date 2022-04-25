@@ -1,7 +1,7 @@
 # Created by Rashmi at 21/04/2022
 Feature: RE
 
-  Scenario : Verify User can sort REs with different drop down list options
+  Scenario Outline : Verify User can sort REs with different drop down list options
     Given User is on boh fpu homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User can see "Customer Management" page
@@ -9,6 +9,7 @@ Feature: RE
     And User taps on "Sort By" option
     And User select "<sort by>" option
     Then "REs" list is sorted and displayed
+      Examples:
       | Recent Activity |
       | RE Date |
 #      | Value | REID | Location | CSM | Status |
@@ -32,7 +33,7 @@ Feature: RE
     And User taps on downward arrow next to "Sort By"
     Then User Verifies REs diplayed are in descending order of REID
 
-  Scenario : Verify User can filter REs by different filter options
+  Scenario Outline : Verify User can filter REs by different filter options
     Given User is on boh fpu homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User can see "Customer Management" page
@@ -40,8 +41,22 @@ Feature: RE
     And User taps on "Filter By" option
     And User select "<filter by>" option
     Then "REs" list is displayed
+      Examples:
       | Current | All |
-#      | Draft | Validate | Inactive | Active | Pending | Awarded | Complete |
+
+
+  Scenario Outline : Verify User can filter REs by their states
+    Given User is on boh fpu homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    And User can see "Customer Management" page
+    And User taps on RE tab
+    And User taps on "Filter By" option
+    And User select "<filter by>" option
+    Then "REs" list is displayed
+      Examples:
+    | Draft | Validate |
+ #   | Inactive | Active | Pending | Awarded | Complete |
+
 
   Scenario: Verify various options are given after tapping '+' symbol
     Given User is on BOH FPU homepage
@@ -189,7 +204,6 @@ Feature: RE
     And User can see "Customer Management" page
     And User taps on "RE" tab
     And User selects "RE #826"
-    And User taps on "Configs" tab
     Then User validates details about Configured Systems and Loose Products is displayed
 
   Scenario : Verify that after tapping on Configured Systems user can see the details about System
@@ -198,7 +212,6 @@ Feature: RE
     And User can see "Customer Management" page
     And User taps on RE tab
     And User selects "RE #826"
-    And User taps on Configs tab
     And User taps on "System 1"
     Then User validates details about System is dispalyed
 
@@ -209,7 +222,6 @@ Feature: RE
     And User can see "Customer Management" page
     And User taps on RE tab
     And User selects "RE #826"
-    And User taps on Configs tab
     And User taps on "Configuration 1"
     Then User validates details about Configuration is dispalyed
 
@@ -219,7 +231,6 @@ Feature: RE
     And User can see "Customer Management" page
     And User taps on "RE" tab
     And User selects "RE #826"
-    And User taps on Configs tab
     And User taps on three dots "..." of "System 1"
     Then User validates following actions:
       |Edit System name|Duplicate System|Delete System|
@@ -230,7 +241,6 @@ Feature: RE
     And User can see "Customer Management" page
     And User taps on "RE" tab
     And User selects "RE #826"
-    And User taps on Configs tab
     And User taps on "+" symbol and selects "Add Configuration"
     And User enters "New System"
     And User taps "Create"
@@ -246,7 +256,6 @@ Feature: RE
     And User can see "Customer Management" page
     And User taps on "RE" tab
     And User selects "RE #826"
-    And User taps on Configs tab
     And User taps on "+" symbol and selects "Add Configuration"
     And User enters "New System"
     And User taps "Create"
@@ -261,7 +270,6 @@ Feature: RE
     And User can see "Customer Management" page
     And User taps on "RE" tab
     And User selects "RE #826"
-    And User taps on Configs tab
     And User taps on "+" symbol and selects "Add Configuration"
     And User enters "New System"
     And User taps "Create"
@@ -276,7 +284,6 @@ Feature: RE
     And User can see "Customer Management" page
     And User taps on RE tab
     And User selects "RE #824"
-    And User taps on Configs tab
     And User taps on three dots ... for Configuration 1
     Then User validates following actions
       |Edit Configuration name|Duplicate Configuration|Delete Configuration|
@@ -287,7 +294,6 @@ Feature: RE
     And User can see "Customer Management" page
     And User taps on "RE" tab
     And User selects "RE #826"
-    And User taps on Configs tab
     And User taps on "+" symbol and selects "Add Configuration"
     And User selects "Loose Products"
     And User enters "New Configuration"
@@ -304,7 +310,6 @@ Feature: RE
     And User can see "Customer Management" page
     And User taps on "RE" tab
     And User selects "RE #826"
-    And User taps on Configs tab
     And User taps on "+" symbol and selects "Add Configuration"
     And User selects "Loose Products"
     And User enters "New Configuration"
@@ -320,7 +325,6 @@ Feature: RE
     And User can see "Customer Management" page
     And User taps on "RE" tab
     And User selects "RE #826"
-    And User taps on Configs tab
     And User taps on "+" symbol and selects "Add Configuration"
     And User selects "Loose Products"
     And User enters "New Configuration"
@@ -328,4 +332,127 @@ Feature: RE
     And User taps on three dots "..." of New Configuration
     And User selects Delete New Configuration
     Then New Configuration is deleted
+
+  Scenario: Verify that for any RE, the user is able to see various options for "+" symbol
+    Given User is on BOH FPU homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    And User can see "Customer Management" page
+    And User taps on RE tab
+    And User selects "RE #793" (Draft Status RE)
+    And User taps on "+" symbol
+    Then following options are displayed:
+     | Add Touchbase | Add Configuration | 'x' symbol |
+
+  Scenario: Verify user is able to create Configured System with System containing Container and different products
+    Given User is on BOH FPU homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    And User can see "Customer Management" page
+    And User taps on RE tab
+    And User selects "RE #793" (Draft Status RE)
+    And User taps on "+" symbol
+    And User selects "Add Configuration"
+    And User enters "New System"
+    And User taps "Create"
+    And User taps on "find products"
+    And User taps "+" symbol for "BOH Cargo-6"
+    Then New System is created with BOH Cargo-6 container
+
+  Scenario: Verify user is able to create Loose Products with Configuration containing accessories
+    Given User is on BOH FPU homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    And User can see "Customer Management" page
+    And User taps on RE tab
+    And User selects "RE #793" (Draft Status RE)
+    And User taps on "+" symbol
+    And User selects "Add Configuration"
+    And User selects "Loose Products"
+    And User enters "New Configuration"
+    And User taps "Create"
+    And User taps on "find products"
+    And User taps "+" symbol for "BOH Cargo-6 Shelf"
+    Then New Configuration is created with BOH Cargo-6 Shelf accessory
+
+  Scenario: Verify that user can change state of RE successfully
+    Given User is on BOH FPU homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    And User can see "Customer Management" page
+    And User taps on RE tab
+    And User selects RE with any one of following status "RE #763"
+    | Inactive | Active | Pending | Awarded | Complete |
+    And User taps on Status of RE to select "Change RE Status"
+    And User changes RE status to "Active"
+    Then User validates Status is changed
+
+  Scenario: Verify that RE in Draft state have three options as:Submit for Validation,Duplicate RE,Email NSN Worksheet
+    Given User is on BOH FPU homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    And User can see "Customer Management" page
+    And User taps on RE tab
+    And User selects "RE #473"
+    And User taps on RE status "Draft"
+    Then following options are displayed
+    | Submit for Validation | Duplicate RE | Email NSN Worksheet |
+
+  Scenario: Verify that RE in Validate state have three options as:Review and Validate,Duplicate RE,Email NSN Worksheet
+    Given User is on BOH FPU homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    And User can see "Customer Management" page
+    And User taps on RE tab
+    And User selects "RE #779"
+    And User taps on RE status "Validate"
+    Then following options are displayed
+    | Review and Validate | Duplicate RE | Email NSN Worksheet |
+
+
+  Scenario: Verify that user is able to fill the details for Duplicate RE and RE is duplicated successfully
+    Given User is on BOH FPU homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    And User can see "Customer Management" page
+    And User taps on RE tab
+    And User selects "RE #473"
+    And User taps on RE status to select "Duplicate RE" option
+    And User fills following details:
+    | No. of Duplicates |   Opportunity   | Pre-RE Footprint(sq ft) |
+    |      1            | Opp 48 . 14 BEB |         70              |
+    And User taps on "Duplicate Requirements Estimation"
+    Then User validates that RE is duplicated
+
+  Scenario: Verify that User is able to submit RE in Draft status for validation
+    Given User is on BOH FPU homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    And User can see "Customer Management" page
+    And User taps on RE tab
+    And User taps on "+" symbol to select "Add RE"
+    And User fill the details to create RE with Draft status
+    And User selects this RE
+    And User taps on "+" symbol and selects "Add Configuration"
+    And User creates Configured System with adding products as containers
+    And User taps on RE status to select "Submit for Validation" option
+    And User taps on "Next" button
+    And User taps on "Submit for Validation"
+    Then Draft status of RE is changed to Validate
+
+  Scenario: Verify that User is able to submit RE in Validate status for review and validation
+    Given User is on BOH FPU homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    And User can see "Customer Management" page
+    And User taps on RE tab
+    And User taps on "+" symbol to select "Add RE"
+    And User fill the details to create RE with Draft status
+    And User selects this RE
+    And User taps on "+" symbol and selects "Add Configuration"
+    And User creates Configured System with adding products as containers
+    And User taps on RE status to select "Submit for Validation" option
+    And User taps on "Next" button
+    And User taps on "Submit for Validation"
+    And User taps on "Validate" status
+    And User selects RE Date "7-05-2022"
+    And User taps Validate without sending
+    Then Validate status of RE is changed to Active
+
+
+
+
+
+
 
