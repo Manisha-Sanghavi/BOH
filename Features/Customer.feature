@@ -528,3 +528,24 @@ Feature: Mobile App Feature
       | 50%  | Customer Wants It-CurrentlySeeking Funding,                  |
       | 75%  | Customer Wants It-Funding Identified-Awaiting Authorization, |
       | 100% | Customer has Provided Document Numbers or Confirmed Purchase |
+
+  Scenario: [NAT-58] Verify whether after clicking "Remember me", user should able to see security page after closing an application.
+    Given User is on boh fpu homepage
+    When User enters username as "harish.ekal@spurqlabs.com"
+    And User enters password as "Test123!BOH"
+    And User taps on "Remember me" option
+    And User taps on "Sign in" option
+    And User close the application
+    Then Re-open the app & user should able to see security page
+
+  Scenario: [NAT-59] Verify User can sort customers in descending order
+    Given User is on boh fpu homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    And User taps on "Upside arrow" option
+    Then "customer" list is displayed in descending order
+
+  Scenario: [NAT-60] Verify User can sort customers in ascending order
+    Given User is on boh fpu homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    And User taps on "downside arrow" option
+    Then "customer" list is displayed in ascending order
