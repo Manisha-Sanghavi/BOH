@@ -382,8 +382,8 @@ Feature: RE
     | Review and Validate | Duplicate RE | Email NSN Worksheet |
 
 
-#  Scenario[RE-32]: Verify that user is able to Duplicate RE successfully // There's no way to verify ( Defects 52 and 53)
-#  from defect sheet
+#  Scenario[RE-32]: Verify that user is able to Duplicate RE successfully // There's no way to verify ( Defects 52 and 53
+#  from defect sheet)
 #    Given user is on BOH FPU homepage
 #    When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
 #    And user is navigated to "Customer Management" page
@@ -425,6 +425,7 @@ Feature: RE
     Then user verifies Validate status of RE is changed to Active
 
 #  Scenario[RE-35]: Verify that user is able to change Validate status of RE to Active status and send email
+#  // No way to verify if email is sent or not (Defect 54 in defect sheet )
 #    Given user is on BOH FPU homepage
 #    And user creates "New RE" with Draft status
 #    And user creates "New System" under Configured Systems
