@@ -240,7 +240,7 @@ Feature: RE
     | Configured Systems | Loose Products |
     |          3         |       4        |
 
-  Scenario[RE-20] : Verify that after tapping on System under Configured Systems user is able to see the product details
+  Scenario[RE-20]: Verify that after tapping on System under Configured Systems user is able to see the product details
     Given user is on BOH FPU homepage
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And user is navigated to "Customer Management" page
@@ -251,7 +251,7 @@ Feature: RE
     | Containers | Container Accessories |
 
 
-  Scenario[RE-21] : Verify that after tapping on Configuration under Loose Products user is able to see the product details
+  Scenario[RE-21]: Verify that after tapping on Configuration under Loose Products user is able to see the product details
     Given user is on BOH FPU homepage
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And user is navigated to "Customer Management" page
@@ -382,18 +382,19 @@ Feature: RE
     | Review and Validate | Duplicate RE | Email NSN Worksheet |
 
 
-  Scenario[RE-32]: Verify that user is able to Duplicate RE successfully
-    Given user is on BOH FPU homepage
-    When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
-    And user is navigated to "Customer Management" page
-    And user taps on RE tab
-    And user selects "RE #473"
-    And user taps on RE status to select "Duplicate RE" option
-    And user fills following details:
-    | No. of Duplicates |   Opportunity   | Pre-RE Footprint(sq ft) |
-    |      1            | Opp 48 . 14 BEB |         70              |
-    And user taps on "Duplicate Requirements Estimation"
-    Then user verifies that RE is duplicated
+#  Scenario[RE-32]: Verify that user is able to Duplicate RE successfully // There's no way to verify ( Defects 52 and 53)
+#  from defect sheet
+#    Given user is on BOH FPU homepage
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+#    And user is navigated to "Customer Management" page
+#    And user taps on RE tab
+#    And user selects "RE #473"
+#    And user taps on RE status to select "Duplicate RE" option
+#    And user fills following details:
+#    | No. of Duplicates |   Opportunity   | Pre-RE Footprint(sq ft) |
+#    |      1            | Opp 48 . 14 BEB |         70              |
+#    And user taps on "Duplicate Requirements Estimation"
+#    Then user verifies that RE is duplicated
 
   Scenario[RE-33]: Verify that user is able to change Draft status of RE to Validate status
     Given user is on BOH FPU homepage
@@ -423,19 +424,19 @@ Feature: RE
     And user taps "Validate without sending" button
     Then user verifies Validate status of RE is changed to Active
 
-  Scenario[RE-35]: Verify that user is able to change Validate status of RE to Active status and send email
-    Given user is on BOH FPU homepage
-    And user creates "New RE" with Draft status
-    And user creates "New System" under Configured Systems
-    And user changes Draft status of RE to Validate status
-    When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
-    And user is navigated to "Customer Management" page
-    And user taps on RE tab
-    And user selects "New RE"
-    And user taps on "Validate" status
-    And user selects RE Date "7-05-2022"
-    And user taps "Validate and Send" button
-    Then user verifies Validate status of RE is changed to Active
+#  Scenario[RE-35]: Verify that user is able to change Validate status of RE to Active status and send email
+#    Given user is on BOH FPU homepage
+#    And user creates "New RE" with Draft status
+#    And user creates "New System" under Configured Systems
+#    And user changes Draft status of RE to Validate status
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+#    And user is navigated to "Customer Management" page
+#    And user taps on RE tab
+#    And user selects "New RE"
+#    And user taps on "Validate" status
+#    And user selects RE Date "7-05-2022"
+#    And user taps "Validate and Send" button
+#    Then user verifies Validate status of RE is changed to Active
 
   Scenario[RE-36]: Verify that for RE user is able to add a Recipient by entering an email to send NSN Worksheet
     Given user is on BOH FPU homepage
@@ -487,10 +488,23 @@ Feature: RE
     And user selects "RE #436"
     And user selects "50%" Confidence level
     And user taps on "Save Changes" displayed
-    Then user verifies under Confidence level, "50%" is displayed with message "Customer Wants It-CurrentlySeeking Funding"
+    Then user verifies under Confidence level, "50%" is displayed with message "Customer Wants It-Currently Seeking Funding"
 
   Scenario[RE-40]: Verify details added during RE Creation are displayed in Info Tab of that RE
-
+    Given user is on BOH FPU homepage
+    When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    And user is navigated to "Customer Management" page
+    And user taps on RE tab
+    And user taps on "+" symbol
+    And user selects "Add RE"
+    And user fills the following details:
+    | Sales Rep |Estimated Order Date(optional)| Opportunity  |RE Program|Customer Name|Customer Location| Color |
+    | RT Riling |        07-05-2022            |Opp 56.newCust|  West    | newCust     |   29 palm       |  TAN  |
+    And user taps on Create Requirements Estimate
+    And user taps on Info tab
+    Then user verifies following details are displayed:
+    |  Opportunity   |  Sales Rep  | Direct | Estimated Order Dates | Default Color |
+    | Opportunity#56 | RT Riling   |  West  |        5/7/2022       |      TAN      |
 
   Scenario[RE-41]: Verify user can delete RE successfully
     Given user is on BOH FPU homepage
