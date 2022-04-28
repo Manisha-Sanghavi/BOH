@@ -89,7 +89,7 @@ Feature: RE
     And user can see "Customer Management" page
     And user taps on RE tab
     And user taps on "search" symbol
-    And user search for RE "772"
+    And user enters "772" in search field
     And user selects "RE #772"
     Then user verifies "RE #772" details page is displayed
 
@@ -179,9 +179,9 @@ Feature: RE
     And user taps on "RE" tab
     And user selects "RE #825"
     And user taps "Add Another Date"
-    And user selects a date
+    And user selects a date "25/03/2021
     And user taps "Add Another Date"
-    And user selects one more date
+    And user selects one more date "15/03/2023
     And user taps on "Save Changes"
     Then user verifies dates are added successfully
 
@@ -192,7 +192,7 @@ Feature: RE
     And user taps on "RE" tab
     And user selects "RE #825"
     And user taps "Add Another Date"
-    And user selects a date
+    And user selects a date 25/03/2022
     And user taps on "Save Changes"
     And user taps on "x" symbol of last date under Estimated Order Dates
     And user taps on "Save Changes"
@@ -206,12 +206,13 @@ Feature: RE
     And user selects "RE #826"
     And user taps on "+" symbol
     And user selects "Add Configuration"
-    And user enters "New System"
+    And user selects "Configured System"
+    And user enters Configuration System name as "test_System"
     And user taps "Create" button
     And user taps on "find products"
     And user adds "Boh Cargo -6"
     And user navigates back with backward arrow
-    Then user verifies "New System" is displayed
+    Then user verifies "test_System" is displayed in Configured Systems list
 
   Scenario[RE-18]: Verify that for RE user can Create Configuration under Loose Products successfully
     Given user is on BOH FPU homepage
@@ -222,15 +223,15 @@ Feature: RE
     And user taps on "+" symbol
     And user selects "Add Configuration"
     And user selects "Loose Products"
-    And user enters "New Configuration"
+    And user enters "test_Configuration"
     And user taps "Create" button
     And user taps on "find products"
     And user adds "Boh Cargo -6 Shelf"
     And user navigates back with backward arrow
-    Then user verifies "New Configuration" is displayed
+    Then user verifies "test_Configuration" is displayed
 
 
-  Scenario[RE-19] : Verify that for RE user is able to see the details about Configured Systems and Loose Products
+  Scenario[RE-19] : Verify that for RE user can see the details about Configured Systems and Loose Products
     Given user is on BOH FPU homepage
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And user is navigated to "Customer Management" page
@@ -240,7 +241,7 @@ Feature: RE
     | Configured Systems | Loose Products |
     |          3         |       4        |
 
-  Scenario[RE-20]: Verify that after tapping on System under Configured Systems user is able to see the product details
+  Scenario[RE-20]: Verify that after tapping on System under Configured Systems user can see the product details
     Given user is on BOH FPU homepage
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And user is navigated to "Customer Management" page
@@ -251,7 +252,7 @@ Feature: RE
     | Containers | Container Accessories |
 
 
-  Scenario[RE-21]: Verify that after tapping on Configuration under Loose Products user is able to see the product details
+  Scenario[RE-21]: Verify that after tapping on Configuration under Loose Products user can see the product details
     Given user is on BOH FPU homepage
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And user is navigated to "Customer Management" page
@@ -267,15 +268,12 @@ Feature: RE
     And user is navigated to "Customer Management" page
     And user taps on "RE" tab
     And user selects "RE #826"
-#    And user taps on "+" symbol
-#    And user selects "Add Configuration"
-#    And user enters "New System"
-#    And user taps "Create"
     And user taps on three dots "..." of first System in the list
     And user selects Edit system name
-    And user "New System "
+    And user enters Configured System name as "New_System "
     And taps "Change" option
-    Then user verifies "New System" name is displayed
+    Then user verifies "New_System" name is displayed
+    And change "New_System" name to "System_1"
 
   Scenario[RE-23]: Verify that user can duplicate System for Configured Systems of RE successfully
     Given user is on BOH FPU homepage
@@ -283,10 +281,6 @@ Feature: RE
     And user is navigated to "Customer Management" page
     And user taps on "RE" tab
     And user selects "RE #826"
-#    And user taps on "+" symbol
-  #  And selects "Add Configuration"
-#    And user enters "New System"
-#    And user taps "Create"
     And user taps on three dots "..." of first System in the list
     And user selects Duplicate System
     And taps "Add" button
@@ -305,41 +299,41 @@ Feature: RE
 
   Scenario[RE-25]: Verify that user can edit Configuration name for Loose Products of RE successfully
     Given user is on BOH FPU homepage
-    And user creates one Configuration under Loose Products
+    And user creates one "New_Configuration" under Loose Products
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And user is navigated to "Customer Management" page
     And user taps on "RE" tab
     And user selects "RE #826"
-    And user taps on three dots "..." of New Configuration
+    And user taps on three dots "..." of "New_Configuration"
     And user selects Edit configuration name
-    And user enters "New Config 1"
+    And user enters "New_Config_1"
     And taps "Change" button
-    Then user verifies "New Configuration" name is edited
+    Then user verifies "New_Configuration" name is edited to "New_Config_1"
 
   Scenario[RE-26]: Verify that user can duplicate Configuration for Loose Products of RE
     Given user is on BOH FPU homepage
-    And user creates one Configuration under Loose Products
+    And user creates one "New_Configuration" under Loose Products
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And user is navigated to "Customer Management" page
     And user taps on "RE" tab
     And user selects "RE #826"
-    And user taps on three dots "..." of New Configuration
-    And user selects Duplicate New Configuration
+    And user taps on three dots "..." of "New_Configuration"
+    And user selects Duplicate "New_Configuration"
     And taps "Add" button
-    Then user verifies one duplicate of the configuration is created
+    Then user verifies one duplicate of "New_Configuration" is created
 
   Scenario[RE-27]: Verify that user can delete Configuration for Loose Products of RE
     Given user is on BOH FPU homepage
-    And user creates one Configuration under Loose Products
+    And user creates one "New_Configuration" under Loose Products
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And user is navigated to "Customer Management" page
     And user taps on "RE" tab
     And user selects "RE #826"
-    And user taps on three dots "..." of New Configuration
+    And user taps on three dots "..." of "New_Configuration"
     And user selects Delete New Configuration
-    Then user verifies "New Configuration" is deleted
+    Then user verifies ""New_Configuration"" is deleted
 
-  Scenario[RE-28]: Verify that for any RE, the user is able to see various options for "+" symbol
+  Scenario[RE-28]: Verify that for any RE, the user can see various options for "+" symbol
     Given user is on BOH FPU homepage
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And user is navigated to "Customer Management" page
@@ -355,13 +349,13 @@ Feature: RE
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user selects RE with any one of following status "RE #763"
+    And user selects "RE #763"
     And user taps on  Inactive Status of RE
     And user selects "Change RE Status"
     And user changes RE status to "Active"
     Then user verifies Status "Active" is displayed
 
-  Scenario[RE-30]: Verify that after tapping Draft state of RE, three options are displayed as:Submit for Validation,Duplicate RE,Email NSN Worksheet
+  Scenario[RE-30]: Verify that when user taps on "Draft" status of RE, three options are displayed as:Submit for Validation,Duplicate RE,Email NSN Worksheet
     Given user is on BOH FPU homepage
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And user is navigated to "Customer Management" page
@@ -371,7 +365,7 @@ Feature: RE
     Then user verifies following options are displayed:
     | Submit for Validation | Duplicate RE | Email NSN Worksheet |
 
-  Scenario[RE-31]: Verify that after tapping Validate state of RE, three options are displayed as:Review and Validate,Duplicate RE,Email NSN Worksheet
+  Scenario[RE-31]: Verify that when user taps on "Validate" status of RE, three options are displayed as:Review and Validate,Duplicate RE,Email NSN Worksheet
     Given user is on BOH FPU homepage
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And user is navigated to "Customer Management" page
@@ -382,7 +376,7 @@ Feature: RE
     | Review and Validate | Duplicate RE | Email NSN Worksheet |
 
 
-#  Scenario[RE-32]: Verify that user is able to Duplicate RE successfully // There's no way to verify ( Defects 52 and 53
+#  Scenario[RE-32]: Verify that user can Duplicate RE successfully // There's no way to verify ( Defects 52 and 53
 #  from defect sheet)
 #    Given user is on BOH FPU homepage
 #    When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
@@ -396,7 +390,7 @@ Feature: RE
 #    And user taps on "Duplicate Requirements Estimation"
 #    Then user verifies that RE is duplicated
 
-  Scenario[RE-33]: Verify that user is able to change Draft status of RE to Validate status
+  Scenario[RE-33]: Verify that user can change "Draft" status of RE to "Validate" status
     Given user is on BOH FPU homepage
     And user creates "New RE" with Draft status
     And user creates "New System" under Configured Systems
@@ -410,7 +404,7 @@ Feature: RE
     And user taps on "Submit for Validation" button
     Then user verifies Draft status of RE is changed to Validate
 
-  Scenario[RE-34]: Verify that user is able to change Validate status of RE to Active status without sending email
+  Scenario[RE-34]: Verify that user can change "Validate" status of RE to "Active" status without sending email
     Given user is on BOH FPU homepage
     And user creates "New RE" with Draft status
     And user creates "New System" under Configured Systems
@@ -424,7 +418,7 @@ Feature: RE
     And user taps "Validate without sending" button
     Then user verifies Validate status of RE is changed to Active
 
-#  Scenario[RE-35]: Verify that user is able to change Validate status of RE to Active status and send email
+#  Scenario[RE-35]: Verify that user can change "Validate" status of RE to "Active" status and send email
 #  // No way to verify if email is sent or not (Defect 54 in defect sheet )
 #    Given user is on BOH FPU homepage
 #    And user creates "New RE" with Draft status
@@ -439,7 +433,7 @@ Feature: RE
 #    And user taps "Validate and Send" button
 #    Then user verifies Validate status of RE is changed to Active
 
-  Scenario[RE-36]: Verify that for RE user is able to add a Recipient by entering an email to send NSN Worksheet
+  Scenario[RE-36]: Verify that for RE user can add a Recipient by entering an email to send NSN Worksheet
     Given user is on BOH FPU homepage
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And user is navigated to "Customer Management" page
@@ -451,7 +445,7 @@ Feature: RE
     And user taps on "+" symbol
     Then user verifies email "harish.ekal@spurqlabs.com" is displayed under Added Recipient
 
-  Scenario[RE-37]: Verify that for RE, user is able to send NSN Worksheet successfully
+  Scenario[RE-37]: Verify that for RE, user can send NSN Worksheet successfully
     Given user is on BOH FPU homepage
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And user is navigated to "Customer Management" page
@@ -459,11 +453,14 @@ Feature: RE
     And user selects "RE #826"
     And user taps on Draft status
     And user selects "Email NSN Worksheet" option
-    And user selects Chris Dykes
+    And user user enters email "harish.ekal@spurqlabs.com"
+    And user taps on "+" symbol
     And user taps "Send NSN" button
     Then user verifies RE page is displayed
+    # Mail is received with attached "NSN worksheet"  //if success msg is
+    #added then we can verify that msg (defect 54)
 
-  Scenario Outline[RE-38]: Verify that for RE in Info tab, user can select Confidence level to see the message displayed below
+  Scenario Outline[RE-38]: Verify that for RE in Info tab, user can select Confidence level to see the message displayed
     Given user is on BOH FPU homepage
     And RE is in Active state
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
@@ -471,9 +468,9 @@ Feature: RE
     And user taps on RE tab
     And user selects "RE #436"
     And user selects "<Confidence level>"
-    Then user verifies "<message>" below "<Confidence level>" is displayed
+    Then user verifies for "<Confidence level>" respective "<Message>" is displayed is displayed
       Examples:
-    | Confidence level |                               message                         |
+    | Confidence level |                               Message                         |
     |     10%          |           Providing Information-No Known Requirements         |
     |     25%          |         Customer Requested Survey-No Known Funding Source     |
     |     50%          |           Customer Wants It-CurrentlySeeking Funding          |
