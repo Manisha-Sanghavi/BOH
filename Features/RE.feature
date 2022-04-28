@@ -102,7 +102,7 @@ Feature: RE
     Then the following headers and tabs are displayed
     | RE ID | Status | Add Subtitle | Customer | Location | Info | Configs | Activity | Files |
 
-  Scenario[RE-10]: Verify user can Add Subtitle to RE if its not already added
+  Scenario[RE-10]: Verify user can "Add Subtitle" to RE if its not already added
     Given user is on BOH FPU homepage
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And user is navigated to "Customer Management" page
@@ -236,10 +236,10 @@ Feature: RE
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And user is navigated to "Customer Management" page
     And user taps on "RE" tab
-    And user selects "RE #826"
+    And user selects "RE #793"
     Then user verifies following details about number of Configured Systems and Loose Products are displayed
     | Configured Systems | Loose Products |
-    |          3         |       4        |
+    |          3         |       1        |
 
   Scenario[RE-20]: Verify that after tapping on System under Configured Systems user can see the product details
     Given user is on BOH FPU homepage
