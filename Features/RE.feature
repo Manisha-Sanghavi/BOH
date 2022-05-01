@@ -460,7 +460,7 @@ Feature: RE
     # Mail is received with attached "NSN worksheet"  //if success msg is
     #added then we can verify that msg (defect 54)
 
-  Scenario Outline[RE-38]: Verify that for RE in Info tab, user can select Confidence level to see the message displayed
+  Scenario Outline[RE-38]: Verify that for RE in Info tab, user can select Confidence level to see their respective message displayed
     Given user is on BOH FPU homepage
     And RE is in Active state
     When user login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
