@@ -54,21 +54,28 @@ Feature: Mobile App Feature
     And User taps on "Sign Out" button
     Then User verfies "Homepage" is displayed
 
-  Scenario: [Customer-6] Verify user can sort customers by Date option
+  Scenario: [Customer-6] Verify user can sort customers by Date option in ascending order
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User taps on "Sort By" option
     And User select "Date" option
-    Then User verifies that the list is sorted by date
+    Then User verifies customer list is sorted in ascending order
 
-  Scenario: [Customer-7] Verify user can filter customer by Active option
+    Scenario: [Customer-7] Verify user can sort customers by Date option in descending order
+    Given User is on BOH FPU homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    And User taps on "Sort By" option
+    And User select "Date" option
+    Then User verifies customer list is sorted in descending order
+
+  Scenario: [Customer-8] Verify user can filter customer by Active option
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User taps on "filter By" option
     And User select "Active" option
-    Then User verifies that the list is filtered by "Active" option
+    Then User verifies Customer with only Active status are displayed
 
-  Scenario: [Customer-8] Verify that the user can find an existing customer using the Search (Q) option.
+  Scenario: [Customer-9] Verify that the user can find an existing customer using the Search (Q) option.
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User taps on "search" option
@@ -76,7 +83,7 @@ Feature: Mobile App Feature
     Then User verifies "newCust" displyed on page
 
 
-  Scenario: [Customer-9] Verify User can see Activity details after selecting existing customer
+  Scenario: [Customer-10] Verify the Headers and Tabs displayed under Activity Tab
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User selects "abcd" customer
@@ -84,7 +91,7 @@ Feature: Mobile App Feature
     Then User verifies Customer details page with following information is displayed
       | INFO | ACTIVITY | REs | Note | Phone | Email | In-Person | Voicemail |
 
-  Scenario: [Customer-10] Verify after tapping '+' symbol in Customer tab, user can see Add Touchbase, Add Opportunity, Add RE and 'x' symbol
+  Scenario: [Customer-11] Verify after tapping '+' symbol in Customer tab, user can see Add Touchbase, Add Opportunity, Add RE and 'x' symbol
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User is navigated to "customer management" page
@@ -109,14 +116,14 @@ Feature: Mobile App Feature
 #      | Middle East             |
 #      | Pacific West            |
 
-  Scenario: [Customer-11] Verify that the "forgot password" link works
+  Scenario: [Customer-12] Verify that the "forgot password" link works
     Given User is on BOH FPU homepage
     When User taps on "Forgot Password" option
     And User navigated to "Forgot your password?" page
     And User enters email "harish.ekal@spurqlabs.com" in type your BOH email field
     Then User verifies meassage "A recovery email has been sent to your account" is displayed
 
-  Scenario: [Customer-12] Verify Details added during Customer Creation are displayed in Info Tab in customer detail page of that customer
+  Scenario: [Customer-13] Verify Details added during Customer Creation are displayed in Info Tab in customer detail page of that customer
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User select "abcd" customer
@@ -124,16 +131,16 @@ Feature: Mobile App Feature
     Then User verifies following options are displayed
       | Sales Rep | Location | Contacts | Delete |
 
-  Scenario: [Customer-13] Verify user can switch from Active to Inactive mode
+  Scenario: [Customer-14] Verify user can switch from Active to Inactive mode
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User selects "abcd" customer
     And user navigated to "abcd" page
     And "Change State" popup is displayed
     And User taps on "Set Customer to Inactive" option
-    And User verifies "Inactive" displayed on page
+    And User verifies status changed to “Inactive”
     And User taps on "Set Customer to Active" option
-    Then User verifies "Active" displayed on page
+    Then User verifies status changed to “Active”
 
 #  Scenario: [NAT-17] Verify user can check all options after tapping on the plus symbol in activity details [ Add Touchbase, Add contact, Add RE]
 #    Given User is on boh fpu homepage
@@ -143,7 +150,7 @@ Feature: Mobile App Feature
 #    Then Following options are displayed
 #      | Add Touchbase | Add contact | Add RE |
 
-  Scenario: [Customer-14] Verify Details added during customer Creation are displyed in Info Tab of customer
+  Scenario: [Customer-15] Verify Details added during customer Creation are displyed in Info Tab of customer
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User select "abcd" customer
@@ -184,7 +191,7 @@ Feature: Mobile App Feature
 #    And User taps on "Save Changes" option
 #    Then User can see "Edit Contact" page
 
-  Scenario: [Customer-15] Verify that the customer summary shows all details.
+  Scenario: [Customer-16] Verify that the customer summary shows all details.
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     Then User verifies following summary of "abcd" customer displayed on page
@@ -202,7 +209,7 @@ Feature: Mobile App Feature
 #    Then Following options are displayed
 #      | Note | Phone | Email | In-Person | Voicemail |
 
-  Scenario: [Customer-16] Verify user can add a note successfully from Activity Tab in Customer Details page
+  Scenario: [Customer-17] Verify user can add a note successfully from Activity Tab in Customer Details page
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User select "abcd" customer
@@ -210,7 +217,7 @@ Feature: Mobile App Feature
     And User taps on "Post" option
     Then User verifies "Test note" is displayed in Activity list.
 
-  Scenario: [Customer-17] Verify user can edit posted message through notes.
+  Scenario: [Customer-18] Verify user can edit posted note from Activity tab.
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User select "abcd" customer
@@ -219,7 +226,7 @@ Feature: Mobile App Feature
     And User edits to "test2"
     Then USer verifies note text is updated to "test2" in Activity list
 
-  Scenario: [Customer-18] Verify user can delete posted note text successfully
+  Scenario: [Customer-19] Verify user can delete posted note text successfully
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User selects "abcd" customer
@@ -237,7 +244,7 @@ Feature: Mobile App Feature
 #    Then Following options are displayed
 #      | Edit | Delete |
 
-  Scenario Outline: [Customer-19] Verify that the user can add a touchbase note through the different option.
+  Scenario Outline: [Customer-20] Verify user can create a Touchbase with selected contact option from Activity tab.
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User selects "abcd" customer
@@ -291,7 +298,7 @@ Feature: Mobile App Feature
 #    And User taps on "Create Touchbase" option
 #    Then User validated "Touchbase" on page
 
-  Scenario: [Customer-20] Verify that the user can delete created touchbase from Activity details
+  Scenario: [Customer-21] Verify that the user can delete created touchbase from Activity details
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User selects "abcd" customer
@@ -304,7 +311,7 @@ Feature: Mobile App Feature
     And User select recently created touchbase and delete it
     Then User verifies "Touchbase" is deleted successfully
 
-  Scenario: [Customer-21] Verify that the user is able to create a touchbase successfully.
+  Scenario: [Customer-22] Verify that the user can create a new touchbase successfully.
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User taps on "+" option
@@ -339,7 +346,7 @@ Feature: Mobile App Feature
 #    Then Following options are displayed
 #      | Sales Rep | Estimated Order Date(Optional) | Estimate Sub-Title | opportunity | Customer Info | Primary Contact | Metrics and Color |
 
-  Scenario: [Customer-22] Verify that the user is able to create a opportunity successfully.
+  Scenario: [Customer-23] Verify that the user can create a new opportunity successfully.
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User taps on "+" option
@@ -348,7 +355,7 @@ Feature: Mobile App Feature
         |Affiliation|Customer Location|BOH Role|Customer Contact(New/Existing)|Rank or Title|Contact First Name|Contact Last Name|Contact Email|Contact Phone|Win Probability|Value Breakdown|
     And User taps on "Create Opportunity" option
     And User taps on "Opportunity" option
-    Then user verifies "Opportunity" is displayed on page
+    Then user verifies "Opportunity #" is displayed on page
 
 #  Scenario: [Customer-23] Verify that the user is able to create a REs successfully.
 #    Given User is on BOH FPU homepage
@@ -360,7 +367,7 @@ Feature: Mobile App Feature
 #    And User navigated to "Config" page
 #    Then user verifies RE # is displayed at left corner of a page
 
-  Scenario: [Customer-24] Verify that the user can delete customer from info tab of Customer details
+  Scenario: [Customer-24] Verify user can delete Customer from Touchbase info tab
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User taps on "+" option
@@ -374,6 +381,7 @@ Feature: Mobile App Feature
     And User taps on "Delete" option
     Then User verifies "Customer" is deleted successfully.
 
+#    Low Priority.
   Scenario: [Customer-25] Verify that if there are no REs in the RE tab, then the user should able to see the message
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
@@ -381,7 +389,7 @@ Feature: Mobile App Feature
     And User taps on "RE" option
     Then user verifies "Tap the + to add the first RE" is displayed on page
 
-  Scenario: [Customer-26] Verify that user can update existing contact in info tab of customer
+  Scenario: [Customer-26] Verify that user can update existing contact details in info tab of customer
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User selects "abcd" customer
@@ -439,12 +447,12 @@ Feature: Mobile App Feature
       |$7K                  |$0.00           |$7K                 |
       |Total                |Quoted          |Remaining           |
 
-  Scenario: [Opportunity-2] Verify that the user should be on the info page after selecting any opportunity.
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
-    And User taps on "Opportunities" option
-    And User selects "opportunity #60" opportunity
-    Then User verifies that it navigated to the "INFO" page.
+#  Scenario: [Opportunity-2] Verify that the user should be on the info page after selecting any opportunity.
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+#    And User taps on "Opportunities" option
+#    And User selects "opportunity #60" opportunity
+#    Then User verifies that it navigated to the "INFO" page.
 
 #  Scenario: [NAT-47] Verify that If the user has the ability to edit the Sales Rep.
 #    Given User is on boh fpu homepage
@@ -454,15 +462,16 @@ Feature: Mobile App Feature
 #    And User select "Jerry Boggess" from list
 #    Then User validated "Jerry Boggess" on page
 
-  Scenario: [Opportunity-3] Verify that after selecting "no affiliation", the choose type pop-up should appear.
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
-    And User taps on "Opportunities" option
-    And User selects "opportunity #60" opportunity
-    And User taps on "no affiliation" option
-    And "Choose type" popup is displayed
-    Then User verifies following options are displayed
-      | Direct | Program |
+#  its covers while creating opportunity
+#  Scenario: [Opportunity-3] Verify that after selecting "no affiliation", the choose type pop-up should appear.
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+#    And User taps on "Opportunities" option
+#    And User selects "opportunity #60" opportunity
+#    And User taps on "no affiliation" option
+#    And "Choose type" popup is displayed
+#    Then User verifies following options are displayed
+#      | Direct | Program |
 
 #  Scenario: [NAT-49] Verify that if the user can edit the order month and select any month from the list.
 #    Given User is on boh fpu homepage
