@@ -20,7 +20,7 @@ Feature: Mobile App Feature
       |harish.ekal@spurqlabs.com  |             | Incorrect username/password |
 
 
-  Scenario: [Customer-3] Verify the different options displayed on Customer Management page.
+  Scenario: [Customer-3] Verify the Headers and Tabs displayed on Customer Management Page.
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     Then User verifies following options are displayed on page
@@ -37,7 +37,7 @@ Feature: Mobile App Feature
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User taps on "Adminastrator" option
     And User taps on "Update Profile Picture" option
-    Then User updated profile picture successfully
+    Then user verifies profile picture updated successfully
 
 #  Scenario: [NAT-6] Verify after clicking on "Update Profile Picture", user should see two options 1) Take Picture 2) Upload File
 #    Given User is on boh fpu homepage
@@ -54,14 +54,14 @@ Feature: Mobile App Feature
     And User taps on "Sign Out" button
     Then User verfies "Homepage" is displayed
 
-  Scenario: [Customer-6] Verify user can sort out customers by Date option
+  Scenario: [Customer-6] Verify user can sort customers by Date option
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User taps on "Sort By" option
     And User select "Date" option
     Then User verifies that the list is sorted by date
 
-  Scenario: [Customer-7] Verify user can filter out customer by Active option
+  Scenario: [Customer-7] Verify user can filter customer by Active option
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User taps on "filter By" option
@@ -202,7 +202,7 @@ Feature: Mobile App Feature
 #    Then Following options are displayed
 #      | Note | Phone | Email | In-Person | Voicemail |
 
-  Scenario: [Customer-16] Verify user can add a note successfully from Activity Tab in Customer Deatils page
+  Scenario: [Customer-16] Verify user can add a note successfully from Activity Tab in Customer Details page
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User select "abcd" customer
@@ -210,7 +210,7 @@ Feature: Mobile App Feature
     And User taps on "Post" option
     Then User verifies "Test note" is displayed in Activity list.
 
-  Scenario: [Customer-17] Verify whether the posted message through notes is editable.
+  Scenario: [Customer-17] Verify user can edit posted message through notes.
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User select "abcd" customer
@@ -219,7 +219,7 @@ Feature: Mobile App Feature
     And User edits to "test2"
     Then USer verifies note text is updated to "test2" in Activity list
 
-  Scenario: [Customer-18] Verify the posted note text through notes is deletable
+  Scenario: [Customer-18] Verify user can delete posted note text successfully
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User selects "abcd" customer
@@ -310,6 +310,8 @@ Feature: Mobile App Feature
     And User taps on "+" option
     And User taps on "Add Touchbase" option
     And User fills all required data into their respective field
+        |Customer          |Location         |Direct/Program|Contact      |Existing/New/None|Rank or Title (optional)|                   |
+        |Contact First Name|Contact Last Name|Contact Email |Contact Phone|Date of Contacts |Note                    |Contact Method     |
     And User taps on "Create Touchbase" option
     Then user verifies "touchbase" is displayed on page
 
@@ -343,19 +345,20 @@ Feature: Mobile App Feature
     And User taps on "+" option
     And User taps on "Add Opportunity" option
     And User fills all required data into their respective field for opportnity
+        |Affiliation|Customer Location|BOH Role|Customer Contact(New/Existing)|Rank or Title|Contact First Name|Contact Last Name|Contact Email|Contact Phone|Win Probability|Value Breakdown|
     And User taps on "Create Opportunity" option
     And User taps on "Opportunity" option
     Then user verifies "Opportunity" is displayed on page
 
-  Scenario: [Customer-23] Verify that the user is able to create a REs successfully.
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
-    And User taps on "+" option
-    And User taps on "Add RE" option
-    And User fills all reuired data into their respective field for RE
-    And User taps on "Create Requirement Estimate" option
-    And User navigated to "Config" page
-    Then user verifies RE # is displayed at left corner of a page
+#  Scenario: [Customer-23] Verify that the user is able to create a REs successfully.
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+#    And User taps on "+" option
+#    And User taps on "Add RE" option
+#    And User fills all reuired data into their respective field for RE
+#    And User taps on "Create Requirement Estimate" option
+#    And User navigated to "Config" page
+#    Then user verifies RE # is displayed at left corner of a page
 
   Scenario: [Customer-24] Verify that the user can delete customer from info tab of Customer details
     Given User is on BOH FPU homepage
@@ -363,6 +366,8 @@ Feature: Mobile App Feature
     And User taps on "+" option
     And User taps on "Add Touchbase" option
     And User fills all required data into their respective field
+        |Customer          |Location         |Direct/Program|Contact      |Existing/New/None|Rank or Title (optional)|                   |
+        |Contact First Name|Contact Last Name|Contact Email |Contact Phone|Date of Contacts |Note                    |Contact Method     |
     And User taps on "Create Touchbase" option
     And User click on created touchbase
     And User taps on "INFO" option
@@ -376,7 +381,7 @@ Feature: Mobile App Feature
     And User taps on "RE" option
     Then user verifies "Tap the + to add the first RE" is displayed on page
 
-  Scenario: [Customer-26] Verify that user can update existing contact in info tab of contacts
+  Scenario: [Customer-26] Verify that user can update existing contact in info tab of customer
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
     And User selects "abcd" customer
@@ -400,13 +405,13 @@ Feature: Mobile App Feature
     And User taps on "Push" button
     Then user verifies "Save Changes" is displayed on page
 
-  Scenario: [Customer-28] Verify that user can upload profile picture
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
-    And User taps on "Adminastrator" option
-    And User taps on "Upload Profile Picture" option
-    And User taps on "Upload file" option
-    Then User verifies Picture is uploaded successfully
+#  Scenario: [Customer-28] Verify that user can upload profile picture
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+#    And User taps on "Adminastrator" option
+#    And User taps on "Upload Profile Picture" option
+#    And User taps on "Upload file" option
+#    Then User verifies Picture is uploaded successfully
 
 #  Scenario: [NAT-43] Verify that user can upload profile picture through Take a picture functionality
 #    Given User is on boh fpu homepage
@@ -510,6 +515,7 @@ Feature: Mobile App Feature
     And User taps on "+" option
     And User taps on "Add Opportunity" option
     And User fills all required data into their respective field for opportunity
+        |Affiliation|Customer Location|BOH Role|Customer Contact(New/Existing)|Rank or Title|Contact First Name|Contact Last Name|Contact Email|Contact Phone|Win Probability|Value Breakdown|
     And User taps on "Create Touchbase" option
     And User click on created opportunity
     And User taps on "INFO" option
