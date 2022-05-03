@@ -10,9 +10,14 @@ def step_impl(context):
 
 @step('User enters username "{username}"')
 def step_impl(context,username):
-    context.signIn.enter_Username(username)
+    context.Homepage.enter_Username(username)
 
 
 @step('User enters password "{password}"')
 def step_impl(context,password):
-    context.signIn.enter_Password(password);
+    context.Homepage.enter_Password(password);
+
+
+@step('USer enters the username "{username}"')
+def step_impl(context,username):
+    context.Homepage.enter_Username(username)

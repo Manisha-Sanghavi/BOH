@@ -9,13 +9,11 @@ import time
 from Features.Pages.BasePage import Basepage
 
 
-class SignIn(Basepage):
+class Home_page(Basepage):
     def __init__(self,context):
         Basepage.__init__(self,context.driver)
         self.context=context
 
-
-    data = json.load(open('Features/Resources/config.json'))
 
 
 
