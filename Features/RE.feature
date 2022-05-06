@@ -1,5 +1,5 @@
 # Created by Rashmi at 21/04/2022
-Feature: RE
+Feature: Verify Functionalities for RE module
 
   Scenario[RE-01] : Verify different options available in Sort By for RE Tab
     Given user is on BOH FPU homepage
