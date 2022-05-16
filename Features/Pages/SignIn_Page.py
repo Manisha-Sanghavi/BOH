@@ -16,6 +16,8 @@ class bohapk_page(Basepage):
         Basepage.__init__(self, context.driver)
         self.context = context
 
+    form_xpath = "//android.view.View[@content-desc='XXX']"
+
     def enter_Username(self, username):
         user = self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.EditText[@text='email']")))
@@ -35,12 +37,13 @@ class bohapk_page(Basepage):
         login = self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, "//android.view.View[@content-desc='Sign In (DEV)']")))
         login.click()
-        self.wait.until(
-            EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='Skip']"))).click()
-
-    # def Already_acc(self):
-    #     alr_acc = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "//XCUIElementTypeButton[@name='Already Have An Account? Log In']")))
-    #     alr_acc.click()
+        sleep(5)
+        try:
+            self.wait.until(
+                EC.presence_of_element_located(
+                    (MobileBy.XPATH, "//android.widget.Button[@content-desc='Skip']"))).click()
+        except:
+            print("Skip is skipped")
 
     def verify_page(self, message):
         try:
@@ -69,3 +72,32 @@ class bohapk_page(Basepage):
             actions.release(element)
             # actions.click(hidden_submenu)
             actions.perform()
+
+    def verify_message(self, message):
+        msg = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "//android.view.View[@content-desc='" + message + "']")))
+        read_message = msg.text
+        print(read_message)
+        assert read_message == "Incorrect username/password"
+        # msg = self.wait.until(EC.presence_of_element_located(MobileBy.XPATH,""))
+
+    def show_field(self, field):
+        write_data = self.form_xpath.replace('XXX', field)
+        if field == 'Customer Name':
+            CustName_ele = self.wait.until(EC.presence_of_element_located(MobileBy.XPATH, write_data))
+            text_read = CustName_ele.text
+            assert text_read == "Customer Name"
+        elif field == 'Customers Tab 1 of 3':
+            Cust_ele = self.wait.until(EC.presence_of_element_located(MobileBy.XPATH, write_data))
+            text_read = Cust_ele.text
+            assert text_read == "Customers Tab 1 of 3"
+        elif field == 'REs Tab 2 of 3':
+            RE_ele = self.wait.until(EC.presence_of_element_located(MobileBy.XPATH, write_data))
+            text_read = RE_ele.text
+            assert text_read == "REs Tab 2 of 3"
+        elif field == "Opportunities Tab 3 of 3":
+            Oppor_ele = self.wait.until(EC.presence_of_element_located(MobileBy.XPATH, write_data))
+            text_read = Oppor_ele.text
+            assert text_read == "Opportunities Tab 3 of 3"
+        else:
+            raise NameError(f'Field {field} is not valid')

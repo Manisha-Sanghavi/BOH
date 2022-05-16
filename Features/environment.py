@@ -8,7 +8,7 @@ from allure_commons._allure import attach
 from Features.Pages.BasePage import Basepage
 #from Features.Utils.APIUtility import APIUtility
 from Features.Pages.Home_Page import Home_page
-from Features.Pages.bohapk_page import bohapk_page
+from Features.Pages.SignIn_Page import bohapk_page
 
 # data = json.load(open("Features/Resources/config.json"))
 
