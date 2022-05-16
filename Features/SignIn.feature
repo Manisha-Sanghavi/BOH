@@ -4,12 +4,12 @@ Feature: Verify Functionalities for Sigin, Sign out and Home Page
     Given User is on BOH FPU homepage
     When User enters username as "harish.ekal@spurqlabs.com"
     And User enters password as "Test123!BOH"
-    And User taps on "Sign In" button
+    And User taps on Sign In button
     Then User verifies "Customer Management" page is displayed
 
   Scenario Outline: [BOH-2] Verify the User can not login with In-valid credentials
     Given User is on BOH FPU homepage
-    When User login with <username> and <password>
+    When User login with "<username>" and "<password>"
     Then User verifies "<message>" is displayed
     Examples:
       | username                  | password    | message                     |
@@ -21,9 +21,13 @@ Feature: Verify Functionalities for Sigin, Sign out and Home Page
 
   Scenario: [BOH-3] Verify the Headers and Tabs displayed on Customer Management Page.
     Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    When User login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
     Then User verifies following options are displayed on page
-      | Customer Management | Customers | REs       |Opportunities       | Sort By   | Filter By |
+      | Field                    |
+      | Customer Management      |
+      | Customers Tab 1 of 3     |
+      | REs Tab 2 of 3           |
+      | Opportunities Tab 3 of 3 |
 
   Scenario: [BOH-4] Verify user can update Profile picture from Profile menu
     Given User is on BOH FPU homepage
