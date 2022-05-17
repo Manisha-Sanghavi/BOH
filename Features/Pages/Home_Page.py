@@ -15,9 +15,6 @@ class Home_page(Basepage):
         self.context=context
 
 
-
-
-
     def enter_Username(self,username):
         user = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "//XCUIElementTypeOther[@name='Email Email Email']")))
         user.click()

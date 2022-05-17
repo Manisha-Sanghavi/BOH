@@ -21,23 +21,24 @@ Feature: Verify Functionalities for Sigin, Sign out and Home Page
 
   Scenario: [BOH-3] Verify the Headers and Tabs displayed on Customer Management Page.
     Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    When User login with "harish.ekal@spurqlabs.com" and "Test123!BOH"
     Then User verifies following options are displayed on page
+
       | Customer Management | Customers | REs       |Opportunities       | Sort By   | Filter By |
 
   Scenario: [BOH-4] Verify user can update Profile picture from Profile menu
     Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
-    And User taps on "Adminastrator" option
+    When User login with "harish.ekal@spurqlabs.com" and "Test123!BOH"
+    And User taps on "Administrator" option
     And User taps on "Update Profile Picture" option
     Then user verifies profile picture updated successfully
 
   Scenario: [BOH-5] Verify user can sign out successfully from app
     Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    When User login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
     And User taps on "Administrator" option
     And User taps on "Sign Out" button
-    Then User verfies "Homepage" is displayed
+    Then User verifies "Homepage" is displayed
 
    Scenario: [BOH-6] Verify that the "forgot password" link works
     Given User is on BOH FPU homepage

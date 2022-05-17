@@ -4,6 +4,7 @@ from appium.webdriver.common.mobileby import MobileBy
 from appium.webdriver.common.touch_action import TouchAction
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 import time
@@ -31,12 +32,17 @@ class bohapk_page(Basepage):
         element.click()
 
     def clickOn_Login(self):
-        # sleep(20)
+        #time.sleep(20)
         login = self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, "//android.view.View[@content-desc='Sign In (DEV)']")))
         login.click()
-        self.wait.until(
-            EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='Skip']"))).click()
+        sleep(5)
+        try:
+            self.wait.until(
+                EC.presence_of_element_located(
+                    (MobileBy.XPATH, "//android.widget.Button[@content-desc='Skip']"))).click()
+        except AssertionError as msg:
+            print(msg)
 
     # def Already_acc(self):
     #     alr_acc = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "//XCUIElementTypeButton[@name='Already Have An Account? Log In']")))
@@ -69,3 +75,55 @@ class bohapk_page(Basepage):
             actions.release(element)
             # actions.click(hidden_submenu)
             actions.perform()
+
+    def verify_tabs(self):
+        try:
+            cust_tab = self.wait.until(EC.presence_of_element_located(
+            (MobileBy.XPATH, "(//android.view.View)[8]")))
+            text1 = cust_tab.text
+            print(text1)
+            assert text1 == "Customers"
+        except AssertionError as msg:
+            print(msg)
+
+        try:
+            re_tab = self.wait.until(EC.presence_of_element_located(
+            (MobileBy.XPATH, "(//android.view.View)[8]")))
+            text = re_tab.text
+            print(text)
+            assert text == "REs"
+        except AssertionError as msg:
+            print(msg)
+
+    def clickOn_Signout(self):
+        signout = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.Button)[2]")))
+        signout.click()
+
+    def click_admin(self):
+        admin = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.Button)[1]")))
+        admin.click()
+
+    def verify_homepage(self):
+        homepage = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.ImageView)")))
+        homepage.click()
+
+    def re_tab(self):
+        self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[9]"))).click()
+
+    def click_sortby(self):
+        self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[17]"))).click()
+
+    def verify_dropdownlist(self):
+        sort_options = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[17]")))
+        select = Select(sort_options)
+        option_list = select.options
+
+        for ele in option_list:
+            print(ele.text)
+
