@@ -1,14 +1,21 @@
 
 Feature: Verify Functionalities for RE module
-
-  Scenario[RE-01] : Verify different options available in Sort By for RE Tab
+  @smoke
+  Scenario: Verify different options available in Sort By for RE Tab
     Given user is on BOH FPU homepage
     When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
     And user is navigated to "Customer Management" page
     And user taps on RE tab
     And user taps on "Sort By" option
-    Then user verifies following options are available:
-     #  | Recent Activity | RE Date | Value | REID | Location | CSM | Status |
+    Then user verifies following options are available
+#      |     Field       |
+#      | Recent Activity |
+#      |    RE Date      |
+#      |     Value       |
+#      |     REID        |
+#      |    Location     |
+#      |     CSM         |
+#      |     Status      |
 #
 #  Scenario[RE-02] : Verify user can sort REs in descending order of REID
 #    Given user is on BOH FPU homepage
@@ -16,7 +23,7 @@ Feature: Verify Functionalities for RE module
 #    And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user taps on "upward arrow"
-#    Then user verifies REs diplayed are in descending order of REID
+#    Then user verifies REs displayed are in descending order of REID
 #
 #  Scenario[RE-03] : Verify user can sort REs in ascending order of REID
 #    Given user is on BOH FPU homepage

@@ -5,19 +5,19 @@ use_step_matcher("parse")
 
 @given("User is on BOH FPU homepage")
 def step_impl(context):
-    context.re.dev_build()
+    context.boh.dev_build()
     print("User is on Homepage")
 
 
 @when('User login with "{username}" and "{password}"')
 def step_impl(context, username, password):
-    context.re.enter_Username(username)
-    context.re.enter_Password(password)
-    context.re.clickOn_Login()
+    context.boh.enter_Username(username)
+    context.boh.enter_Password(password)
+    context.boh.clickOn_Login()
 
 @step('user is navigated to "{message}" page')
 def step_impl(context, message):
-    context.re.verify_page(message)
+    context.boh.verify_page(message)
 
 @step("user taps on RE tab")
 def step_impl(context):

@@ -8,8 +8,8 @@ from allure_commons._allure import attach
 from Features.Pages.BasePage import Basepage
 #from Features.Utils.APIUtility import APIUtility
 from Features.Pages.Home_Page import Home_page
+from Features.Pages.SignIn_Page import bohapk_page
 from Features.Pages.RE_Page import RE_Page
-from Features.Pages.bohapk_page import bohapk_page
 
 # data = json.load(open("Features/Resources/config.json"))
 
@@ -17,14 +17,14 @@ from Features.Pages.bohapk_page import bohapk_page
 
 def before_feature(context, feature):
     print(feature)
-    tags = str(feature.tags)
+    #tags = str(feature.tags)
 
 
 
 
 def before_scenario(context, scenario):
-    tag=str(scenario.tags)
-    print(tag)
+    #tag=str(scenario.tags)
+    #print(tag)
     if context.config.userdata["executionMode"] == "Browserstack":
         context.driver = webdriver.Remote(
             command_executor='https://' + context.config.userdata["userName"] + ':' + context.config.userdata[
