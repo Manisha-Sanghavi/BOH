@@ -16,8 +16,6 @@ class SignIn_Page(Basepage):
         Basepage.__init__(self, context.driver)
         self.context = context
 
-    form_xpath = "//android.view.View[@content-desc='XXX']"
-
     def enter_Username(self, username):
         user = self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.EditText[@text='email']")))
@@ -37,6 +35,12 @@ class SignIn_Page(Basepage):
         login = self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, "//android.view.View[@content-desc='Sign In (DEV)']")))
         login.click()
+        # self.wait.until(
+        #     EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='Skip']"))).click()
+
+    # def Already_acc(self):
+    #     alr_acc = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "//XCUIElementTypeButton[@name='Already Have An Account? Log In']")))
+    #     alr_acc.click()
         # sleep(5)
         # try:
         #     self.wait.until(
@@ -44,6 +48,21 @@ class SignIn_Page(Basepage):
         #             (MobileBy.XPATH, "//android.widget.Button[@content-desc='Skip']"))).click()
         # except:
         #     print("Skip is skipped")
+
+    def click_admin(self):
+        admin = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.Button)[1]")))
+        admin.click()
+
+    def clickOn_Signout(self):
+        signout = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.Button)[2]")))
+        signout.click()
+
+    def verify_homepage(self):
+        homepage = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.ImageView)")))
+        homepage.click()
 
     def verify_page(self, message):
         try:
@@ -59,13 +78,14 @@ class SignIn_Page(Basepage):
         try:
             element = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.ImageView)")))
             actions = ActionChains(self.driver)
-            # actions.move_to_element(element)
+            actions.move_to_element(element)
             actions.click_and_hold(element)
             actions.release(element)
             # actions.click(hidden_submenu)
             actions.perform()
         except:
             print("Not Found element")
+            actions = ActionChains(self.driver)
             actions = ActionChains(self.driver)
             actions.move_to_element(element)
             actions.click_and_hold(element)
@@ -148,3 +168,4 @@ class SignIn_Page(Basepage):
                     (MobileBy.XPATH, "//android.widget.Button[@content-desc='Skip']"))).click()
         except:
             print("Skip is skipped")
+

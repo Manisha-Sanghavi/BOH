@@ -8,6 +8,7 @@ from allure_commons._allure import attach
 from Features.Pages.BasePage import Basepage
 #from Features.Utils.APIUtility import APIUtility
 from Features.Pages.Home_Page import Home_page
+from Features.Pages.RE_Page import RE_Page
 from Features.Pages.SignIn_Page import SignIn_Page
 
 # data = json.load(open("Features/Resources/config.json"))
@@ -16,14 +17,14 @@ from Features.Pages.SignIn_Page import SignIn_Page
 
 def before_feature(context, feature):
     print(feature)
-    tags = str(feature.tags)
+    #tags = str(feature.tags)
 
 
 
 
 def before_scenario(context, scenario):
-    tag=str(scenario.tags)
-    print(tag)
+    #tag=str(scenario.tags)
+    #print(tag)
     if context.config.userdata["executionMode"] == "Browserstack":
         context.driver = webdriver.Remote(
             command_executor='https://' + context.config.userdata["userName"] + ':' + context.config.userdata[
@@ -69,6 +70,7 @@ def before_scenario(context, scenario):
     context.driver.switch_to.context('NATIVE_APP')
     baseobject = Basepage(context.driver)
     context.Homepage = Home_page(baseobject)
+    context.re = RE_Page(baseobject)
     context.boh = SignIn_Page(baseobject)
     context.stepid = 1
 

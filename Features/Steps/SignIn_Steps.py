@@ -5,7 +5,7 @@ from behave import *
 use_step_matcher("parse")
 
 
-@given("User is on BOH FPU homepage")
+@given("Given User is on BOH FPU homepage")
 def step_impl(context):
     try:
         context.boh.dev_build()
@@ -29,25 +29,34 @@ def step_impl(context):
     context.boh.clickOn_Login()
     context.boh.skip()
 
+@step('User taps on "Administrator" option')
+def step_impl(context):
+    context.boh.click_admin()
+
+@step('User taps on "Sign Out" button')
+def step_impl(context):
+    context.boh.clickOn_Signout()
+
+@then('User verifies "Homepage" is displayed')
+def step_impl(context):
+    context.boh.verify_homepage()
+
+
+
+# @when('User login with "{username}" and "{password}"')
+# def step_impl(context, username, password):
+#     context.boh.enter_Username(username)
+#     context.boh.enter_Password(password)
+#     context.boh.clickOn_Login()
+#     try:
+#         context.boh.skip()
+#     except:
+#         print("skip is skipped")
 
 @then('User verifies "{message}" page is displayed')
 def step_impl(context, message):
+
     context.boh.verify_page(message)
-
-
-@when('User login with "{username}" and "{password}"')
-def step_impl(context, username, password):
-    context.boh.enter_Username(username)
-    context.boh.enter_Password(password)
-    context.boh.clickOn_Login()
-    try:
-        context.boh.skip()
-    except:
-        print("skip is skipped")
-
-
-@then('User verifies "{message}" is displayed')
-def step_impl(context, message):
     context.boh.verify_message(message)
 
 
@@ -82,3 +91,4 @@ def step_impl(context, username, password):
     context.boh.enter_Username(username)
     context.boh.enter_Password(password)
     context.boh.clickOn_Login()
+

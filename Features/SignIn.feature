@@ -4,11 +4,12 @@ Feature: Verify Functionalities for Sigin, Sign out and Home Page
     Given User is on BOH FPU homepage
     When User enters username as "harish.ekal@spurqlabs.com"
     And User enters password as "Test123!BOH"
-    And User taps on Sign In button
+    And User taps on "Sign In" button
     Then User verifies "Customer Management" page is displayed
 
   Scenario Outline: [BOH-2] Verify the User can not login with In-valid credentials
     Given User is on BOH FPU homepage
+    When User login with <username> and <password>
     When User login with "<username>" and "<password>" for validation
     Then User verifies "<message>" is displayed
     Examples:
@@ -19,6 +20,13 @@ Feature: Verify Functionalities for Sigin, Sign out and Home Page
       |                           | test123     | Incorrect username/password |
       |harish.ekal@spurqlabs.com  |             | Incorrect username/password |
 
+  Scenario: [BOH-3] Verify the Headers and Tabs displayed on Customer Management Page.
+    Given User is on BOH FPU homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    Then User verifies following options are displayed on page
+      | Customer Management | Customers | REs       |Opportunities       | Sort By   | Filter By |
+
+#  Scenario: [BOH-4] Verify user can update Profile picture from Profile menu // Cannot verify as there is no message displayed
 #  Scenario: [BOH-3] Verify the Headers and Tabs displayed on Customer Management Page.
 #    Given User is on BOH FPU homepage
 #    When User login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
@@ -35,6 +43,14 @@ Feature: Verify Functionalities for Sigin, Sign out and Home Page
 #    And User taps on "Adminastrator" option
 #    And User taps on "Update Profile Picture" option
 #    Then user verifies profile picture updated successfully
+
+  Scenario: [BOH-5] Verify user can sign out successfully from app
+    Given User is on BOH FPU homepage
+    When User login with "harish.ekal@spurqlabs.com" and "Test123!BOH"
+    And User taps on "Administrator" option
+    And User taps on "Sign Out" button
+    Then User verifies "Homepage" is displayed
+
 #
 #  Scenario: [BOH-5] Verify user can sign out successfully from app
 #    Given User is on BOH FPU homepage
