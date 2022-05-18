@@ -82,10 +82,24 @@ class RE_Page(Basepage):
             EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[17]"))).click()
 
     def verify_dropdownlist(self):
-        sort_options = self.wait.until(
-            EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[17]")))
-        select = Select(sort_options)
-        option_list = select.options
+        # def select_option(option_list):
+        #     for ele in option_list:
+        #         print(ele.text)
 
-        for ele in option_list:
-            print(ele.text)
+
+        #self.driver.find_element(MobileBy.XPATH, "(//android.view.View)[17]").click()
+        a = self.driver.find_elements(MobileBy.CLASS_NAME, '//android.widget.Button')
+        ele_name = a.getattr("text")
+        print(ele_name)
+        # b = self.driver.find_elements(MobileBy.XPATH, '//android.widget.Button[@content-desc="RE Date"]').text
+        # c = self.driver.find_elements(MobileBy.XPATH, '//android.widget.Button[@content-desc="Value"]').text
+        # d = self.driver.find_elements(MobileBy.XPATH, '//android.widget.Button[@content-desc="REID"]').text
+        # e = self.driver.find_elements(MobileBy.XPATH, '//android.widget.Button[@content-desc="Location"]').text
+        # f = self.driver.find_elements(MobileBy.XPATH, '//android.widget.Button[@content-desc="CSM"]').text
+        # g = self.driver.find_elements(MobileBy.XPATH, '//android.widget.Button[@content-desc="Status"]').text
+
+        print(len(a))
+
+        #select_option(dropdownlist)
+
+

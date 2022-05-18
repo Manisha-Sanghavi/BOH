@@ -15,9 +15,9 @@ def step_impl(context, username, password):
     context.re.enter_Password(password)
     context.re.clickOn_Login()
 
-@step('user is navigated to "Customer Management" page')
-def step_impl(context):
-    context.re.verify_page()
+@step('user is navigated to "{message}" page')
+def step_impl(context, message):
+    context.re.verify_page(message)
 
 @step("user taps on RE tab")
 def step_impl(context):
@@ -29,6 +29,8 @@ def step_impl(context):
     context.re.click_sortby()
 
 
-@then("user verifies following options are available:")
+@then("user verifies following options are available")
 def step_impl(context):
-    context.re.verify_dropdownlist()
+   context.re.verify_dropdownlist()
+   # for row in context.table:
+   #     context.re.fill_field(row['Field'])
