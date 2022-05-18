@@ -8,8 +8,8 @@ from allure_commons._allure import attach
 from Features.Pages.BasePage import Basepage
 #from Features.Utils.APIUtility import APIUtility
 from Features.Pages.Home_Page import Home_page
-from Features.Pages.SignIn_Page import bohapk_page
 from Features.Pages.RE_Page import RE_Page
+from Features.Pages.SignIn_Page import SignIn_Page
 
 # data = json.load(open("Features/Resources/config.json"))
 
@@ -70,8 +70,8 @@ def before_scenario(context, scenario):
     context.driver.switch_to.context('NATIVE_APP')
     baseobject = Basepage(context.driver)
     context.Homepage = Home_page(baseobject)
-    context.boh = bohapk_page(baseobject)
     context.re = RE_Page(baseobject)
+    context.boh = SignIn_Page(baseobject)
     context.stepid = 1
 
 def after_step(context, step):

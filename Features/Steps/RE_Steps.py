@@ -14,6 +14,10 @@ def step_impl(context, username, password):
     context.boh.enter_Username(username)
     context.boh.enter_Password(password)
     context.boh.clickOn_Login()
+    try:
+        context.boh.skip()
+    except:
+        print("skip is skipped")
 
 @step('user is navigated to "{message}" page')
 def step_impl(context, message):
@@ -24,7 +28,7 @@ def step_impl(context):
     context.re.re_tab()
 
 
-@step('user taps on "Sort By" option')
+@step('user taps on "Sort By" options')
 def step_impl(context):
     context.re.click_sortby()
 

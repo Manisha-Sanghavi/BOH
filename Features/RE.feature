@@ -6,7 +6,7 @@ Feature: Verify Functionalities for RE module
     When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
     And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user taps on "Sort By" option
+    And user taps on "Sort By" options
     Then user verifies following options are available
 #      |     Field       |
 #      | Recent Activity |
