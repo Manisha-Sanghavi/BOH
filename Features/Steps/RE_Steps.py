@@ -28,13 +28,83 @@ def step_impl(context):
     context.re.re_tab()
 
 
-@step('user taps on "Sort By" options')
+@step('user taps on "{option}" options')
+def step_impl(context, option):
+    if option == "Sort By":
+        context.re.click_sortby()
+    elif option == "Filter By":
+        context.re.click_filterby()
+
+@then("user verifies following options are available for sort by")
 def step_impl(context):
-    context.re.click_sortby()
+   #context.re.verify_dropdownlist()
+
+    for row in context.table:
+        s = context.re.verify_sortby_filterby(row['Field'])
+        assert row['Field'] == s
 
 
-@then("user verifies following options are available")
+
+
+
+@step("user taps on plus symbol")
 def step_impl(context):
-   context.re.verify_dropdownlist()
-   # for row in context.table:
-   #     context.re.fill_field(row['Field'])
+    context.re.tap_symbol()
+
+
+@step("user taps on Add RE")
+def step_impl(context):
+    context.re.add_re()
+
+
+@step('user selects Estimated Order Date "21/05/2022"')
+def step_impl(context):
+    context.re.order_date()
+
+
+@step("user enter following details for selected Customer Info options")
+def step_impl(context):
+    context.re.cust_info()
+
+
+@step("user enters the Primary Contact details as:")
+def step_impl(context):
+    for row in context.table:
+        context.re.primary_contact(row['Feild'], row['Value'])
+
+
+@step("user enter following details for Metrics as:")
+def step_impl(context):
+    context.re.select_metrics()
+
+
+@step("user taps Create Requirements Estimate")
+def step_impl(context):
+    context.re.create_estimation()
+
+
+@then("user verifies RE details page is displayed")
+def step_impl(context):
+    pass
+
+
+@step('user taps on "search" symbol')
+def step_impl(context):
+    context.re.tap_search()
+
+
+@step('user enters "772" in search field')
+def step_impl(context):
+    context.re.search_re()
+
+
+@step('user selects "RE #772"')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: And user selects "RE #772"')
+
+
+@then("user verifies following options are available for filter by:")
+def step_impl(context):
+    for row in context.table:
+        s = context.re.verify_sortby_filterby(row['Field'])
+        assert row['Field'] == s
