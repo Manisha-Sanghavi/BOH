@@ -1,7 +1,7 @@
 
 Feature: Verify Functionalities for RE module
 @smoke
-#  Scenario: Verify different options available in Sort By for RE Tab
+#  Scenario: [RE-01] Verify different options available in Sort By for RE Tab
 #    Given user is on BOH FPU homepage
 #    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
 #    And user is navigated to "Customer Management" page
@@ -17,29 +17,28 @@ Feature: Verify Functionalities for RE module
 #      |     CSM         |
 #      |     Status      |
 
-#  Scenario[RE-02] : Verify user can sort REs in descending order of REID
+#  Scenario:[RE-02] Verify user can sort REs in descending order of REID
 #    Given user is on BOH FPU homepage
 #    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
 #    And user is navigated to "Customer Management" page
 #    And user taps on RE tab
-#    And user taps on "upward arrow"
 #    Then user verifies REs displayed are in descending order of REID
-#
-#  Scenario[RE-03] : Verify user can sort REs in ascending order of REID
+
+#  Scenario: [RE-03] Verify user can sort REs in ascending order of REID
 #    Given user is on BOH FPU homepage
-#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
 #    And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user taps on "downward arrow"
-#    Then user verifies REs displayed are in descending order of REID
+#    Then user verifies REs displayed are in ascending order of REID
 
-#  Scenario: Verify different options available in Filter By for RE Tab
+#  Scenario: [RE-04] Verify different options available in Filter By for RE Tab
 #    Given user is on BOH FPU homepage
 #    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
 #    And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user taps on "Filter By" options
-#    Then user verifies following options are available for filter by:
+#    Then user verifies following options are available for filter by
 #      |     Field     |
 #      |    Current    |
 #      |      All      |
@@ -67,15 +66,18 @@ Feature: Verify Functionalities for RE module
 # #   | Inactive | Active | Pending | Awarded | Complete |
 #
 #
-#  Scenario[RE-06]: Verify after tapping '+' symbol in RE tab, user can see Add Touchbase, Add Opportunity, Add RE and 'x' symbol
+#  Scenario: [RE-06] Verify after tapping '+' symbol in RE tab, user can see Add Touchbase, Add Opportunity, Add RE and 'x' symbol
 #    Given user is on BOH FPU homepage
-#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
 #    And user is navigated to "Customer Management" page
 #    And user taps on RE tab
-#    And user taps on '+' symbol
-#    Then user verifies following options are displayed:
-#    | Add Touchbase | Add Opportunity |Add RE | 'x' symbol |
-#
+#    And user taps on plus symbol
+#    Then user verifies following options are displayed
+#                |      Field    |
+#                | Add Touchbase |
+#                |Add Opportunity|
+#                |    Add RE     |
+
 #  Scenario: [RE-07] Verify user can create RE successfully
 #    Given user is on BOH FPU homepage
 #    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
@@ -97,16 +99,16 @@ Feature: Verify Functionalities for RE module
 #    And user taps Create Requirements Estimate
 #    Then user verifies RE details page is displayed
 #
-  Scenario[RE-08]: Verify user can search existing RE by tapping on Search (Q) option
-    Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
-    And user taps on RE tab
-    And user taps on "search" symbol
-    And user enters "772" in search field
-    And user selects "RE #772"
-    Then user verifies "RE #772" details page is displayed
-##
+#  Scenario: [RE-08] Verify user can search existing RE by tapping on Search (Q) option
+#    Given user is on BOH FPU homepage
+#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
+#    And user is navigated to "Customer Management" page
+#    And user taps on RE tab
+#    And user taps on "search" symbol
+#    And user enters "772" in search field
+#    And user selects "RE #772"
+#    Then user verifies "RE #772" details page is displayed
+###
 #  Scenario[RE-09]: Verify the Headers and Tabs displayed in RE Details Page
 #    Given user is on BOH FPU homepage
 #    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"

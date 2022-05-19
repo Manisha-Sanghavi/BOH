@@ -21,6 +21,10 @@ class RE_Page(Basepage):
         self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[9]"))).click()
 
+    def get_re_num(self, re_string):
+        a = re_string[4:7]
+        return a
+
     def click_sortby(self):
         self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[17]"))).click()
@@ -106,8 +110,53 @@ class RE_Page(Basepage):
     def search_re(self):
         re_num = self.wait.until(
             EC.presence_of_element_located(
-                (MobileBy.XPATH, "//android.widget.EditText[@text='Search REs']"))).click()
+                (MobileBy.XPATH, "//android.widget.EditText[@text='Search REs']")))
         re_num.send_keys("772")
+
+    def select_re(self):
+        # result = self.wait.until(
+        #     EC.presence_of_element_located(
+        #         (MobileBy.XPATH, "//android.widget.EditText[@text='Search REs']"))).click()
+        # result.send_keys("772")
+        self.wait.until(
+            EC.presence_of_element_located(
+                (MobileBy.XPATH, "//android.view.View[@content-desc='Camp Humphreys, Korea - RE 772']"))).click()
+
+
+    def verify_re(self):
+        ele = self.wait.until(
+            EC.presence_of_element_located(
+                (MobileBy.XPATH, "(//android.view.View)[15]")))
+        re_string = ele.get_attribute('content-desc')
+        a = self.get_re_num(re_string)
+        return a
+
+    def tap_arrow(self):
+        self.wait.until(
+            EC.presence_of_element_located(
+                (MobileBy.XPATH, "(//android.view.View)[18]"))).click()
+
+    def verify_ascend_descend(self, number):
+        ele = self.wait.until(
+            EC.presence_of_element_located(
+                (MobileBy.XPATH, f"(//android.view.View)[{number}]")))
+        re_one = ele.get_attribute('content-desc')
+        a = self.get_re_num(re_one)
+        return a
+
+    def verify_fields(self, field):
+        a = self.driver.find_element(MobileBy.XPATH, "//android.widget.Button[@content-desc='" + field + "']")
+        s = a.get_attribute('content-desc')
+        print(s)
+        return s
+
+
+
+
+
+
+
+
 
 
 

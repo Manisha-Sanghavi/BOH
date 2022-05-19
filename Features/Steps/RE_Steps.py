@@ -43,10 +43,6 @@ def step_impl(context):
         s = context.re.verify_sortby_filterby(row['Field'])
         assert row['Field'] == s
 
-
-
-
-
 @step("user taps on plus symbol")
 def step_impl(context):
     context.re.tap_symbol()
@@ -100,11 +96,45 @@ def step_impl(context):
 
 @step('user selects "RE #772"')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: And user selects "RE #772"')
+    context.re.select_re()
 
-
-@then("user verifies following options are available for filter by:")
+@then("user verifies following options are available for filter by")
 def step_impl(context):
     for row in context.table:
         s = context.re.verify_sortby_filterby(row['Field'])
+        assert row['Field'] == s
+
+
+@then('user verifies "RE #772" details page is displayed')
+def step_impl(context):
+    a = context.re.verify_re()
+    assert a == "772"
+
+@step('user taps on "downward arrow"')
+def step_impl(context):
+    context.re.tap_arrow()
+
+
+@then('user verifies REs displayed are in ascending order of REID')
+def step_impl(context):
+    a = context.re.verify_ascend_descend(21)
+    b = context.re.verify_ascend_descend(23)
+    print(a)
+    print(b)
+    assert int(a) < int(b)
+
+
+@then("user verifies REs displayed are in descending order of REID")
+def step_impl(context):
+    a = context.re.verify_ascend_descend(21)
+    b = context.re.verify_ascend_descend(23)
+    print(a)
+    print(b)
+    assert int(a) > int(b)
+
+
+@then("user verifies following options are displayed")
+def step_impl(context):
+    for row in context.table:
+        s = context.re.verify_fields(row['Field'])
         assert row['Field'] == s
