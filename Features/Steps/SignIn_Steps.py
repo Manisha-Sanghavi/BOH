@@ -29,11 +29,11 @@ def step_impl(context):
     context.boh.clickOn_Login()
     context.boh.skip()
 
-@step('User taps on "Administrator" option')
+@step('User tap on "Administrator" option')
 def step_impl(context):
     context.boh.click_admin()
 
-@step('User taps on "Sign Out" button')
+@step('User tap on "Sign Out" button')
 def step_impl(context):
     context.boh.clickOn_Signout()
 
