@@ -35,7 +35,7 @@ def step_impl(context, message):
     context.boh.verify_page(message)
 
 
-@when('User login with "{username}" and "{password}"')
+@when('User login with username "{username}" and password "{password}"')
 def step_impl(context, username, password):
     context.boh.enter_Username(username)
     context.boh.enter_Password(password)
@@ -53,9 +53,9 @@ def step_impl(context, message):
 
 @then("User verifies following options are displayed on page")
 def step_impl(context):
-    for row in context.boh.table:
-        context.boh.show_field(row['Field'])
-
+    for row in context.table:
+        flag = context.boh.show_field(row['Field'])
+        assert flag == True
 
 @when('User taps on "{option_name}" option')
 def step_impl(context, option_name):
@@ -63,7 +63,8 @@ def step_impl(context, option_name):
 
 @step('User navigated to "{Forgot_your_password}" page')
 def step_impl(context, Forgot_your_password):
-    context.boh.page_navigate(Forgot_your_password)
+    flag = context.boh.page_navigate(Forgot_your_password)
+    assert flag == True
 
 
 @step('User enters email "{email}" in type your BOH email field')
@@ -82,3 +83,26 @@ def step_impl(context, username, password):
     context.boh.enter_Username(username)
     context.boh.enter_Password(password)
     context.boh.clickOn_Login()
+
+
+@step("User fills all required data into their respective field")
+def step_impl(context):
+    for row in context.table:
+        context.boh.fill_data(row['Field'], row['Value'])
+
+
+@then('user verifies "{message}" is displayed on page')
+def step_impl(context,message):
+    context.boh.verify_message(message)
+
+
+@step("User click on created touchbase")
+def step_impl(context):
+    context.boh.Create_touchbase()
+
+
+@then('User verifies "Customer" is deleted successfully.')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then User verifies "Customer" is deleted successfully.')
+
+
