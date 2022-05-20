@@ -1,30 +1,30 @@
 Feature: Verify Functionalities for Sigin, Sign out and Home Page
 @smoke
-  Scenario: [BOH-1] Verify the User can login successfully with valid credentials
-    Given User is on BOH FPU homepage
-    When User enters username as "harish.ekal@spurqlabs.com"
-    And User enters password as "Test123!BOH"
-    And User taps on "Sign In" button
-    Then User verifies "Customer Management" page is displayed
-
-  Scenario Outline: [BOH-2] Verify the User can not login with In-valid credentials
-    Given User is on BOH FPU homepage
-    When User login with <username> and <password>
-    When User login with "<username>" and "<password>" for validation
-    Then User verifies "<message>" is displayed
-    Examples:
-      | username                  | password    | message                     |
-      | harish.ekalspurqlabs.com  | Test123!BOH | Incorrect username/password |
-      | harish.ekal@spurqlabs.com | test123     | Incorrect username/password |
-      |                           |             | Incorrect username/password |
-      |                           | test123     | Incorrect username/password |
-      |harish.ekal@spurqlabs.com  |             | Incorrect username/password |
-
-  Scenario: [BOH-3] Verify the Headers and Tabs displayed on Customer Management Page.
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
-    Then User verifies following options are displayed on page
-      | Customer Management | Customers | REs       |Opportunities       | Sort By   | Filter By |
+#  Scenario: [BOH-1] Verify the User can login successfully with valid credentials
+#    Given User is on BOH FPU homepage
+#    When User enters username as "harish.ekal@spurqlabs.com"
+#    And User enters password as "Test123!BOH"
+#    And User taps on "Sign In" button
+#    Then User verifies "Customer Management" page is displayed
+#
+#  Scenario Outline: [BOH-2] Verify the User can not login with In-valid credentials
+#    Given User is on BOH FPU homepage
+#    When User login with <username> and <password>
+#    When User login with "<username>" and "<password>" for validation
+#    Then User verifies "<message>" is displayed
+#    Examples:
+#      | username                  | password    | message                     |
+#      | harish.ekalspurqlabs.com  | Test123!BOH | Incorrect username/password |
+#      | harish.ekal@spurqlabs.com | test123     | Incorrect username/password |
+#      |                           |             | Incorrect username/password |
+#      |                           | test123     | Incorrect username/password |
+#      |harish.ekal@spurqlabs.com  |             | Incorrect username/password |
+#
+#  Scenario: [BOH-3] Verify the Headers and Tabs displayed on Customer Management Page.
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+#    Then User verifies following options are displayed on page
+#      | Customer Management | Customers | REs       |Opportunities       | Sort By   | Filter By |
 
 #  Scenario: [BOH-4] Verify user can update Profile picture from Profile menu // Cannot verify as there is no message displayed
 #  Scenario: [BOH-3] Verify the Headers and Tabs displayed on Customer Management Page.
@@ -46,9 +46,9 @@ Feature: Verify Functionalities for Sigin, Sign out and Home Page
 
   Scenario: [BOH-5] Verify user can sign out successfully from app
     Given User is on BOH FPU homepage
-    When User login with "harish.ekal@spurqlabs.com" and "Test123!BOH"
-    And User taps on "Administrator" option
-    And User taps on "Sign Out" button
+    When User login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
+    And User tap on "Administrator" option
+    And User tap on "Sign Out" button
     Then User verifies "Homepage" is displayed
 
 #

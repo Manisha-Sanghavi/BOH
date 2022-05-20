@@ -60,9 +60,9 @@ class SignIn_Page(Basepage):
         signout.click()
 
     def verify_homepage(self):
-        homepage = self.wait.until(
-            EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.ImageView)")))
-        homepage.click()
+        self.wait.until(
+            EC.presence_of_element_located((MobileBy.CLASS_NAME, "android.widget.ImageView")))
+
 
     def verify_page(self, message):
         try:
