@@ -1,24 +1,25 @@
 Feature: Verify Functionalities for Customer module
   @smoke
-  Scenario: [Customer-1] Verify user can sort customers by Date option in ascending order
+  Scenario: [Customer-1] Verify user can sort customers by Value option in ascending order
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     And User taps on "Sort By" option
-    And User select "Date" option
+    And User select "Value" option
     Then User verifies customer list is sorted in ascending order
 
     Scenario: [Customer-2] Verify user can sort customers by Date option in descending order
     Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     And User taps on "Sort By" option
-    And User select "Date" option
+    And User select "Value" option
     Then User verifies customer list is sorted in descending order
 
   Scenario: [Customer-3] Verify user can filter customer by Active option
     Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Test123!BOH"
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     And User taps on "filter By" option
     And User select "Active" option
+    And User select customer
     Then User verifies Customer with only Active status are displayed
 
   Scenario: [Customer-4] Verify that the user can find an existing customer using the Search (Q) option.

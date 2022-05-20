@@ -177,7 +177,7 @@ class SignIn_Page(Basepage):
             self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, option_Btn))).click()
         elif option_name == "+":
             self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.ImageView)[1]"))).click()
-        elif option_name == "INFO Tab 1 of 3" or option_name == "Delete John J":
+        elif option_name == "INFO Tab 1 of 3" or option_name == "Delete John J" or option_name == "Show menu Active":
             option_xpath = "//android.view.View[@content-desc='XXX']"
             option_Btn = option_xpath.replace('XXX', option_name)
             self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, option_Btn))).click()
@@ -187,6 +187,9 @@ class SignIn_Page(Basepage):
         elif option_name == "Sort By":
             self.wait.until(EC.presence_of_element_located(
                 (MobileBy.XPATH, "(//android.view.View)[17]"))).click()
+        elif option_name == "filter By":
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, "(//android.view.View)[19]"))).click()
         else:
             raise NameError('name {option_name} is not valid')
 
