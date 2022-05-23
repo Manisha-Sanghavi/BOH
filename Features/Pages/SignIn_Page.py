@@ -38,13 +38,21 @@ class SignIn_Page(Basepage):
         login = self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, "//android.view.View[@content-desc='Sign In (DEV)']")))
         login.click()
-        # sleep(5)
-        # try:
-        #     self.wait.until(
-        #         EC.presence_of_element_located(
-        #             (MobileBy.XPATH, "//android.widget.Button[@content-desc='Skip']"))).click()
-        # except:
-        #     print("Skip is skipped")
+
+    def click_admin(self):
+        admin = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.Button)[1]")))
+        admin.click()
+
+    def clickOn_Signout(self):
+        signout = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.Button)[2]")))
+        signout.click()
+
+    def verify_homepage(self):
+        self.wait.until(
+            EC.presence_of_element_located((MobileBy.CLASS_NAME, "android.widget.ImageView")))
+
 
     def verify_page(self, message):
         try:
@@ -60,8 +68,6 @@ class SignIn_Page(Basepage):
         element = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.ImageView)")))
         actions = ActionChains(self.driver)
         try:
-            # element = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.ImageView)")))
-            # actions = ActionChains(self.driver)
             actions.move_to_element(element)
             actions.click_and_hold(element)
             actions.release(element)
@@ -69,7 +75,6 @@ class SignIn_Page(Basepage):
             actions.perform()
         except:
             print("Not Found element")
-            # actions = ActionChains(self.driver)
             actions.move_to_element(element)
             actions.click_and_hold(element)
             actions.release(element)

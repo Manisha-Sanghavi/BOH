@@ -29,19 +29,19 @@ Feature: Verify Functionalities for Sigin, Sign out and Home Page
       | REs Tab 2 of 3           |
       | Opportunities Tab 3 of 3 |
 
-  Scenario: [BOH-4] Verify user can update Profile picture from Profile menu
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-    And User taps on "Adminastrator" option
-    And User taps on "Update Profile Picture" option
-    Then user verifies profile picture updated successfully
-
-  Scenario: [BOH-5] Verify user can sign out successfully from app
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-    And User taps on "Administrator" option
-    And User taps on "Sign Out" button
-    Then User verifies "Homepage" is displayed
+#  Scenario: [BOH-4] Verify user can update Profile picture from Profile menu
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    And User taps on "Adminastrator" option
+#    And User taps on "Update Profile Picture" option
+#    Then user verifies profile picture updated successfully
+#
+#  Scenario: [BOH-5] Verify user can sign out successfully from app
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    And User taps on "Administrator" option
+#    And User taps on "Sign Out" button
+#    Then User verifies "Homepage" is displayed
 
    Scenario: [BOH-6] Verify that the "forgot password" link works
     Given User is on BOH FPU homepage
@@ -51,7 +51,7 @@ Feature: Verify Functionalities for Sigin, Sign out and Home Page
     And User taps on "SEND" option
     Then User verifies message "A recovery email has been sent to your account" is displayed
 
-Scenario: [BOH-7] Verify that the user can create a new touchbase successfully.
+ Scenario: [BOH-7] Verify that the user can create a new touchbase successfully.
   Given User is on BOH FPU homepage
   When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
   And User taps on "+" option
