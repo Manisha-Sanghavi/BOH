@@ -27,7 +27,7 @@ def step_impl(context, password):
 @step('User taps on Sign In button')
 def step_impl(context):
     context.boh.clickOn_Login()
-    context.boh.skip()
+    context.boh.skip()               # To skip security page
 
 
 @then('User verifies "{message}" page is displayed')
@@ -72,7 +72,7 @@ def step_impl(context,email):
     context.boh.enter_mail(email)
 
 
-@then('User verifies meassage "{message}" is displayed')
+@then('User verifies message "{message}" is displayed')
 def step_impl(context,message):
     flag = context.boh.verify_message(message)
     assert flag == True

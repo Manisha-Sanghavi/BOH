@@ -119,12 +119,25 @@ class SignIn_Page(Basepage):
             self.wait.until(
                 EC.presence_of_element_located(
                     (MobileBy.XPATH, "//android.widget.Button[@content-desc='Yes']"))).click()
+        # elif message == "Joe M":
+        #     user = self.wait.until(
+        #         EC.presence_of_element_located(
+        #             (MobileBy.XPATH, "(//android.view.View)[7]")))
+        #     txt = user.get_attribute('content-desc')
+        #     print('Value of Text:'+txt)
+        #     value = txt.split()
+        #     print(value)
+        #     msg = value[0:1]
+        #     print(msg)
+        #     flag = True
         return flag
 
     def show_field(self, field):
         flag = False
         form_xpath = "//android.view.View[@content-desc='XXX']"
         show_data = form_xpath.replace('XXX', field)
+        CustName_ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, show_data)))
+        flag = True
         if field == 'Customer Management':
             CustName_ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, show_data)))
             # text_read = CustName_ele.text
@@ -156,7 +169,7 @@ class SignIn_Page(Basepage):
     def tap_option(self, option_name):
         option_xpath = "//android.widget.Button[@content-desc='XXX']"
         option_Btn = option_xpath.replace('XXX', option_name)
-        if option_name == "forgot password" or option_name == "SEND" or option_name == "CREATE TOUCHBASE":
+        if option_name == "forgot password" or option_name == "SEND" or option_name == "CREATE TOUCHBASE" or option_name == "Search":
             tap_btn = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.Button)[2]")))
             tap_btn.click()
             if option_name == "CREATE TOUCHBASE":
@@ -190,6 +203,18 @@ class SignIn_Page(Basepage):
         elif option_name == "filter By":
             self.wait.until(EC.presence_of_element_located(
                 (MobileBy.XPATH, "(//android.view.View)[19]"))).click()
+        elif option_name == "ACTIVE":
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, "//android.view.View[@content-desc='"+option_name+"']"))).click()
+        elif option_name == "INACTIVE":
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, "//android.view.View[@content-desc='"+option_name+"']"))).click()
+        elif option_name == "Set Customer to Inactive":
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, "//android.view.View[@content-desc='Set Customer as Inactive']"))).click()
+        elif option_name == "Set Customer to Active":
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, "//android.view.View[@content-desc='Set Customer as Active']"))).click()
         else:
             raise NameError('name {option_name} is not valid')
 
@@ -201,7 +226,9 @@ class SignIn_Page(Basepage):
             page_ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, option_Btn)))
             flag = True
         except:
-            print("USer not navigated to page")
+            print("User not navigated to page")
+            page_ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(// android.view.View)[10]")))
+            flag = True
         return flag
         # assert page_txt == "Forgot your password?"
 

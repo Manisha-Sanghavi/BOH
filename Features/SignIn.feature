@@ -49,7 +49,7 @@ Feature: Verify Functionalities for Sigin, Sign out and Home Page
     And User navigated to "Forgot your password?" page
     And User enters email "harish.ekal@spurqlabs.com" in type your BOH email field
     And User taps on "SEND" option
-    Then User verifies meassage "A recovery email has been sent to your account" is displayed
+    Then User verifies message "A recovery email has been sent to your account" is displayed
 
 Scenario: [BOH-7] Verify that the user can create a new touchbase successfully.
   Given User is on BOH FPU homepage

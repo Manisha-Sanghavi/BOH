@@ -75,4 +75,79 @@ class Customer_Page(Basepage):
         assert status_txt == "ACTIVE"
 
     def select_customer(self,index):
-            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)["+index+"]"))).click()
+        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)["+index+"]"))).click()
+
+    def search_customer(self, cust):
+        search_cust = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.EditText[@text='Search Customers']")))
+        search_cust.send_keys(cust)
+        click_on_cust = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[16]")))
+        click_on_cust.click()
+
+    def verify_message_on_page(self, message):
+            user = self.wait.until(
+                EC.presence_of_element_located(
+                    (MobileBy.XPATH, "(//android.view.View)[7]")))
+            txt = user.get_attribute('content-desc')
+            print('Value of Text:'+txt)
+            value = txt.split()
+            print(value)
+            msg1 = value[0]
+            msg2 = value[1]
+            msg = msg1+" " + msg2
+            print(msg)
+            assert message == msg
+
+    def show_field_for_cust(self, field):
+        flag = False
+        if field == 'INFO Tab 1 of 3':
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[9]")))
+            flag = True
+        elif field == 'ACTIVITY Tab 2 of 3':
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[10]")))
+            flag = True
+        elif field == 'REs Tab 3 of 3':
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[11]")))
+            flag = True
+        elif field == 'In-Person':
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.ImageView)[1]")))
+            flag = True
+        else:
+            form_xpath = "//android.view.View[@content-desc='XXX']"
+            show_data = form_xpath.replace('XXX', field)
+            CustName_ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, show_data)))
+            flag = True
+        return flag
+
+    def show_field_on_homepage(self, field):
+        flag = False
+        flag = True
+        if field == "Add Touchbase":
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.ImageView)[3]")))
+            flag = True
+        elif field == "Add Opportunity":
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.ImageView)[2]")))
+            flag = True
+        elif field == "Add RE":
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.ImageView)[1]")))
+            flag = True
+        # else:
+        #     form_xpath = "//android.widget.ImageView[@content-desc='XXX']"
+        #     show_data = form_xpath.replace('XXX', field)
+        #     self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, show_data)))
+        return flag
+
+    def pop_up(self, pop_up):
+        message = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(// android.view.View)[7]")))
+        popup_read = message.get_attribute('Content-desc')
+        print(popup_read)
+        assert popup_read == pop_up
+
+    def status_member(self, status):
+        state = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[8]")))
+        value = state.get_attribute('Content-desc')
+        print(value)
+        status_value = value[0]
+        assert status_value == status
+
