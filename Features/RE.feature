@@ -1,21 +1,21 @@
 
 Feature: Verify Functionalities for RE module
 @smoke
-#  Scenario: [RE-01] Verify different options available in Sort By for RE Tab
-#    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
-#    And user taps on RE tab
-#    And user taps on "Sort By" options
-#    Then user verifies following options are available for sort by
-#      |     Field       |
-#      | Recent Activity |
-#      |    RE Date      |
-#      |     Value       |
-#      |     REID        |
-#      |    Location     |
-#      |     CSM         |
-#      |     Status      |
+  Scenario: [RE-01] Verify different options available in Sort By for RE Tab
+    Given user is on BOH FPU homepage
+    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
+    And user is navigated to "Customer Management" page
+    And user taps on RE tab
+    And user taps on "Sort By" options
+    Then user verifies following options are available for sort by
+      |     Field       |
+      | Recent Activity |
+      |    RE Date      |
+      |     Value       |
+      |     REID        |
+      |    Location     |
+      |     CSM         |
+      |     Status      |
 
 #  Scenario:[RE-02] Verify user can sort REs in descending order of REID
 #    Given user is on BOH FPU homepage
@@ -51,22 +51,22 @@ Feature: Verify Functionalities for RE module
 #      |    Complete   |
 
 #
-#  Scenario Outline[RE-05] : Verify user can filter REs by their states
-#    Given user is on BOH FPU homepage
-#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#  Scenario Outline: [RE-05] Verify user can filter REs by their states
+#    Given User is on BOH FPU homepage
+#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
 #    And user is navigated to "Customer Management" page
 #    And user taps on RE tab
-#    And user taps on "Filter By" option
+#    And user taps on "Filter By" options
 #    And user select "<RE_Status>" from dropdown list
 #    Then user verifies REs with state "<RE_Status>" only are displayed
 #      Examples:
 #      | RE_Status |
 #      | Draft |
 #      | Validate |
-# #   | Inactive | Active | Pending | Awarded | Complete |
+#    #| Inactive | Active | Pending | Awarded | Complete |
 #
 #
-#  Scenario: [RE-06] Verify after tapping '+' symbol in RE tab, user can see Add Touchbase, Add Opportunity, Add RE and 'x' symbol
+#  Scenario: [RE-06] Verify after tapping '+' symbol in RE tab, user can see Add Touchbase, Add Opportunity and Add RE
 #    Given user is on BOH FPU homepage
 #    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
 #    And user is navigated to "Customer Management" page
@@ -85,20 +85,25 @@ Feature: Verify Functionalities for RE module
 #    And user taps on RE tab
 #    And user taps on plus symbol
 #    And user taps on Add RE
-#    And user selects Estimated Order Date "21/05/2022"
+#    And user selects Estimated Order Date "31/05/2022"
 #    And user enter following details for selected Customer Info options
-##    |  Info  | RE Region | Customer Name | Customer Location |
-##    | Direct |   East    |    14 BEB     |   Aberdeen        |
-##    | Program| Anchor    | 2d SFAC       |  Australia        |
-#    And user enters the Primary Contact details as:
-#    | Rank or Title(Optional) | Contact First Name | Contact Last Name | Contact Email | Contact Phone |
-#    |   CW                    | David              | Coleman           | dc@email.com  | (020)741-5699 |
+#         |       Field        |            Value            |
+#         |     RE Region      |             East            |
+#         |   Customer Name    |           Joe M             |
+#         | Customer Location  |          london             |
+#    And user enters the Primary Contact details as
+#          |        Field            |        Value         |
+#          | Rank or Title(Optional) |          CW          |
+#          |   Contact First Name    |         David        |
+#          |    Contact Last Name    |        Coleman       |
+#          |       Contact Email     |      dc@email.com    |
+#          |        Contact Phone    |      (020)741-5699   |
 #    And user enter following details for Metrics as:
 ##    | Pre-RE Footprint(Sq ft) | Lift Capabilities | Color |
 ##    |       70                |   25k Forklift    | Green |
 #    And user taps Create Requirements Estimate
 #    Then user verifies RE details page is displayed
-#
+
 #  Scenario: [RE-08] Verify user can search existing RE by tapping on Search (Q) option
 #    Given user is on BOH FPU homepage
 #    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
@@ -106,8 +111,8 @@ Feature: Verify Functionalities for RE module
 #    And user taps on RE tab
 #    And user taps on "search" symbol
 #    And user enters "772" in search field
-#    And user selects "RE #772"
-#    Then user verifies "RE #772" details page is displayed
+#    And user selects RE# "772"
+#    Then user verifies searched RE details page is displayed
 ###
 #  Scenario[RE-09]: Verify the Headers and Tabs displayed in RE Details Page
 #    Given user is on BOH FPU homepage
@@ -115,29 +120,27 @@ Feature: Verify Functionalities for RE module
 #    And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user selects first RE from REs list
-#    Then the following headers and tabs are displayed
+#    Then user verifies the following headers and tabs are displayed
 #    | RE ID | Status | Add Subtitle | Customer | Location | Info | Configs | Activity | Files |
 #
 #  Scenario[RE-10]: Verify user can "Add Subtitle" to RE if its not already added
 #    Given user is on BOH FPU homepage
-#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
 #    And user is navigated to "Customer Management" page
 #    And user taps on RE tab
-#    And user selects "RE #718"
+#    And user selects RE# "878" from RE list
 #    And user taps on "ADD SUBTITLE"
 #    And user enters subtitle "Requirements process"
 #    And user taps on "Save" option
 #    Then user verifies "Requirements process" subtitle is displayed
-#
-#  Scenario[RE-11]: Verify user can Edit existing Subtitle successfully
+
+#  Scenario: [RE-11] Verify user can Edit existing Subtitle successfully
 #    Given user is on BOH FPU homepage
-#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
 #    And user is navigated to "Customer Management" page
 #    And user taps on RE tab
-#    And user selects "RE #666"
-#    And user taps on "pen" symbol given to edit subtitle
+#    And user selects RE# "864" from RE list
 #    And user edits subtitle as "Requirements changed"
-#    And user taps on "Save" option
 #    Then user verifies "Requirements changed" subtitle is displayed
 #
 #  Scenario[RE-12]: Verify user can update details in Info section of RE successfully
