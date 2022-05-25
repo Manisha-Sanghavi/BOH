@@ -21,9 +21,13 @@ class RE_Page(Basepage):
         self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.Button)[1]/following-sibling::android.view.View[3]"))).click()
 
-    def get_re_num(self, re_string):
-        a = re_string[4:7]
-        return a
+    def get_re_num(self, re_string, num):
+        if num == "Yes":
+            a = re_string[4:7]
+            return a
+        if num == "No":
+            a = re_string[0:2]
+            return a
 
     def click_sortby(self):
         self.wait.until(
@@ -70,9 +74,9 @@ class RE_Page(Basepage):
 
     def scroll_down(self):
         element_to_tap = self.driver.find_element(MobileBy.XPATH,
-                                                  '//android.widget.EditText[@text="Rank or Title (optional)"]')
+                                                  '//android.view.View[@content-desc="Select Lift Capabilities"]')
         element_to_drag_to = self.driver.find_element(MobileBy.XPATH,
-                                                      '(//android.view.View[@content-desc="Opportunity"])[1]')
+                                                      '//android.view.View[@content-desc="Metrics"]')
         self.driver.scroll(
             element_to_tap, element_to_drag_to)
 
@@ -82,42 +86,48 @@ class RE_Page(Basepage):
 
     def primary_contact(self, field,value):
         a = self.driver.find_element(MobileBy.XPATH, '//android.widget.EditText[@text="'+field+'"]').click()
-        a.send_keys(value)
-        # if field == "Rank or Title (optional)":
-        #     rank = self.driver.find_element(MobileBy.XPATH, '// android.widget.EditText[ @ text = "'+field+'"]').click()
-        #     rank.send_keys(value)
-        # if field == "Contact First Name":
-        #     first_name = self.driver.find_element(MobileBy.XPATH, '// android.widget.EditText[ @ text = "'+field+'"]').click()
-        #     first_name.send_keys(value)
-        # if field == "Contact Last Name":
-        #     last_name = self.driver.find_element(MobileBy.XPATH, '// android.widget.EditText[ @ text = "'+field+'"]').click()
-        #     last_name.send_keys(value)
-        # if field == "Contact Email":
-        #     email = self.driver.find_element(MobileBy.XPATH, '// android.widget.EditText[ @ text = "'+field+'"]').click()
-        #     email.send_keys(value)
-        # if field == "Contact Phone":
-        #     phone = self.driver.find_element(MobileBy.XPATH, '// android.widget.EditText[ @ text = "'+field+'"]').click()
-        #     phone.send_keys(value)
+        ActionChains(self.driver).send_keys(value).perform()
 
-    def select_metrics(self):
-        el1 = self.wait.until(
-            EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="Metrics"]'))).click()
-        el2 = self.wait.until(
-            EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button)[6]'))).click()
-        action = TouchAction(self.driver)
-        action.press(el1).move_to(el2).release().perform()
-        sq_ft = self.wait.until(
-            EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.EditText[@text='Pre-RE Footprint (sq ft)']"))).click()
-        sq_ft.send_keys("70")
-        user_action = TouchAction(self.driver)
-        user_action.tap(x=743, y=1328).perform()
-        user_action.tap(x=743, y=1562).perform()
+    def select_footprint(self, number):
+        self.driver.hide_keyboard()
         self.wait.until(
-            EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='TAN']"))).click()
+                EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.EditText[@text='Pre-RE Footprint (sq ft)']"))).click()
+        ActionChains(self.driver).send_keys(number).perform()
+
+    def select_lift_capability(self):
+        self.driver.hide_keyboard()
+        user_action = TouchAction(self.driver)
+        # ele = self.driver.find_element(MobileBy.XPATH, '//android.widget.CheckBox[@content-desc="25k Forklift"]')
+        #user_action.tap(ele, 743, 1320).perform()
+        #user_action.tap(x=743, y=1396).perform()
+        self.scroll_down()
+        user_action.tap(x=739, y=1562).perform()      #individual locators for checkbox not avalable
+
+    def select_color(self, color):
+        self.wait.until(
+                EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='"+color+"']"))).click()
+        self.scroll_down()
+
+    def verify_re(self):
+        ele = self.wait.until(
+            EC.presence_of_element_located(
+                (MobileBy.XPATH, "//android.widget.ScrollView/android.view.View[1]")))
+        re_string = ele.get_attribute('content-desc')
+        a = self.get_re_num(re_string, "Yes")
+        return a
 
     def create_estimation(self):
         self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='CREATE REQUIREMENTS ESTIMATE']"))).click()
+
+    def verify_re_page_displayed(self):
+        time.sleep(3)
+        ele = self.wait.until(
+            EC.presence_of_element_located(
+                (MobileBy.XPATH, "//android.widget.ScrollView/android.view.View[1]")))
+        re_string = ele.get_attribute('content-desc')
+        a = self.get_re_num(re_string, "No")
+        return a
 
     def tap_search(self):
         self.wait.until(
@@ -128,21 +138,12 @@ class RE_Page(Basepage):
         re_num = self.wait.until(
             EC.presence_of_element_located(
                 (MobileBy.XPATH, "//android.widget.EditText[@text='Search REs']")))
-        re_num.send_keys("number")
+        re_num.send_keys(number)
 
     def select_re(self, re_num):
         self.wait.until(
             EC.presence_of_element_located(
                 (MobileBy.XPATH, f"//android.view.View[@content-desc='Camp Humphreys, Korea - RE {re_num}']"))).click()
-
-
-    def verify_re(self):
-        ele = self.wait.until(
-            EC.presence_of_element_located(
-                (MobileBy.XPATH, "//android.widget.ScrollView/android.view.View[1]")))
-        re_string = ele.get_attribute('content-desc')
-        a = self.get_re_num(re_string)
-        return a
 
     def tap_arrow(self):
         self.wait.until(
@@ -154,7 +155,7 @@ class RE_Page(Basepage):
             EC.presence_of_element_located(
                 (MobileBy.XPATH, f"(//android.view.View)[{number}]")))
         re_one = ele.get_attribute('content-desc')
-        a = self.get_re_num(re_one)
+        a = self.get_re_num(re_one, "Yes")
         return a
 
     def verify_fields(self, field):
@@ -164,7 +165,7 @@ class RE_Page(Basepage):
         print(s)
         return s
 
-    def select_re_from_list(self):
+    def select_re_from_list(self, re_num):
         self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, "(// android.view.View)[21]"))).click()
 
