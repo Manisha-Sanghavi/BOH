@@ -12,10 +12,10 @@ Feature:Home
 #    And User taps on Login button
 #    Then Homepage is displayed
 
-   Scenario: Verifying user can login successfully with valid credentials
-    Given Given User is on BOH FPU homepage
-    When User enters username as "harish.ekal@spurqlabs.com"
-    And User enters password as "Ekal@123!BOH"
-    And User taps on "Sign In (DEV)" button
-    Then User verifies "Customer Management" page is displayed
+#   Scenario: Verifying user can login successfully with valid credentials
+#    Given Given User is on BOH FPU homepage
+#    When User enters username as "harish.ekal@spurqlabs.com"
+#    And User enters password as "Ekal@123!BOH"
+#    And User taps on "Sign In (DEV)" button
+#    Then User verifies "Customer Management" page is displayed
 

@@ -57,91 +57,102 @@ Feature: Verify Functionalities for Customer module
       | Add RE          |
       | X               |
 
-  Scenario: [Customer-7] Verify user can switch from Active to Inactive mode
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-    And User select customer
-    And user taps on "ACTIVE" option
-    And "Change State" popup is displayed
-    And User taps on "Set Customer to Inactive" option
-    And User verifies status changed to "INACTIVE"
-    And user taps on "INACTIVE" option
-    And User taps on "Set Customer to Active" option
-    Then User verifies status changed to "ACTIVE"
+#  Scenario: [Customer-7] Verify user can switch from Active to Inactive mode
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    And User select customer
+#    And user taps on "ACTIVE" option
+#    And "Change State" popup is displayed
+#    And User taps on "Set Customer to Inactive" option
+#    And User verifies status changed to "INACTIVE"
+#    And user taps on "INACTIVE" option
+#    And User taps on "Set Customer to Active" option
+#    Then User verifies status changed to "ACTIVE"
 
-  Scenario: [Customer-8] Verify details added during customer creation are displayed in info tab of customer
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-    And User taps on "+" option
-    And User taps on "Add Touchbase" option
-    And User fills all required data into their respective field
-        |Customer          |Location         |Direct/Program|Contact      |Existing/New/None|Rank or Title (optional)|                   |
-        |Contact First Name|Contact Last Name|Contact Email |Contact Phone|Date of Contacts |Note                    |Contact Method     |
-    And User taps on "Create Touchbase" option
-    Then User verifies following options are displayed
-      |Sales Rep  | Ron P         |                    |                   |              |
-      |Location   |29 palm        |Arlington, VA       |Florida            |JBER, AK      |
-      |Contacts   |Bradford Kasper|Jesus Amsdell       |Behanzin Luzunaris |Gretta Sevilla|
+#  Scenario: [Customer-8] Verify details added during customer creation are displayed in info tab of customer
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    And User taps on "+" option
+#    And User taps on "Add Touchbase" option
+#    And User fills all required data into their respective field
+#      | Field          | Value      |
+#      | Customer       | John J     |
+#      | Location       | 29 Palms   |
+#      | Contact        | None       |
+#      | Notes          | 9876543210 |
+#      | Contact Method | Phone      |
+#    And User taps on "CREATE TOUCHBASE" option
+#    And User click on created touchbase
+#    And User taps on "INFO Tab 1 of 3" option
+#    And User verifies following options are displayed on Info tab
+#      | Field              |
+#      | Sales Rep Harish E |
+#      | Locations          |
+#      | Contacts           |
+#      | no contacts        |
+#    Then User taps on "Delete John J" option
 
+#
   Scenario: [Customer-9] Verify that the customer summary shows all details.
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-    Then User verifies following summary of "abcd" customer displayed on page
-      | abcd          | Ron P    |
-      | 29 Palm       | Active   |
-      | Arlington, VA | Validate |
-      | Florida       | Active   |
-      | JBER, AK      | Active   |
-
+    Then User verifies following summary of any customer displayed on homepage
+      | Field      |
+      | Joe M      |
+      | london     |
+      | Rashmi C   |
+      | total REs  |
+      | touchbases |
+      | value      |
+#
   Scenario: [Customer-10] Verify user can add a note successfully from Activity Tab in Customer Details page
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-    And User select "abcd" customer
-    And User enter "Test note" in input field at bottom of the page
-    And User taps on "Post" option
-    Then User verifies "Test note" is displayed in Activity list.
-
-  Scenario: [Customer-11] Verify user can edit posted note from Activity tab.
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-    And User select "abcd" customer
-    And User enters "test1" in post a message field and send it
-    And User selects "test1" to edit
-    And User edits to "test2"
-    Then USer verifies note text is updated to "test2" in Activity list
-
-  Scenario: [Customer-12] Verify user can delete posted note text successfully
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-    And User selects "abcd" customer
-    And User selects "test2" to delete
-    And User taps on "delete" option
-    And "Delete Note" popup is displayed
-    Then User verfies "test2" is deleted successfully
-
-  Scenario Outline: [Customer-13] Verify user can create a Touchbase with selected contact option from Activity tab.
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-    And User selects "abcd" customer
-    And User navigated to "ACTIVITY" page
-    And User taps on "+" option
-    And User taps on "Add Touchbase" option
-    And User enter "<note>" in Note fields
-    And User taps on "<Contact Method>" option
-    And User taps on "Create Touchbase" option
-    Then User verifies "note" is displayed on page
-    Examples:
-    |Contact Method|note                     |
-    |Phone         |1234567890               |
-    |Email         |xyz@example.com          |
-    |In-Person     |text in In-Person        |
-    |Voicemail     |message through voicemail|
-
+    And User select customer
+    And User taps on "Post a message" option
+    Then User verifies "Test" is displayed in Activity list.
+#
+#  Scenario: [Customer-11] Verify user can edit posted note from Activity tab.
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    And User select customer
+#    And User taps on "Post a message" option
+#    And User selects "test1" to edit
+#    And User edits to "test2"
+#    Then User verifies note text is updated to "test2" in Activity list
+#
+#  Scenario: [Customer-12] Verify user can delete posted note text successfully
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    And User select customer
+#    And User selects "test2" to delete
+#    And User taps on "delete" option
+#    And "Delete Note" popup is displayed
+#    Then User verifies "test2" is deleted successfully
+#
+#  Scenario Outline: [Customer-13] Verify user can create a Touchbase with selected contact option from Activity tab.
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    And User selects "abcd" customer
+#    And User navigated to "ACTIVITY" page
+#    And User taps on "+" option
+#    And User taps on "Add Touchbase" option
+#    And User enter "<note>" in Note fields
+#    And User taps on "<Contact Method>" option
+#    And User taps on "Create Touchbase" option
+#    Then User verifies "note" is displayed on page
+#    Examples:
+#    |Contact Method|note                     |
+#    |Phone         |1234567890               |
+#    |Email         |xyz@example.com          |
+#    |In-Person     |text in In-Person        |
+#    |Voicemail     |message through voicemail|
+#
   Scenario: [Customer-14] Verify that the user can delete created touchbase from Activity details
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-    And User selects "abcd" customer
-    And User navigated to "Activity" page
+    And User select customer
+    And User navigated to "ACTIVITY Tab 2 of 3" page
     And User taps on "+" option
     And User taps on "Add Touchbase" option
     And User enter "note" in Note fields
@@ -149,52 +160,52 @@ Feature: Verify Functionalities for Customer module
     And User taps on "Create Touchbase" option
     And User select recently created touchbase and delete it
     Then User verifies "Touchbase" is deleted successfully
-
-
-  Scenario: [Customer-15] Verify that user can update existing contact details in info tab of customer
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-    And User selects "abcd" customer
-    And User taps on "INFO" option
-    And User taps on "Bradford Kasper" option
-    And User taps on "Edit Contact" option
-    And User enter "1234567890" in contct phone
-    And User taps on "Save Changes" option
-    And User taps on "Back" option
-    And User taps on "Edit Contact" option
-    Then User verifies "1234567890" is displayed on page
-
-  Scenario: [Customer-16] Verify that the push button functionality works.
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-    And User selects "abcd" customer
-    And User taps on "INFO" option
-    And User taps on "Jesus Amsdell" option
-    And User taps on "Edit Contact" option
-    And User navigated to "Edit Contact" page
-    And User taps on "Push" button
-    Then user verifies "Save Changes" is displayed on page
-
-
-  Scenario: [Customer-17] Verify User can sort customers in descending order
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-    And User navigated to "Customer Management" page
-    And User taps on "Upside arrow" option
-    Then User verifies "customer list" is displayed in descending order
-
-  Scenario: [Customer-18] Verify User can sort customers in ascending order
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-    And User navigated to "Customer Management" page
-    And User taps on "downside arrow" option
-    Then User verifies "customer list" is displayed in ascending order
-
-
-    #    Low Priority.
-  Scenario: [Customer-19] Verify that if there are no REs in the RE tab, then the user should able to see the message
-    Given User is on BOH FPU homepage
-    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-    And User selects "abcd" customer
-    And User taps on "RE" option
-    Then user verifies "Tap the + to add the first RE" is displayed on page
+#
+#
+#  Scenario: [Customer-15] Verify that user can update existing contact details in info tab of customer
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    And User selects "abcd" customer
+#    And User taps on "INFO" option
+#    And User taps on "Bradford Kasper" option
+#    And User taps on "Edit Contact" option
+#    And User enter "1234567890" in contct phone
+#    And User taps on "Save Changes" option
+#    And User taps on "Back" option
+#    And User taps on "Edit Contact" option
+#    Then User verifies "1234567890" is displayed on page
+#
+#  Scenario: [Customer-16] Verify that the push button functionality works.
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    And User selects "abcd" customer
+#    And User taps on "INFO" option
+#    And User taps on "Jesus Amsdell" option
+#    And User taps on "Edit Contact" option
+#    And User navigated to "Edit Contact" page
+#    And User taps on "Push" button
+#    Then user verifies "Save Changes" is displayed on page
+#
+#
+#  Scenario: [Customer-17] Verify User can sort customers in descending order
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    And User navigated to "Customer Management" page
+#    And User taps on "Upside arrow" option
+#    Then User verifies "customer list" is displayed in descending order
+#
+#  Scenario: [Customer-18] Verify User can sort customers in ascending order
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    And User navigated to "Customer Management" page
+#    And User taps on "downside arrow" option
+#    Then User verifies "customer list" is displayed in ascending order
+#
+#
+#    #    Low Priority.
+#  Scenario: [Customer-19] Verify that if there are no REs in the RE tab, then the user should able to see the message
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    And User selects "abcd" customer
+#    And User taps on "RE" option
+#    Then user verifies "Tap the + to add the first RE" is displayed on page
