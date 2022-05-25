@@ -188,6 +188,27 @@ class Customer_Page(Basepage):
         actions.scroll(10, 100)
         actions.perform()
 
+    def enter_contact(self, contact):
+        value = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.EditText)[5]")))
+        value.click()
+        value.clear()
+        value.send_keys(contact)
+        # This is for tapping outside which help to see save changes button
+        self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[7]"))).click()
+
+    def tap_option_index(self, option_name):
+        if option_name == "Back":
+            index = '1'
+            self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.Button)["+index+"]"))).click()
+        elif option_name == "Push":
+            index = '1'
+            self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.Switch)["+index+"]"))).click()
+
+
 
 
 

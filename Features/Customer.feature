@@ -1,5 +1,5 @@
 Feature: Verify Functionalities for Customer module
-  @smoke
+#  @smoke
   Scenario: [Customer-1] Verify user can sort customers by Value option in ascending order
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
@@ -57,17 +57,17 @@ Feature: Verify Functionalities for Customer module
       | Add RE          |
       | X               |
 
-#  Scenario: [Customer-7] Verify user can switch from Active to Inactive mode
-#    Given User is on BOH FPU homepage
-#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-#    And User select customer
-#    And user taps on "ACTIVE" option
-#    And "Change State" popup is displayed
-#    And User taps on "Set Customer to Inactive" option
-#    And User verifies status changed to "INACTIVE"
-#    And user taps on "INACTIVE" option
-#    And User taps on "Set Customer to Active" option
-#    Then User verifies status changed to "ACTIVE"
+  Scenario: [Customer-7] Verify user can switch from Active to Inactive mode
+    Given User is on BOH FPU homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And User select customer
+    And user taps on "ACTIVE" option
+    And "Change State" popup is displayed
+    And User taps on "Set Customer to Inactive" option
+    And User verifies status changed to "INACTIVE"
+    And user taps on "INACTIVE" option
+    And User taps on "Set Customer to Active" option
+    Then User verifies status changed to "ACTIVE"
 
 #  Scenario: [Customer-8] Verify details added during customer creation are displayed in info tab of customer
 #    Given User is on BOH FPU homepage
@@ -148,64 +148,50 @@ Feature: Verify Functionalities for Customer module
 #    |In-Person     |text in In-Person        |
 #    |Voicemail     |message through voicemail|
 #
-  Scenario: [Customer-14] Verify that the user can delete created touchbase from Activity details
+#  Scenario: [Customer-14] Verify that the user can delete created touchbase from Activity details
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    And User select customer
+#    And User navigated to "ACTIVITY Tab 2 of 3" page
+#    And User taps on "+" option
+#    And User taps on "Add Touchbase" option
+#    And User enter "note" in Note fields
+#    And User taps on "email" option
+#    And User taps on "Create Touchbase" option
+#    And User select recently created touchbase and delete it
+#    Then User verifies "Touchbase" is deleted successfully
+
+
+  Scenario: [Customer-15] Verify that user can update existing contact details in info tab of customer
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     And User select customer
-    And User navigated to "ACTIVITY Tab 2 of 3" page
-    And User taps on "+" option
-    And User taps on "Add Touchbase" option
-    And User enter "note" in Note fields
-    And User taps on "email" option
-    And User taps on "Create Touchbase" option
-    And User select recently created touchbase and delete it
-    Then User verifies "Touchbase" is deleted successfully
-#
-#
-#  Scenario: [Customer-15] Verify that user can update existing contact details in info tab of customer
-#    Given User is on BOH FPU homepage
-#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-#    And User selects "abcd" customer
-#    And User taps on "INFO" option
-#    And User taps on "Bradford Kasper" option
-#    And User taps on "Edit Contact" option
-#    And User enter "1234567890" in contct phone
-#    And User taps on "Save Changes" option
-#    And User taps on "Back" option
-#    And User taps on "Edit Contact" option
-#    Then User verifies "1234567890" is displayed on page
-#
-#  Scenario: [Customer-16] Verify that the push button functionality works.
-#    Given User is on BOH FPU homepage
-#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-#    And User selects "abcd" customer
-#    And User taps on "INFO" option
-#    And User taps on "Jesus Amsdell" option
-#    And User taps on "Edit Contact" option
-#    And User navigated to "Edit Contact" page
-#    And User taps on "Push" button
-#    Then user verifies "Save Changes" is displayed on page
-#
-#
-#  Scenario: [Customer-17] Verify User can sort customers in descending order
-#    Given User is on BOH FPU homepage
-#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-#    And User navigated to "Customer Management" page
-#    And User taps on "Upside arrow" option
-#    Then User verifies "customer list" is displayed in descending order
-#
-#  Scenario: [Customer-18] Verify User can sort customers in ascending order
-#    Given User is on BOH FPU homepage
-#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-#    And User navigated to "Customer Management" page
-#    And User taps on "downside arrow" option
-#    Then User verifies "customer list" is displayed in ascending order
-#
-#
+    And User taps on "INFO Tab 1 of 3" option
+    And User taps on "contact name" option
+    And User taps on "Edit Contact" option
+    And User enter "(123)456-7890" in contact phone
+    And User taps on "Save Changes" option
+    And User tap on "Back" button
+    And User taps on "contact name" option
+    Then User verifies "(123)456-7890" is displayed on page
+    And User taps on "Edit Contact" option
+    And User enter "(089)674-5131" in contact phone
+
+  Scenario: [Customer-16] Verify that the push button functionality works.
+    Given User is on BOH FPU homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And User select customer
+    And User taps on "INFO Tab 1 of 3" option
+    And User taps on "contact name" option
+    And User taps on "Edit Contact" option
+    And User tap on "Push" button
+    Then user verifies "Save Changes" is displayed on page
+    And User tap on "Push" button
+
 #    #    Low Priority.
-#  Scenario: [Customer-19] Verify that if there are no REs in the RE tab, then the user should able to see the message
-#    Given User is on BOH FPU homepage
-#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-#    And User selects "abcd" customer
-#    And User taps on "RE" option
-#    Then user verifies "Tap the + to add the first RE" is displayed on page
+  Scenario: [Customer-19] Verify that if there are no REs in the RE tab, then the user should able to see the message
+    Given User is on BOH FPU homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And User select customer
+    And User taps on "REs Tab 3 of 3" option
+    Then user verifies "Tap the + to add the first RE" is displayed on page

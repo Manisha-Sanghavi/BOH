@@ -90,3 +90,13 @@ def step_impl(context, note):
 @step('User enter "{note}" in Note fields')
 def step_impl(context, note):
     pass
+
+
+@step('User enter "{contact}" in contact phone')
+def step_impl(context, contact):
+    context.cust.enter_contact(contact)
+
+
+@step('User tap on "{option_name}" button')
+def step_impl(context, option_name):
+    context.cust.tap_option_index(option_name)
