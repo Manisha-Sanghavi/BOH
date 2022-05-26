@@ -124,81 +124,91 @@ class SignIn_Page(Basepage):
             self.wait.until(
                 EC.presence_of_element_located(
                     (MobileBy.XPATH, "//android.widget.Button[@content-desc='Yes']"))).click()
-        # elif message == "Joe M":
-        #     user = self.wait.until(
-        #         EC.presence_of_element_located(
-        #             (MobileBy.XPATH, "(//android.view.View)[7]")))
-        #     txt = user.get_attribute('content-desc')
-        #     print('Value of Text:'+txt)
-        #     value = txt.split()
-        #     print(value)
-        #     msg = value[0:1]
-        #     print(msg)
-        #     flag = True
+        elif message == "(123)456-7890" or message == "(089)674-5131":
+            try:
+                    self.wait.until(
+                    EC.presence_of_element_located(
+                    (MobileBy.XPATH, "//android.view.View[@content-desc='" + message + "']")))
+            except:
+                self.wait.until(
+                    EC.presence_of_element_located(
+                        (MobileBy.XPATH, "(//android.view.View)[7]")))
+            flag = True
+        elif message == "Save Changes":
+            self.wait.until(
+                EC.presence_of_element_located(
+                    (MobileBy.XPATH, "(//android.widget.Button)[2]")))
+            flag = True
+        elif message == "Tap the + to add the first RE":
+            self.wait.until(
+                EC.presence_of_element_located(
+                    (MobileBy.XPATH, "//android.view.View[@content-desc='" + message + "']")))
+            flag = True
         return flag
 
     def show_field(self, field):
         flag = False
-        form_xpath = "//android.view.View[@content-desc='XXX']"
-        show_data = form_xpath.replace('XXX', field)
-        CustName_ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, show_data)))
-        flag = True
         if field == 'Customer Management':
+            form_xpath = "//android.view.View[@content-desc='XXX']"
+            show_data = form_xpath.replace('XXX', field)
             CustName_ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, show_data)))
-            # text_read = CustName_ele.text
-            # print(text_read)
-            # assert text_read == "Customer Name"
             flag = True
         elif field == 'Customers Tab 1 of 3':
-            Cust_ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[8]")))
-            # text_read = Cust_ele.text
-            # print(text_read)
-            # assert text_read == "Customers Tab 1 of 3"
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[8]")))
             flag = True
         elif field == 'REs Tab 2 of 3':
-            RE_ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[9]")))
-            # text_read = RE_ele.text
-            # print(text_read)
-            # assert text_read == "REs Tab 2 of 3"
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[9]")))
             flag = True
         elif field == "Opportunities Tab 3 of 3":
-            Oppor_ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[10]")))
-            # text_read = Oppor_ele.text
-            # print(text_read)
-            # assert text_read == "Opportunities Tab 3 of 3"
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[10]")))
             flag = True
         else:
-            raise NameError(f'Field {field} is not valid')
+            text_ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[21]")))
+            value = text_ele.get_attribute('content-desc')
+            print(value)
+            msg = value.split()
+            print(msg)
+            text1 = msg[0]+" "+msg[1]
+            assert text1 == "Joe M"
+            text2 = msg[-15]
+            assert text2 == "london"
+            text3 = msg[-13] + " " + msg[-12]
+            assert text3 == "Rashmi C"
+            text4 = msg[-10] + " " + msg[-9]
+            assert text4 == "total REs"
+            text5 = msg[-7]
+            assert text5 == "touchbases"
+            text6 = msg[-5]
+            assert text6 == "value"
+            flag = True
+            # raise NameError(f'Field {field} is not valid')
         return flag
 
     def tap_option(self, option_name):
         option_xpath = "//android.widget.Button[@content-desc='XXX']"
         option_Btn = option_xpath.replace('XXX', option_name)
-        if option_name == "forgot password" or option_name == "SEND" or option_name == "CREATE TOUCHBASE" or option_name == "Search":
-            tap_btn = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.Button)[2]")))
+        if option_name == "forgot password" or option_name == "SEND" or option_name == "CREATE TOUCHBASE" or option_name == "Search" or option_name == "Save Changes":
+            tap_btn = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='"+option_name+"']")))
             tap_btn.click()
-            if option_name == "CREATE TOUCHBASE":
-                try:
-                    print(option_Btn)
-                    tap_btn.click()
-                    tap_btn.click()
-                except:
-                    actions = ActionChains(self.driver)
-                    actions.move_to_element(tap_btn)
-                    actions.click_and_hold(tap_btn)
-                    actions.release(tap_btn)
-                    actions.perform()
-                # sleep(5)
         elif option_name == "Add Touchbase":
             option_xpath = "//android.widget.ImageView[@content-desc='XXX']"
             option_Btn = option_xpath.replace('XXX', option_name)
             self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, option_Btn))).click()
         elif option_name == "+":
             self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.ImageView)[1]"))).click()
-        elif option_name == "INFO Tab 1 of 3" or option_name == "Delete John J" or option_name == "Show menu Active":
-            option_xpath = "//android.view.View[@content-desc='XXX']"
-            option_Btn = option_xpath.replace('XXX', option_name)
-            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, option_Btn))).click()
+        elif option_name == "INFO Tab 1 of 3" or option_name == "Delete John J" or option_name == "Show menu Active" or option_name == "Edit Contact" or option_name == "REs Tab 3 of 3":
+            try:
+                option_xpath = "//android.view.View[@content-desc='XXX']"
+                option_Btn = option_xpath.replace('XXX', option_name)
+                self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, option_Btn))).click()
+                # self.driver.find_element((MobileBy.XPATH (option_Btn))).click()
+            except:
+                print("You are in catch block")
+                if option_name == "INFO Tab 1 of 3":
+                    self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[9]"))).click()
+                elif option_name == "REs Tab 3 of 3":
+                    self.wait.until(
+                        EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[11]"))).click()
         elif option_name == "Remember Me":
             self.wait.until(EC.presence_of_element_located(
                 (MobileBy.XPATH, "//android.widget.CheckBox[@content-desc='Remember Me']"))).click()
@@ -220,6 +230,19 @@ class SignIn_Page(Basepage):
         elif option_name == "Set Customer to Active":
             self.wait.until(EC.presence_of_element_located(
                 (MobileBy.XPATH, "//android.view.View[@content-desc='Set Customer as Active']"))).click()
+        elif option_name == "Administrator":
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, "(//android.widget.Button)[1]"))).click()
+        elif option_name == "Post a message":
+            btn = self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, "//android.widget.EditText[@text='"+option_name+"']")))
+            btn.click()
+            btn.send_keys('Test')
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, "(//android.widget.Button)[2]"))).click()
+        elif option_name == "contact name":
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, "(//android.view.View)[20]"))).click()
         else:
             raise NameError('name {option_name} is not valid')
 
@@ -267,16 +290,6 @@ class SignIn_Page(Basepage):
                 self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, search_cust))).send_keys(value)
                 self.wait.until(EC.presence_of_element_located(
                     (MobileBy.XPATH, '//android.view.View[@content-desc="Add Customer \'' + value + '\'"]'))).click()
-            # elif field == "Notes":
-            #     self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, fill_data))).click()
-            #     self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, fill_data))).send_keys(value)
-            #     self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "//android.view.View[@content-desc='New Touchbase']"))).click()
-            # try:
-            #     self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, search_cust))).send_keys(value)
-            # except:
-            #     print("This is for adding customer only.")
-            #     # self.wait.until(EC.presence_of_element_located(
-            #     #     (MobileBy.XPATH, "//android.view.View[@content-desc='Add Customer '"+value+"'']"))).click()
         elif field == "Location":
             self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, fill_data))).click()
             self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, search_loc))).send_keys(value)
@@ -285,13 +298,6 @@ class SignIn_Page(Basepage):
         elif field == "Contact":
             self.wait.until(EC.presence_of_element_located(
                 (MobileBy.XPATH, "//android.widget.Button[@content-desc='" + value + "']"))).click()
-            # try:
-            #     actions = TouchAction(self.driver)
-            #     # actions.scroll_from_element(element, 10, 100)
-            #     actions.scroll(10, 100)
-            #     actions.perform()
-            # except:
-            #     print("Scroll down didn't work")
         elif field == "Notes":
             note = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, fill_data)))
             # note = self.driver.find_element((MobileBy.XPATH,fill_data))

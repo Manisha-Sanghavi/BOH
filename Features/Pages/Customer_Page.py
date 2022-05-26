@@ -148,6 +148,70 @@ class Customer_Page(Basepage):
         state = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[8]")))
         value = state.get_attribute('Content-desc')
         print(value)
-        status_value = value[0]
-        assert status_value == status
+        # status_value = value[0]
+        assert value == status
+
+    def show_field_info(self, field):
+        value = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "//android.view.View[@content-desc='"+field+"']")))
+        txt = value.get_attribute('content-desc')
+        print(txt)
+        msg = txt.split()
+        msg1 = msg[0]
+        msg2 = msg[1]
+        msg4 = msg[2] + msg[3]
+        if field == "Locations":
+            print(msg1)
+            return msg1
+        elif field == "Contacts":
+            msg3 = msg1 + msg2
+            print(msg3)
+            return msg3
+        elif field == "no contacts":
+            print(msg4)
+            return msg4
+        return txt
+
+    def Verify_act_note(self, note):
+        value = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[20]")))
+        text = value.get_attribute('content-desc')
+        print(text)
+        msg = text.split()
+        text1 = msg[3]
+        assert text1 == note
+
+    def noteField_activity(self, note):
+        actions = TouchAction(self.driver)
+        element = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "//android.view.View[@content-desc='New Touchbase']")))
+        actions.scroll_from_element(element, 10, 100)
+        actions.scroll(10, 100)
+        actions.perform()
+
+    def enter_contact(self, contact):
+        value = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.EditText)[5]")))
+        value.click()
+        value.clear()
+        value.send_keys(contact)
+        # This is for tapping outside which help to see save changes button
+        self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[7]"))).click()
+
+    def tap_option_index(self, option_name):
+        if option_name == "Back":
+            index = '1'
+            self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.Button)["+index+"]"))).click()
+        elif option_name == "Push":
+            index = '1'
+            self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.Switch)["+index+"]"))).click()
+
+
+
+
+
+
+
 

@@ -5,7 +5,7 @@ from behave import *
 use_step_matcher("parse")
 
 
-@given("Given User is on BOH FPU homepage")
+@given("User is on BOH FPU homepage")
 def step_impl(context):
     try:
         context.boh.dev_build()
@@ -33,7 +33,7 @@ def step_impl(context):
 def step_impl(context):
     context.boh.click_admin()
 
-@step('User tap on "Sign Out" button')
+@step('User taps on Sign Out button')
 def step_impl(context):
     context.boh.clickOn_Signout()
 
