@@ -67,9 +67,10 @@ def step_impl(context):
 
 @then("user verifies RE details page is displayed")
 def step_impl(context):
-    a = context.re.verify_re_page_displayed()
+    a,b = context.re.verify_re_page_displayed()
     print(a)
-    assert a == 'RE'
+    assert a == 'Joe M'
+    assert b == 'london'
 
 @step('user taps on "search" symbol')
 def step_impl(context):
@@ -124,7 +125,7 @@ def step_impl(context):
 def step_impl(context, re_num):
     context.re.select_re_from_list(re_num)
 
-@step('user edits subtitle as "{text}"')
+@step('user enters subtitle as "{text}"')
 def step_impl(context, text):
     context.re.edit_subtitle(text)
 
@@ -151,3 +152,157 @@ def step_impl(context, RE_Status):
 def step_impl(context):
     for row in context.table:
         context.re.verify_header_tabs(row['Field'])
+
+
+@step('user taps on "Info" tab')
+def step_impl(context):
+    context.re.tap_info_tab()
+
+
+@step('user taps on "Swap Contact"')
+def step_impl(context):
+    context.re.tap_swap_contact()
+
+
+@step("user selects first Contact displayed in the list")
+def step_impl(context):
+    context.re.select_contact()
+
+
+@then("user verifies swapped contact is displayed")
+def step_impl(context):
+    c = context.re.verify_swapped_contact()
+    assert c == "Todd Floyd"
+
+
+@step("user swap back the contacts")
+def step_impl(context):
+    context.re.swap_back_contact()
+
+@step("user adds new RE as test_RE with following customer info details")
+def step_impl(context):
+    context.re.re_tab()
+    context.re.tap_symbol()
+    context.re.add_re()
+    for row in context.table:
+        context.re.cust_info(row['Field'], row['Value'])
+    context.re.scroll_to_create()
+    context.re.create_estimation()
+
+@step("user search test_RE")
+def step_impl(context):
+    context.re.get_test_RE()
+    context.re.tap_search()
+
+@step("user selects test_RE from RE list")
+def step_impl(context):
+    context.re.select_test_RE()
+
+@then('user verifies "Requirements process" subtitle is displayed')
+def step_impl(context):
+    a, b = context.re.verify_subtitle()
+    assert a == "Requirements"
+    assert b == "process"
+
+
+@step('user selects Opportunity "{num}"')
+def step_impl(context, num):
+    context.re.select_opportunity(num)
+    context.re.scroll_end()
+
+
+@step('user selects colour "{colour}"')
+def step_impl(context, colour):
+    context.re.select_colour(colour)
+
+
+@then("user verifies RE details page is displayed with opportunity")
+def step_impl(context):
+    a = context.re.verify_re_opportunity()
+    assert a == "Opp #16"
+
+
+@step("user taps and selects following details as")
+def step_impl(context):
+    for row in context.table:
+        context.re.fill_details(row['Field'], row['Value'])
+
+
+@step("user edits the following details displayed")
+def step_impl(context):
+    context.re.tap_contact()
+    for row in context.table:
+        context.re.fill_cust_contact(row['Field'], row['Value'])
+    context.re.save_contact()
+
+
+@step('user selects Lift Capabilities as "5k Forklift"')
+def step_impl(context):
+    context.re.select_lift_caps()
+
+
+@step('user taps on "Save Changes"')
+def step_impl(context):
+    context.re.save_changes()
+
+
+@then("user verifies that following details in RE Info tab are displayed")
+def step_impl(context):
+    a,b,c,d,e,f,g,h = context.re.verify_changes()
+    assert a == "Opportunity #17"
+    assert b == "Chris Dykes"
+    assert c == "West"
+    assert d == "Fredrick"
+    assert e == "Jackson"
+    assert f == "79"
+    assert g == "5k Forklift"
+    assert h == "TAN"
+
+
+
+
+@step('user enters Pre-RE Footprint(Sq ft) as "{num}"')
+def step_impl(context, num):
+    context.re.enter_pre_re(num)
+
+
+@then("user verifies dates are added successfully")
+def step_impl(context):
+    a,b = context.re.verify_dates()
+    assert a == "6/11/2022"
+    assert b == "9/21/2022"
+
+@step("user taps on Add Another Date")
+def step_impl(context):
+    context.re.tap_add_date()
+
+
+@step('user taps on "Save Changes" to save dates')
+def step_impl(context):
+    context.re.tap_save_changes()
+
+
+@step("user scrolls down")
+def step_impl(context):
+    context.re.scroll_date()
+
+
+@step("user taps on 'x' symbol to delete dates")
+def step_impl(context):
+    context.re.delete_dates()
+    context.re.tap_save_changes()
+
+
+@then("user verifies that the dates are removed successfully")
+def step_impl(context):
+    pass
+
+
+@step('user taps on Touchbase with "{name}"')
+def step_impl(context, name):
+    context.re.create_TB(name)
+
+@then("user verifies Touchbase is created")
+def step_impl(context):
+    a = context.re.verify_TB()
+    assert a == "Collin Woods"
