@@ -1,6 +1,6 @@
 
 Feature: Verify Functionalities for RE module
-@smoke
+#@smoke
   Scenario: [RE-01] Verify different options available in Sort By for RE Tab
     Given user is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
@@ -157,19 +157,19 @@ Feature: Verify Functionalities for RE module
 #    Then user verifies that following details in RE Info tab are displayed
 #    | Opportunity   |Sales Rep  |Direct|First Name|Last Name|Contact Phone  |Pre-RE Footprint (sq ft)|Lift Capabilities|Default Color|
 #    |Opp 47 . 14 BEB|Mike Gentry|West  |Fredrick  |Jackson  |(020) 992-2888 |          79            |  HEMTT - LHS    |    Green    |
-#
-#  Scenario[RE-13]: Verify user can Swap contact from Info tab in RE details page
+
+#  Scenario: [RE-13] Verify user can Swap contact from Info tab in RE details page
 #    Given user is on BOH FPU homepage
-#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
 #    And user is navigated to "Customer Management" page
-#    And user taps on "RE" tab
-#    And user selects "RE #825"
+#    And user taps on RE tab
+#    And user selects RE# "864" from RE list
 #    And user taps on "Info" tab
 #    And user taps on "Swap Contact"
 #    And user selects first Contact displayed in the list
-#    And user taps on "Save Changes"
 #    Then user verifies swapped contact is displayed
-#
+#    And user swap back the contacts
+
 #  Scenario[RE-14]: Verify user can create Touchbase with Customer from Info tab of RE
 #    Given user is on BOH FPU homepage
 #    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
