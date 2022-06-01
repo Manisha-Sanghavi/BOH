@@ -207,7 +207,18 @@ class Customer_Page(Basepage):
             index = '1'
             self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.Switch)["+index+"]"))).click()
-
+        elif option_name == "opportunities":
+            index = '10'
+            self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)["+index+"]"))).click()
+        elif option_name == "month":
+            index = '22'
+            self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)["+index+"]"))).click()
+        elif option_name == "REs":
+            index = '12'
+            self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)["+index+"]"))).click()
 
 
 

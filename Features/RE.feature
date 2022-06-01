@@ -3,8 +3,8 @@ Feature: Verify Functionalities for RE module
 @smoke
   Scenario: [RE-01] Verify different options available in Sort By for RE Tab
     Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And user navigated to "Customer Management" page
     And user taps on RE tab
     And user taps on "Sort By" options
     Then user verifies following options are available for sort by
@@ -19,23 +19,23 @@ Feature: Verify Functionalities for RE module
 
   Scenario:[RE-02] Verify user can sort REs in descending order of REID
     Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And user navigated to "Customer Management" page
     And user taps on RE tab
     Then user verifies REs displayed are in descending order of REID
 
   Scenario: [RE-03] Verify user can sort REs in ascending order of REID
     Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And user navigated to "Customer Management" page
     And user taps on RE tab
     And user taps on "downward arrow"
     Then user verifies REs displayed are in ascending order of REID
-#
+
   Scenario: [RE-04] Verify different options available in Filter By for RE Tab
     Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And user navigated to "Customer Management" page
     And user taps on RE tab
     And user taps on "Filter By" options
     Then user verifies following options are available for filter by
@@ -52,8 +52,8 @@ Feature: Verify Functionalities for RE module
 
   Scenario Outline: [RE-05] Verify user can filter REs by their states
     Given User is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And user navigated to "Customer Management" page
     And user taps on RE tab
     And user taps on "Filter By" options
     And user select "<RE_Status>" from dropdown list
@@ -64,10 +64,11 @@ Feature: Verify Functionalities for RE module
       | Validate |
     #| Inactive | Active | Pending | Awarded | Complete |
 
+
   Scenario: [RE-06] Verify after tapping '+' symbol in RE tab, user can see Add Touchbase, Add Opportunity and Add RE
     Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And user navigated to "Customer Management" page
     And user taps on RE tab
     And user taps on plus symbol
     Then user verifies following options are displayed
@@ -75,16 +76,15 @@ Feature: Verify Functionalities for RE module
                 | Add Touchbase |
                 |Add Opportunity|
                 |    Add RE     |
-#
-  Scenario: [RE-07] Verify user can create RE without Opportunity
+
+  Scenario: [RE-07] Verify user can create RE successfully
     Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And user navigated to "Customer Management" page
     And user taps on RE tab
     And user taps on plus symbol
     And user taps on Add RE
-    And user taps on MM/DD/YYYYY
-    And user selects Estimated Order Date "06/11/2022"
+    And user selects Estimated Order Date "31/05/2022"
     And user enter following details for selected Customer Info options
          |       Field        |            Value            |
          |     RE Region      |             East            |
@@ -105,18 +105,18 @@ Feature: Verify Functionalities for RE module
 
   Scenario: [RE-08] Verify user can search existing RE by tapping on Search (Q) option
     Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And user navigated to "Customer Management" page
     And user taps on RE tab
     And user taps on "search" symbol
     And user enters "772" in search field
     And user selects RE# "772"
     Then user verifies searched RE# "772" details page is displayed
-
-    Scenario: [RE-09] Verify user can create RE from Opportunity
+##
+  Scenario: [RE-09] Verify user can create RE from Opportunity
     Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And user navigated to "Customer Management" page
     And user taps on RE tab
     And user taps on plus symbol
     And user taps on Add RE
@@ -128,10 +128,10 @@ Feature: Verify Functionalities for RE module
     And user taps Create Requirements Estimate
     Then user verifies RE details page is displayed with "opportunity" number "Opp #15"
 
-  Scenario: [RE-10] Verify user can "Add Subtitle" to RE if its not already added
+Scenario: [RE-10] Verify user can "Add Subtitle" to RE if its not already added
     Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And user navigated to "Customer Management" page
     And user taps on RE tab
     And user adds new RE as test_RE with following customer info details
          |       Field        |            Value            |
@@ -145,59 +145,59 @@ Feature: Verify Functionalities for RE module
 
   Scenario: [RE-11] Verify user can Edit existing Subtitle successfully
     Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And user navigated to "Customer Management" page
     And user taps on RE tab
     And user selects RE# "864" from RE list
     And user enters subtitle as "Requirements changed"
     Then user verifies "Requirements changed" subtitle is displayed
     And user enters subtitle as "Original RE"
 
-  Scenario: [RE-12] Verify user can update contact details in Info section of RE successfully
-    Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
-    And user taps on RE tab
-    And user selects RE# "864" from RE list
-    And user taps on "Info" tab
-    And user edits the following details displayed
-        |      Field       |       Value        |
-        |   First Name     |    Fredrick        |
-        |    Last Name     |     Jackson        |
-        |   Contact Email  |    f.j@email.com   |
-        |  Contact Phone   |    (020) 992-2888  |
-    Then user verifies that following details in RE Info tab are displayed
-          |      Field       |         Value         |
-          |   Customer Name  |    Fredrick Jackson   |
-          |   Contact Email  |    f.j@email.com      |
-          |  Contact Phone   |   (020) 992-2888      |
+#  Scenario: [RE-12] Verify user can update contact details in Info section of RE successfully
+#    Given user is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    And user navigated to "Customer Management" page
+#    And user taps on RE tab
+#    And user selects RE# "864" from RE list
+#    And user taps on "Info" tab
+#    And user edits the following details displayed
+#        |      Field       |       Value        |
+#        |   First Name     |    Fredrick        |
+#        |    Last Name     |     Jackson        |
+#        |   Contact Email  |    f.j@email.com   |
+#        |  Contact Phone   |    (020) 992-2888  |
+#    Then user verifies that following details in RE Info tab are displayed
+#          |      Field       |         Value         |
+#          |   Customer Name  |    Fredrick Jackson   |
+#          |   Contact Email  |    f.j@email.com      |
+#          |  Contact Phone   |   (020) 992-2888      |
 
-  Scenario: [RE-13] Verify user can update details in Info section of RE successfully
-    Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
-    And user taps on RE tab
-    And user selects RE# "864" from RE list
-    And user taps on "Info" tab
-    And user edits the following details are displayed
-        |         Field         |       Value        |
-        |      Opportunity      |    Opportunity #15 |
-        |       RE Date         |     9/23/2022      |
-        |      Sales Rep        |    Mike Gentry     |
-        |        Direct         |    Europe/Africa   |
-        |Pre-RE Footprint(sq ft)|          700       |
-        |     Default Color     |         GREEN      |
-    Then user verifies that following details in RE Info tab are displayed
-          |      Field       |         Value         |
-          |   Customer Name  |    Fredrick Jackson   |
-          |   Contact Email  |    f.j@email.com      |
-          |  Contact Phone   |   (020) 992-2888      |
+#  Scenario: [RE-13] Verify user can update details in Info section of RE successfully
+#    Given user is on BOH FPU homepage
+#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
+#    And user is navigated to "Customer Management" page
+#    And user taps on RE tab
+#    And user selects RE# "864" from RE list
+#    And user taps on "Info" tab
+#    And user edits the following details are displayed
+#        |         Field         |       Value        |
+#        |      Opportunity      |    Opportunity #15 |
+#        |       RE Date         |     9/23/2022      |
+#        |      Sales Rep        |    Mike Gentry     |
+#        |        Direct         |    Europe/Africa   |
+#        |Pre-RE Footprint(sq ft)|          700       |
+#        |     Default Color     |         GREEN      |
+#    Then user verifies that following details in RE Info tab are displayed
+#          |      Field       |         Value         |
+#          |   Customer Name  |    Fredrick Jackson   |
+#          |   Contact Email  |    f.j@email.com      |
+#          |  Contact Phone   |   (020) 992-2888      |
 
 
   Scenario: [RE-13] Verify user can Swap contact from Info tab in RE details page
     Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And user navigated to "Customer Management" page
     And user taps on RE tab
     And user selects RE# "864" from RE list
     And user taps on "Info" tab
@@ -205,21 +205,21 @@ Feature: Verify Functionalities for RE module
     And user selects Contact 'Todd Floyd (SSgt)' displayed in the list
     Then user verifies swapped contact 'Todd Floyd' is displayed
     And user swap back the contact to 'Collin Woods'
-#
-  Scenario: [RE-14] Verify user can create Touchbase with Customer from Info tab of RE
+
+Scenario: [RE-14] Verify user can create Touchbase with Customer from Info tab of RE
     Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And user navigated to "Customer Management" page
     And user taps on RE tab
     And user selects RE# "864" from RE list
     And user taps on "Info" tab
     And user taps on Touchbase with "Collin"
     Then user verifies Touchbase is created with 'Collin Woods' for RE# '864'
 #
-  Scenario: [RE-15] Verify user can add multiple dates for Estimated Order Dates section in Info tab of RE details page
+Scenario: [RE-15] Verify user can add multiple dates for Estimated Order Dates section in Info tab of RE details page
     Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And user navigated to "Customer Management" page
     And user taps on RE tab
     And user selects RE# "864" from RE list
     And user taps on "Info" tab
@@ -231,11 +231,11 @@ Feature: Verify Functionalities for RE module
     And user taps on "Save Changes" to save dates
     Then user verifies dates '6/11/2022' and '9/21/2022' are added successfully
     And user taps on 'x' symbol to delete dates
-##
-  Scenario: [RE-16] Verify user can remove dates from Estimated order date section in Info tab of RE details page
+#
+Scenario: [RE-16] Verify user can remove dates from Estimated order date section in Info tab of RE details page
     Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And user navigated to "Customer Management" page
     And user taps on RE tab
     And user selects RE# "864" from RE list
     And user taps on "Info" tab
@@ -247,7 +247,7 @@ Feature: Verify Functionalities for RE module
     And user taps on "Save Changes" to save dates
     And user taps on 'x' symbol to delete dates
     Then user verifies that the dates are removed successfully
-##
+#
 #  Scenario: [RE-17] Verify that for RE user can Create Configuration under Configured Systems successfully
 #    Given user is on BOH FPU homepage
 #    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
@@ -263,7 +263,7 @@ Feature: Verify Functionalities for RE module
 #    And user adds "Boh Cargo -6"
 #    And user navigates back with backward arrow
 #    Then user verifies "test_System" is displayed in Configured Systems list
-##
+
 #  Scenario[RE-18]: Verify that for RE user can Create Configuration under Loose Products successfully
 #    Given user is on BOH FPU homepage
 #    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"

@@ -144,6 +144,38 @@ class SignIn_Page(Basepage):
                 EC.presence_of_element_located(
                     (MobileBy.XPATH, "//android.view.View[@content-desc='" + message + "']")))
             flag = True
+
+        elif message == "Est. Order Date 6/2022":
+            text = self.wait.until(
+                EC.presence_of_element_located(
+                    (MobileBy.XPATH, "(//android.view.View)[17]")))
+            value = text.get_attribute('content-desc')
+            print(value)
+            msg = value.split()
+            print(msg)
+            msg1 = msg[-11]
+            msg2 = msg[-12]
+            msg3 = msg[-13]
+            msg4 = msg[-14]
+            text = msg4 + msg3 + msg2 + " "+msg1
+            # glob_opp = msg[0] + " "+msg[1]
+            # print("global variable for opportunity: " +glob_opp)
+            # if text.__contains__(glob_opp):
+            #     print("You removed opportunity "+glob_opp+ "successfully.")
+
+            print(text)
+            flag = True
+        elif message == "No requirement Estimates for opportunity #16":
+            re_message = self.wait.until(
+                EC.presence_of_element_located(
+                    (MobileBy.XPATH, "(//android.widget.ImageView)[1]")))
+            value = re_message.get_attribute('content-desc')
+            assert message == value
+            flag = True
+        # elif message == "Removed Opportunity":
+            # self.wait.until(
+            #     EC.presence_of_element_located(
+            #         (MobileBy.XPATH, "")))
         return flag
 
     def show_field(self, field):
@@ -187,16 +219,16 @@ class SignIn_Page(Basepage):
     def tap_option(self, option_name):
         option_xpath = "//android.widget.Button[@content-desc='XXX']"
         option_Btn = option_xpath.replace('XXX', option_name)
-        if option_name == "forgot password" or option_name == "SEND" or option_name == "CREATE TOUCHBASE" or option_name == "Search" or option_name == "Save Changes":
+        if option_name == "forgot password" or option_name == "SEND" or option_name == "CREATE TOUCHBASE" or option_name == "Search" or option_name == "Save Changes" or option_name == "CREATE OPPORTUNITY":
             tap_btn = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='"+option_name+"']")))
             tap_btn.click()
-        elif option_name == "Add Touchbase":
+        elif option_name == "Add Touchbase" or option_name == "Add Opportunity":
             option_xpath = "//android.widget.ImageView[@content-desc='XXX']"
             option_Btn = option_xpath.replace('XXX', option_name)
             self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, option_Btn))).click()
         elif option_name == "+":
             self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.ImageView)[1]"))).click()
-        elif option_name == "INFO Tab 1 of 3" or option_name == "Delete John J" or option_name == "Show menu Active" or option_name == "Edit Contact" or option_name == "REs Tab 3 of 3":
+        elif option_name == "INFO Tab 1 of 3" or option_name == "Delete John J" or option_name == "Show menu Active" or option_name == "Edit Contact" or option_name == "REs Tab 3 of 3" or option_name == "Opportunities Tab 3 of 3":
             try:
                 option_xpath = "//android.view.View[@content-desc='XXX']"
                 option_Btn = option_xpath.replace('XXX', option_name)
@@ -218,9 +250,14 @@ class SignIn_Page(Basepage):
         elif option_name == "filter By":
             self.wait.until(EC.presence_of_element_located(
                 (MobileBy.XPATH, "(//android.view.View)[19]"))).click()
-        elif option_name == "ACTIVE":
+        elif option_name == "ACTIVE" or option_name == "Delete Opportunity":
             self.wait.until(EC.presence_of_element_located(
                 (MobileBy.XPATH, "//android.view.View[@content-desc='"+option_name+"']"))).click()
+            try:
+                self.wait.until(EC.presence_of_element_located(
+                    (MobileBy.XPATH, "//android.widget.Button[@content-desc='Yes']"))).click()
+            except:
+                print("No use of Yes option here")
         elif option_name == "INACTIVE":
             self.wait.until(EC.presence_of_element_located(
                 (MobileBy.XPATH, "//android.view.View[@content-desc='"+option_name+"']"))).click()
@@ -243,6 +280,9 @@ class SignIn_Page(Basepage):
         elif option_name == "contact name":
             self.wait.until(EC.presence_of_element_located(
                 (MobileBy.XPATH, "(//android.view.View)[20]"))).click()
+        elif option_name == "Delete Opportunity":
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, "//android.view.View[@content-desc='"+option_name+"']"))).click()
         else:
             raise NameError('name {option_name} is not valid')
 
