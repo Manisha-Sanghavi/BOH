@@ -104,7 +104,7 @@ Feature: Verify Functionalities for Customer module
       | total REs  |
       | touchbases |
       | value      |
-#
+# No availability of independent locator
   Scenario: [Customer-10] Verify user can add a note successfully from Activity Tab in Customer Details page
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"

@@ -18,8 +18,9 @@ class Opportunity_Page(Basepage):
     def __init__(self, context):
         Basepage.__init__(self, context.driver)
         self.context = context
+        # self.x = self.search_opp()
 
-    def show_opp_field(self, field):
+    def show_opp_field(self, field, value):
         form_xpath = "//android.view.View[@content-desc='XXX']"
         show_data = form_xpath.replace('XXX', field)
         flag = False
@@ -28,31 +29,31 @@ class Opportunity_Page(Basepage):
             ele_1.click()
             self.wait.until(
                 EC.presence_of_element_located(
-                    (MobileBy.XPATH, "//android.widget.Button[@content-desc='West']"))).click()
+                    (MobileBy.XPATH, "//android.widget.Button[@content-desc='" + value + "']"))).click()
             flag = True
         elif field == "Customer":
             ele_1 = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[11]")))
             ele_1.click()
             self.wait.until(
                 EC.presence_of_element_located(
-                    (MobileBy.XPATH, "//android.view.View[@content-desc='Joe M']"))).click()
+                    (MobileBy.XPATH, "//android.view.View[@content-desc='" + value + "']"))).click()
             flag = True
         elif field == "Location":
             ele_1 = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[12]")))
             ele_1.click()
             self.wait.until(
                 EC.presence_of_element_located(
-                    (MobileBy.XPATH, "//android.view.View[@content-desc='29 Palms']"))).click()
+                    (MobileBy.XPATH, "//android.view.View[@content-desc='" + value + "']"))).click()
             flag = True
         elif field == "BOH Role":
             ele_1 = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[13]")))
             ele_1.click()
             self.wait.until(
                 EC.presence_of_element_located(
-                    (MobileBy.XPATH, "//android.widget.Button[@content-desc='Prime']"))).click()
+                    (MobileBy.XPATH, "//android.widget.Button[@content-desc='" + value + "']"))).click()
             # This is for scrolling element
-            source = self.driver.find_element(MobileBy.XPATH, "//android.widget.Button[@content-desc='Direct']")
-            target = self.driver.find_element(MobileBy.XPATH, "//android.widget.Button[@content-desc='New']")
+            # source = self.driver.find_element(MobileBy.XPATH, "//android.widget.Button[@content-desc='Direct']")
+            # target = self.driver.find_element(MobileBy.XPATH, "//android.widget.Button[@content-desc='New']")
             # This is for scrolling
             size = self.driver.get_window_size()
             startX = int(size["width"] / 2)
@@ -63,7 +64,8 @@ class Opportunity_Page(Basepage):
             sleep(2)
             flag = True
         elif field == "Win Probability":
-            ele_1 = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='25%']")))
+            ele_1 = self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, "//android.widget.Button[@content-desc='" + value + "']")))
             ele_1.click()
             flag = True
             size = self.driver.get_window_size()
@@ -76,7 +78,7 @@ class Opportunity_Page(Basepage):
         elif field == "Value Breakdown":
             ele_1 = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.EditText)[1]")))
             ele_1.click()
-            ele_1.send_keys("06/2022")
+            ele_1.send_keys(value)
 
             ele_2 = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.EditText)[2]")))
             ele_2.click()
@@ -88,7 +90,7 @@ class Opportunity_Page(Basepage):
             flag = True
         return flag
 
-    def select_opportunity(self):
+    def choose_opportunity(self):
         self.wait.until(
             EC.presence_of_element_located(
                 (MobileBy.XPATH, "(//android.view.View)[17]"))).click()
@@ -103,7 +105,7 @@ class Opportunity_Page(Basepage):
         print(txt)
         # flag = False
         if field == "Opportunity #17":
-            txt1 = txt[0] + " " + txt[1]
+            txt1 = txt[0]
             print(txt1)
             assert field == txt1
         elif field == "Joe M":
@@ -151,7 +153,7 @@ class Opportunity_Page(Basepage):
         list = self.driver.find_elements(MobileBy.XPATH, '(//android.view.View)[18]//following::android.view.View')
         count = len(list)
         print(count)
-        if count >=1:
+        if count >= 1:
             return list
         assert list > count
 
@@ -159,8 +161,8 @@ class Opportunity_Page(Basepage):
         if option == "opportunity #16":
             index = '19'
             self.wait.until(
-            EC.presence_of_element_located(
-                (MobileBy.XPATH, "(//android.view.View)['"+index+"']"))).click()
+                EC.presence_of_element_located(
+                    (MobileBy.XPATH, "(//android.view.View)['" + index + "']"))).click()
 
     def scroll_to(self):
         size = self.driver.get_window_size()
@@ -185,4 +187,31 @@ class Opportunity_Page(Basepage):
             EC.presence_of_element_located(
                 (MobileBy.XPATH, "use_xpath"))).click()
 
+    def search_opp(self):
+        text_ele = self.wait.until(
+            EC.presence_of_element_located(
+                (MobileBy.XPATH, "(//android.view.View)[17]")))
+        value = text_ele.get_attribute('content-desc')
+        print(value)
+        msg = value.split()
+        print(msg)
+        text = msg[0] + " " + msg[1]
+        # print("global variable for opportunity: " + text)
+        # if value.__contains__(text):
+        #     print("You removed opportunity " + text + " successfully.")
+        # print(text)
+        return text
 
+    def new_created_oppo_text(self):
+        text_ele = self.wait.until(
+            EC.presence_of_element_located(
+                (MobileBy.XPATH, "(//android.view.View)[7]")))
+        value = text_ele.get_attribute('content-desc')
+        print(value)
+        # msg = value.split()
+        # print(msg)
+        # text = msg[0] + " " + msg[1]
+        # print("new Opportunity text: "+text)
+        if value.__contains__('Opportunity'):
+            print("You are removing newly created " + value + " successfully.")
+        return value

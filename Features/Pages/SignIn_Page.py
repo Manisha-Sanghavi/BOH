@@ -158,6 +158,11 @@ class SignIn_Page(Basepage):
             msg3 = msg[-13]
             msg4 = msg[-14]
             text = msg4 + msg3 + msg2 + " "+msg1
+            # glob_opp = msg[0] + " "+msg[1]
+            # print("global variable for opportunity: " +glob_opp)
+            # if text.__contains__(glob_opp):
+            #     print("You removed opportunity "+glob_opp+ "successfully.")
+
             print(text)
             flag = True
         elif message == "No requirement Estimates for opportunity #16":
