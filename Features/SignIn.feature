@@ -48,7 +48,7 @@ Feature: Verify Functionalities for Sigin, Sign out and Home Page
     Given User is on BOH FPU homepage
     When User login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
     And User tap on "Administrator" option
-    And User tap on "Sign Out" button
+    And User tap on Sign Out button
     Then User verifies "Homepage" is displayed
 
 #

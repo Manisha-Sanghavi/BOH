@@ -31,7 +31,7 @@ class SignIn_Page(Basepage):
         element.click()
 
     def clickOn_Login(self):
-        # sleep(20)
+        sleep(5)
         login = self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, "//android.view.View[@content-desc='Sign In (DEV)']")))
         login.click()
