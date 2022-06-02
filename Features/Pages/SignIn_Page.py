@@ -222,7 +222,7 @@ class SignIn_Page(Basepage):
         if option_name == "forgot password" or option_name == "SEND" or option_name == "CREATE TOUCHBASE" or option_name == "Search" or option_name == "Save Changes" or option_name == "CREATE OPPORTUNITY":
             tap_btn = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='"+option_name+"']")))
             tap_btn.click()
-        elif option_name == "Add Touchbase" or option_name == "Add Opportunity":
+        elif option_name == "Add Touchbase" or option_name == "Add Opportunity" or option_name == "Add RE":
             option_xpath = "//android.widget.ImageView[@content-desc='XXX']"
             option_Btn = option_xpath.replace('XXX', option_name)
             self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, option_Btn))).click()

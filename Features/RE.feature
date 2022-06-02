@@ -556,10 +556,10 @@ Scenario: [RE-16] Verify user can remove dates from Estimated order date section
 #
 #  Scenario[RE-41]: Verify user can delete RE successfully
 #    Given user is on BOH FPU homepage
-#    And user creates test_RE
 #    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    And user navigated to "Customer Management" page
 #    And user taps on RE tab
+#    And user creates test_RE with following details
 #    And user selects test_RE
 #    And user taps on Info tab
 #    And user taps on Delete Requirements Estimate

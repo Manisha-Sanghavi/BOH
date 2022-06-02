@@ -300,3 +300,9 @@ def step_impl(context):
 def step_impl(context):
     for row in context.table:
         context.re.fill_info_details(row['Field'], row['Value'])
+
+
+@step("user creates test_RE")
+def step_impl(context):
+    context.boh.tap_option("+")
+    context.boh.tap_option("Add RE")
