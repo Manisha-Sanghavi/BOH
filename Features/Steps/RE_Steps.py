@@ -130,6 +130,11 @@ def step_impl(context, re_num):
 def step_impl(context, text):
     context.re.edit_subtitle(text)
 
+@step('user select "{RE_Status}" from dropdown list')
+def step_impl(context, RE_Status):
+    context.re.select_re_status(RE_Status)
+
+
 @then('user verifies REs with state "{RE_Status}" only are displayed')
 def step_impl(context, RE_Status):
     a = context.re.verify_re_status(RE_Status)
@@ -146,6 +151,11 @@ def step_impl(context):
 def step_impl(context):
     context.re.tap_info_tab()
 
+@step('user searches RE# "{num}" from RE list')
+def step_impl(context, num):
+    context.re.tap_search()
+    context.re.search_re(num)
+    context.re.select_re()
 
 @step('user taps on "Swap Contact"')
 def step_impl(context):
@@ -215,10 +225,10 @@ def step_impl(context, opportunity, opp):
     assert a == opp
 
 
-@step("user taps and selects following details as")
-def step_impl(context):
-    for row in context.table:
-        context.re.fill_details(row['Field'], row['Value'])
+# @step("user taps and selects following details as")
+# def step_impl(context):
+#     for row in context.table:
+#         context.re.fill_details(row['Field'], row['Value'])
 
 
 @step("user edits the following details displayed")
@@ -233,9 +243,9 @@ def step_impl(context):
     context.re.select_lift_caps()
 
 
-@step('user taps on "Save Changes"')
-def step_impl(context):
-    context.re.save_changes()
+# @step('user taps on "Save Changes"')
+# def step_impl(context):
+#     context.re.save_changes()
 
 
 @then("user verifies that following details in RE Info tab are displayed")
@@ -244,6 +254,12 @@ def step_impl(context):
             s = context.re.verify_details(row['Field'], row['Value'])
             assert row['Value'] == s
 
+@step("user changes the contact details as '{cust_name}' with '{email}' and '{phone}'")
+def step_impl(context, cust_name, email, phone):
+    context.re.tap_contact()
+    context.re.change_back_contact(cust_name, email, phone)
+    context.re.save_contact()
+
 @step('user enters Pre-RE Footprint(Sq ft) as "{num}"')
 def step_impl(context, num):
     context.re.enter_pre_re(num)
@@ -251,9 +267,13 @@ def step_impl(context, num):
 
 @then("user verifies dates '{date1}' and '{date2}' are added successfully")
 def step_impl(context, date1, date2):
-    a,b = context.re.verify_dates()
-    assert a == date1
-    assert b == date2
+    x = 0
+    y = 0
+    values = [date1,x ,y,date2]
+    for i in [0, 3]:
+         a = context.re.verify_dates(i)
+         assert a == values[i]
+    #assert b == date2
 
 @step("user taps on Add Another Date")
 def step_impl(context):
@@ -296,7 +316,20 @@ def step_impl(context):
     context.re.tap_symbol_plus()
 
 
-@step("user edits the following details are displayed")
+@step("user edits the following details")
 def step_impl(context):
     for row in context.table:
         context.re.fill_info_details(row['Field'], row['Value'])
+    context.re.save_info_changes()
+
+
+@then("user verifies that following details in Info tab of RE# test_RE are displayed")
+def step_impl(context):
+    context.re.re_back()
+    context.re.tap_search()
+    context.re.search_re()
+    context.re.select_re()
+    context.re.tap_info_tab()
+    for row in context.table:
+        s = context.re.verify_info_change(row['Field'], row['Value'])
+        assert s == row['Value']
