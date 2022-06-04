@@ -3,8 +3,8 @@ Feature: Verify Functionalities for RE module
 @smoke
 #  Scenario: [RE-01] Verify different options available in Sort By for RE Tab
 #    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    #And user navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user taps on "Sort By" options
 #    Then user verifies following options are available for sort by
@@ -19,23 +19,23 @@ Feature: Verify Functionalities for RE module
 #
 #  Scenario:[RE-02] Verify user can sort REs in descending order of REID
 #    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    #And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    Then user verifies REs displayed are in descending order of REID
 #
 #  Scenario: [RE-03] Verify user can sort REs in ascending order of REID
 #    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    #And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user taps on "downward arrow"
 #    Then user verifies REs displayed are in ascending order of REID
 ##
 #  Scenario: [RE-04] Verify different options available in Filter By for RE Tab
 #    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    #And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user taps on "Filter By" options
 #    Then user verifies following options are available for filter by
@@ -52,8 +52,8 @@ Feature: Verify Functionalities for RE module
 #
 #  Scenario Outline: [RE-05] Verify user can filter REs by their states
 #    Given User is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    #And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user taps on "Filter By" options
 #    And user select "<RE_Status>" from dropdown list
@@ -66,8 +66,8 @@ Feature: Verify Functionalities for RE module
 #
 #  Scenario: [RE-06] Verify after tapping '+' symbol in RE tab, user can see Add Touchbase, Add Opportunity and Add RE
 #    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    #And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user taps on plus symbol
 #    Then user verifies following options are displayed
@@ -78,8 +78,8 @@ Feature: Verify Functionalities for RE module
 ##
 #  Scenario: [RE-07] Verify user can create RE without Opportunity
 #    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    #And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user taps on plus symbol
 #    And user taps on Add RE
@@ -105,18 +105,18 @@ Feature: Verify Functionalities for RE module
 #
 #  Scenario: [RE-08] Verify user can search existing RE by tapping on Search (Q) option
 #    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    #And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user taps on "search" symbol
 #    And user enters "772" in search field
 #    And user selects RE# "772"
 #    Then user verifies searched RE# "772" details page is displayed
-
+#
 #    Scenario: [RE-09] Verify user can create RE from Opportunity
 #    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    #And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user taps on plus symbol
 #    And user taps on Add RE
@@ -130,35 +130,33 @@ Feature: Verify Functionalities for RE module
 #
 #  Scenario: [RE-10] Verify user can "Add Subtitle" to RE if its not already added
 #    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    #And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user adds new RE as test_RE with following customer info details
 #         |       Field        |            Value            |
 #         |     RE Region      |             East            |
 #         |   Customer Name    |           Joe M             |
 #         | Customer Location  |          london             |
-#    And user search test_RE
-#    And user selects test_RE with location 'london' from RE list
 #    And user enters subtitle as "Requirements process"
 #    Then user verifies "Requirements process" subtitle is displayed
 #
 #  Scenario: [RE-11] Verify user can Edit existing Subtitle successfully
 #    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    #And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user selects RE# "864" from RE list
 #    And user enters subtitle as "Requirements changed"
 #    Then user verifies "Requirements changed" subtitle is displayed
 #    And user enters subtitle as "Original RE"
-
+#
 #  Scenario: [RE-12] Verify user can update contact details in Info section of RE successfully
 #    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    #And user is navigated to "Customer Management" page
 #    And user taps on RE tab
-#    And user selects RE# "864" from RE list
+#    And user searches RE# "861" from RE list
 #    And user taps on "Info" tab
 #    And user edits the following details displayed
 #        |      Field       |       Value        |
@@ -172,39 +170,32 @@ Feature: Verify Functionalities for RE module
 #          |   Contact Email  |    f.j@email.com      |
 #          |  Contact Phone   |   (020) 992-2888      |
 #    And user changes the contact details as 'Collin Woods' with 'c.w@email.com' and '0987654321'
-
-  Scenario: [RE-13] Verify user can update details as Opportunity, RE Date, Sale Rep, Direct and Metrics in Info section of RE successfully
-    Given user is on BOH FPU homepage
-    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-    And user is navigated to "Customer Management" page
-    And user taps on RE tab
-    And user adds new RE as test_RE with following customer info details
-         |       Field        |            Value            |
-         |     RE Region      |             East            |
-         |   Customer Name    |           Joe M             |
-         | Customer Location  |          london             |
-#    And user search test_RE
-#    And user selects test_RE with location 'london' from RE list
-    And user taps on "Info" tab
-    And user edits the following details
-        |         Field         |       Value        |
-        |      Opportunity      |    Opp 15 • Joe M  |
-        |      Sales Rep        |    Mike Gentry     |
-        |        Direct         |    Central         |
-        |Pre-RE Footprint(sq ft)|          700       |
-        |     Default Color     |         GREEN      |
-    Then user verifies that following details in Info tab of RE# test_RE are displayed
-          |         Field         |       Value        |
-          |      Opportunity      |    Opporunity #15 |
-          |      Sales Rep        |    Mike Gentry     |
-          |        Direct         |    Europe/Africa   |
-          |Pre-RE Footprint(sq ft)|          700       |
-          |     Default Color     |         GREEN      |
-
+#
+##  Scenario: [RE-13] Verify user can update details as Opportunity, RE Date, Sale Rep, Direct and Metrics in Info section of RE successfully
+##    Given user is on BOH FPU homepage
+##    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+##    And user is navigated to "Customer Management" page
+##    And user taps on RE tab
+##    And user selects RE# "864" from RE list
+##    And user taps on "Info" tab
+##    And user edits the following details are displayed
+##        |         Field         |       Value        |
+##        |      Opportunity      |    Opportunity #15 |
+##        |       RE Date         |     9/23/2022      |
+##        |      Sales Rep        |    Mike Gentry     |
+##        |        Direct         |    Europe/Africa   |
+##        |Pre-RE Footprint(sq ft)|          700       |
+##        |     Default Color     |         GREEN      |
+##    Then user verifies that following details in RE Info tab are displayed
+##          |      Field       |         Value         |
+##          |   Customer Name  |    Fredrick Jackson   |
+##          |   Contact Email  |    f.j@email.com      |
+##          |  Contact Phone   |   (020) 992-2888      |
+#
 #  Scenario: [RE-14] Verify user can Swap contact from Info tab in RE details page
 #    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    #And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user selects RE# "864" from RE list
 #    And user taps on "Info" tab
@@ -212,11 +203,11 @@ Feature: Verify Functionalities for RE module
 #    And user selects Contact 'Todd Floyd (SSgt)' displayed in the list
 #    Then user verifies swapped contact 'Todd Floyd' is displayed
 #    And user swap back the contact to 'Collin Woods'
-
+#
 #  Scenario: [RE-15] Verify user can create Touchbase with Customer from Info tab of RE
 #    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    #And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user selects RE# "864" from RE list
 #    And user taps on "Info" tab
@@ -225,8 +216,8 @@ Feature: Verify Functionalities for RE module
 ##
 #  Scenario: [RE-16] Verify user can add multiple dates for Estimated Order Dates section in Info tab of RE details page
 #    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    #And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user selects RE# "864" from RE list
 #    And user taps on "Info" tab
@@ -241,8 +232,8 @@ Feature: Verify Functionalities for RE module
 #
 #  Scenario: [RE-17] Verify user can remove dates from Estimated order date section in Info tab of RE details page
 #    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    #And user is navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user selects RE# "864" from RE list
 #    And user taps on "Info" tab
@@ -257,81 +248,73 @@ Feature: Verify Functionalities for RE module
 
 #  Scenario: [RE-18] Verify that for RE user can Create Configuration under Configured Systems successfully
 #    Given user is on BOH FPU homepage
-#    When user login with "harish.ekal@spurqlabs.com" and "Ekal@BOH123!"
+#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
 #    And user is navigated to "Customer Management" page
 #    And user taps on RE tab
-#    And user selects RE# "826" from RE list
-#    And user taps on '+' symbol
-#    And user selects "Add Configuration"
-#    And user selects "Configured System"
-#    And user enters Configuration System name as "test_System"
-#    And user taps "Create" button
-#    And user taps on "find products"
-#    And user adds "Boh Cargo -6"
-#    And user navigates back with backward arrow
-#    Then user verifies "test_System" is displayed in Configured Systems list
+#    And user searches RE# "925" from RE list
+#    And user taps on plus symbol to Add Configuration
+#    And user creates "Configuration System" name as "New System"
+#    And user adds product "Boh Cargo -6"
+#    Then user verifies "New System" is displayed in Configured Systems list
+#    And user deletes the "New System"
 ##
-#  Scenario[RE-18]: Verify that for RE user can Create Configuration under Loose Products successfully
+#  Scenario: [RE-19] Verify that for RE user can Create Configuration under Loose Products successfully
 #    Given user is on BOH FPU homepage
 #    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
-#    And user taps on "RE" tab
-#    And user selects "RE #826"
-#    And user taps on "+" symbol
-#    And user selects "Add Configuration"
-#    And user selects "Loose Products"
-#    And user enters "test_Configuration"
-#    And user taps "Create" button
-#    And user taps on "find products"
-#    And user adds "Boh Cargo -6 Shelf"
-#    And user navigates back with backward arrow
-#    Then user verifies "test_Configuration" is displayed
-#
-#
-#  Scenario[RE-19] : Verify that for RE user can see the details about Configured Systems and Loose Products
-#    Given user is on BOH FPU homepage
-#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
-#    And user taps on "RE" tab
-#    And user selects "RE #793"
-#    Then user verifies following details about number of Configured Systems and Loose Products are displayed
-#    | Configured Systems | Loose Products |
-#    |          3         |       1        |
-#
-#  Scenario[RE-20]: Verify that after tapping on System under Configured Systems user can see the product details
+#    #And user is navigated to "Customer Management" page
+#    And user taps on RE tab
+#    And user searches RE# "925" from RE list
+#    And user taps on plus symbol to Add Configuration
+#    And user creates "Loose Products" name as "New Configuration"
+#    And user adds product "Boh Cargo -6 Shelf"
+#    Then user verifies "New Configuration" is displayed in Loose Products list
+#    And user deletes the "New Configuration"
+
+#  Scenario: [RE-19] Verify that for RE user can see the details about Configured Systems and Loose Products
 #    Given user is on BOH FPU homepage
 #    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
 #    And user is navigated to "Customer Management" page
 #    And user taps on RE tab
-#    And user selects "RE #826"
-#    And user taps on "System 1"
-#    Then user verifies following details about System are dispalyed
-#    | Containers | Container Accessories |
-#
-#
-#  Scenario[RE-21]: Verify that after tapping on Configuration under Loose Products user can see the product details
+#    And user searches RE# "934" from RE list
+#    Then user verifies number of Configured Systems as '3' and Loose Products as '1' are displayed
+
+#  Scenario: [RE-20] Verify that after tapping on System under Configured Systems user can see the product details
 #    Given user is on BOH FPU homepage
 #    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
 #    And user is navigated to "Customer Management" page
 #    And user taps on RE tab
-#    And user selects "RE #826"
-#    And user taps on "Configuration 1"
-#    Then user verifies following details about Configuration are dispalyed
-#    | Modules | Bulk Module #1 |
-#
-#  Scenario[RE-22]: Verify that user can edit System name for Configured Systems of RE successfully
+#    And user searches RE# "934" from RE list
+#    And user taps on System Product "New System"
+#    Then user verifies following details about Products are displayed
+#             |           Field            |
+#             |        Containers           |
+#             |   Container Accessories    |
+
+#  Scenario: [RE-21] Verify that after tapping on Configuration under Loose Products user can see the product details
 #    Given user is on BOH FPU homepage
 #    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
 #    And user is navigated to "Customer Management" page
-#    And user taps on "RE" tab
-#    And user selects "RE #826"
-#    And user taps on three dots "..." of first System in the list
-#    And user selects Edit system name
-#    And user enters Configured System name as "New_System "
-#    And taps "Change" option
-#    Then user verifies "New_System" name is displayed
-#    And change "New_System" name to "System_1"
-#
+#    And user taps on RE tab
+#    And user searches RE# "934" from RE list
+#    And user taps on System Product "New Configuration"
+#    Then user verifies following details about Products are displayed
+#                |           Field            |
+#                |           Modules          |
+#                |   Module Accessories       |
+
+  Scenario: [RE-22] Verify that user can edit System name for Configured Systems of RE successfully
+    Given user is on BOH FPU homepage
+    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And user is navigated to "Customer Management" page
+    And user taps on RE tab
+    And user searches RE# "925" from RE list
+    And user taps on plus symbol to Add Configuration
+    And user creates "Configuration System" name as "New System"
+    And user adds product "Boh Cargo -6"
+    And user changes Configured System name as "System 1"
+    Then user verifies "System 1" name is displayed
+    And user deletes the "System 1"
+
 #  Scenario[RE-23]: Verify that user can duplicate System for Configured Systems of RE successfully
 #    Given user is on BOH FPU homepage
 #    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"

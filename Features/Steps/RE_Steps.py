@@ -72,10 +72,9 @@ def step_impl(context):
 
 @then('user verifies "{re}" page is displayed with details "{name}" and "{location}"')
 def step_impl(context, re, name, location):
-    a,b = context.re.verify_page_displayed(re)
-    print(a)
-    assert a == name
-    assert b == location
+    cus_name,cus_loc = context.re.verify_page_displayed(re)
+    assert cus_name == name
+    assert cus_loc == location
 
 @step('user taps on "search" symbol')
 def step_impl(context):
@@ -97,8 +96,8 @@ def step_impl(context):
 
 @then('user verifies searched RE# "{re_num}" details page is displayed')
 def step_impl(context, re_num):
-    a = context.re.verify_re()
-    assert a == re_num
+    get_num = context.re.verify_re()
+    assert get_num == re_num
 
 @step('user taps on "downward arrow"')
 def step_impl(context):
@@ -106,15 +105,15 @@ def step_impl(context):
 
 @then('user verifies REs displayed are in ascending order of REID')
 def step_impl(context):
-    a = context.re.get_first_re()
-    b = context.re.get_second_re()
-    assert int(a) < int(b)
+    one_re = context.re.get_first_re()
+    two_re = context.re.get_second_re()
+    assert int(one_re) < int(two_re)
 
 @then("user verifies REs displayed are in descending order of REID")
 def step_impl(context):
-    a = context.re.get_first_re()
-    b = context.re.get_second_re()
-    assert int(a) > int(b)
+    one_re = context.re.get_first_re()
+    two_re = context.re.get_second_re()
+    assert int(one_re) > int(two_re)
 
 @then("user verifies following options are displayed")
 def step_impl(context):
@@ -137,9 +136,9 @@ def step_impl(context, RE_Status):
 
 @then('user verifies REs with state "{RE_Status}" only are displayed')
 def step_impl(context, RE_Status):
-    a = context.re.verify_re_status(RE_Status)
-    b = RE_Status.upper()
-    assert a == b
+    get_status = context.re.verify_re_status(RE_Status)
+    upp_RE = RE_Status.upper()
+    assert get_status == upp_RE
 
 @then("user verifies the following headers and tabs are displayed")
 def step_impl(context):
@@ -169,8 +168,8 @@ def step_impl(context, contact):
 
 @then("user verifies swapped contact '{contact}' is displayed")
 def step_impl(context, contact):
-    c = context.re.verify_swapped_contact()
-    assert c == contact
+    cus_contact = context.re.verify_swapped_contact()
+    assert cus_contact == contact
 
 
 @step("user swap back the contact to '{contact}'")
@@ -199,8 +198,7 @@ def step_impl(context, loc):
 
 @then('user verifies "{subtitle}" subtitle is displayed')
 def step_impl(context, subtitle):
-    a, b = context.re.verify_subtitle()
-    new_subtitle = a + ' ' + b
+    new_subtitle = context.re.verify_subtitle()
     assert new_subtitle == subtitle
 
 @step('user sets the subtitle as "original RE"')
@@ -221,8 +219,8 @@ def step_impl(context, colour):
 
 @then('user verifies RE details page is displayed with "{opportunity}" number "{opp}"')
 def step_impl(context, opportunity, opp):
-    a = context.re.verify_page_displayed(opportunity)
-    assert a == opp
+    get_opp = context.re.verify_page_displayed(opportunity)
+    assert get_opp == opp
 
 
 # @step("user taps and selects following details as")
@@ -298,8 +296,8 @@ def step_impl(context):
 
 @then("user verifies that the dates are removed successfully")
 def step_impl(context):
-    a = context.re.verify_dates_removed()
-    assert a == True
+    get_date = context.re.verify_dates_removed()
+    assert get_date == True
 
 @step('user taps on Touchbase with "{name}"')
 def step_impl(context, name):
@@ -307,8 +305,8 @@ def step_impl(context, name):
 
 @then("user verifies Touchbase is created with '{cust}' for RE# '{re_num}'")
 def step_impl(context, cust, re_num):
-    a = context.re.verify_TB(re_num)
-    assert a == cust
+    get_TB = context.re.verify_TB(re_num)
+    assert get_TB == cust
 
 
 @step("user taps on '+' symbol")
@@ -333,3 +331,73 @@ def step_impl(context):
     for row in context.table:
         s = context.re.verify_info_change(row['Field'], row['Value'])
         assert s == row['Value']
+
+
+@step("user taps on plus symbol to Add Configuration")
+def step_impl(context):
+    context.re.tap_add_config()
+
+@step('user creates "{sys_product}" name as "{test_Prod}"')
+def step_impl(context, sys_product, test_Prod):
+    context.re.select_config(sys_product)
+    context.re.enter_config_name(test_Prod)
+    context.re.tap_create()
+
+
+@step('user adds product "{boh_product}"')
+def step_impl(context, boh_product):
+    #context.re.tap_find_products()
+    #context.re.add_product()                #Individual locators not available
+    context.re.re_back()
+
+
+@then('user verifies "{test_System}" is displayed in Configured Systems list')
+def step_impl(context, test_System):
+    new_sys = context.re.verify_system()
+    assert new_sys == test_System
+
+
+@step('user deletes the "{test_System}"')
+def step_impl(context, test_System):
+    context.re.delete_sys()
+
+
+@step('user selects "{config_sys}"')
+def step_impl(context, config_sys):
+    context.re.select_config(config_sys)
+
+
+@then('user verifies "{test_Config}" is displayed in Loose Products list')
+def step_impl(context, test_Config):
+    new_config = context.re.verify_system()
+    assert test_Config == new_config
+
+
+@step('user taps on System Product "{sys_prod}"')
+def step_impl(context, sys_prod):
+    context.re.tap_system(sys_prod)
+
+@then("user verifies following details about Products are displayed")
+def step_impl(context):
+    for row in context.table:
+        s = context.re.verify_products(row['Field'])
+        assert row['Field'] == s
+
+
+@then("user verifies number of Configured Systems as '{n1}' and Loose Products as '{n2}' are displayed")
+def step_impl(context, n1, n2):
+        sys_num, prod_num = context.re.verify_prod_no()
+        assert sys_num == n1
+        assert prod_num == n2
+
+
+@step('user changes Configured System name as "{sys_name}"')
+def step_impl(context, sys_name):
+    context.re.change_name(sys_name)
+
+
+@then('user verifies "{sys_name}" name is displayed')
+def step_impl(context, sys_name):
+    name = context.re.verify_name()
+    assert name == sys_name
+

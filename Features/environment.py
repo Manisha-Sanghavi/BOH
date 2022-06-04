@@ -7,7 +7,10 @@ from allure_commons.types import AttachmentType
 from allure_commons._allure import attach
 from Features.Pages.BasePage import Basepage
 #from Features.Utils.APIUtility import APIUtility
-from Features.Pages.Home_Page import Home_page
+from Features.Pages.Customer_Page import Customer_Page
+# from Features.Pages.Home_Page import Home_page
+
+from Features.Pages.Opportunity_Page import Opportunity_Page
 from Features.Pages.RE_Page import RE_Page
 from Features.Pages.SignIn_Page import SignIn_Page
 
@@ -69,9 +72,11 @@ def before_scenario(context, scenario):
         print("...")
     context.driver.switch_to.context('NATIVE_APP')
     baseobject = Basepage(context.driver)
-    context.Homepage = Home_page(baseobject)
+    # context.Homepage = Home_page(baseobject)
     context.re = RE_Page(baseobject)
     context.boh = SignIn_Page(baseobject)
+    context.cust = Customer_Page(baseobject)
+    context.op = Opportunity_Page(baseobject)
     context.stepid = 1
 
 def after_step(context, step):
