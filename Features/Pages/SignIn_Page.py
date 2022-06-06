@@ -219,7 +219,7 @@ class SignIn_Page(Basepage):
     def tap_option(self, option_name):
         option_xpath = "//android.widget.Button[@content-desc='XXX']"
         option_Btn = option_xpath.replace('XXX', option_name)
-        if option_name == "forgot password" or option_name == "SEND" or option_name == "CREATE TOUCHBASE" or option_name == "Search" or option_name == "Save Changes" or option_name == "CREATE OPPORTUNITY":
+        if option_name == "forgot password" or option_name == "SEND" or option_name == "CREATE TOUCHBASE" or option_name == "Search" or option_name == "Save Changes" or option_name == "CREATE OPPORTUNITY" or option_name == "CREATE REQUIREMENTS ESTIMATE" or option_name == "Yes" or option_name == "50%" or option_name == "25%" or option_name == "Validate":
             tap_btn = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='"+option_name+"']")))
             tap_btn.click()
         elif option_name == "Add Touchbase" or option_name == "Add Opportunity" or option_name == "Add RE":
@@ -228,7 +228,7 @@ class SignIn_Page(Basepage):
             self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, option_Btn))).click()
         elif option_name == "+":
             self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.widget.ImageView)[1]"))).click()
-        elif option_name == "INFO Tab 1 of 3" or option_name == "Delete John J" or option_name == "Show menu Active" or option_name == "Edit Contact" or option_name == "REs Tab 3 of 3" or option_name == "Opportunities Tab 3 of 3":
+        elif option_name == "INFO Tab 1 of 3" or option_name == "Delete John J" or option_name == "Show menu Active" or option_name == "Edit Contact" or option_name == "REs Tab 3 of 3" or option_name == "Opportunities Tab 3 of 3" or option_name == "Delete Requirements Estimate" or option_name == "VALIDATE":
             try:
                 option_xpath = "//android.view.View[@content-desc='XXX']"
                 option_Btn = option_xpath.replace('XXX', option_name)
@@ -283,6 +283,20 @@ class SignIn_Page(Basepage):
         elif option_name == "Delete Opportunity":
             self.wait.until(EC.presence_of_element_located(
                 (MobileBy.XPATH, "//android.view.View[@content-desc='"+option_name+"']"))).click()
+        elif option_name == "SAVE CHANGES":
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, "(//android.view.View)[19]"))).click()
+            sleep(3)
+        elif option_name == "SAVE CHANGES 25%":
+            size = self.driver.get_window_size()
+            startX = int(size["width"] / 2)
+            startY = int(size["height"] / 2)
+            endY = int(size["height"] / 4)
+            print("startx" + str(startX) + " startY" + str(startY) + " EndY" + str(endY))
+            self.driver.swipe(startX, startY, startX, endY)
+            sleep(2)
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, "(//android.view.View)[18]"))).click()
         else:
             raise NameError('name {option_name} is not valid')
 

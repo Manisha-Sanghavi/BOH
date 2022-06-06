@@ -219,8 +219,18 @@ class Customer_Page(Basepage):
             index = '12'
             self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)["+index+"]"))).click()
-
-
+        elif option_name == "new_RE":
+            index = '21'
+            self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)["+index+"]"))).click()
+        elif option_name == "INFO":
+            index = '11'
+            self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)["+index+"]"))).click()
+        elif option_name == "INFO Tab":
+            index = '9'
+            self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)["+index+"]"))).click()
 
 
 

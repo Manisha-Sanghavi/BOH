@@ -1,6 +1,6 @@
 
 Feature: Verify Functionalities for RE module
-@smoke
+#@smoke
   Scenario: [RE-01] Verify different options available in Sort By for RE Tab
     Given user is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
@@ -527,21 +527,23 @@ Scenario: [RE-16] Verify user can remove dates from Estimated order date section
 #    |     75%          |  Customer Wants It-Funding Identified-Awaiting Authorization  |
 #    |     100%         | Customer has Provided Document Numbers or Confirmed Purchase  |
 #
-#  Scenario[RE-39]: Verify that for RE in Info tab, user can change Confidence level successfully
+  Scenario: [RE-39] Verify that for RE in Info tab, user can change Confidence level successfully
+    Given user is on BOH FPU homepage
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And User navigated to "Customer Management" page
+    And user taps on RE tab
+    And user selects RE
+    And User tap on "INFO" button
+    And User taps on "50%" option
+    And User taps on "SAVE CHANGES" option
+#    Locators are not available
+#    Then User verifies "Customer Wants it • Currently Seeking Funding" displayed on page
+    And User came to previous position for re-usability
+
+#  Scenario: [RE-40] Verify details added during RE Creation are displayed in Info Tab of that RE
 #    Given user is on BOH FPU homepage
-#    And RE is in Active state
 #    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
-#    And user taps on RE tab
-#    And user selects "RE #436"
-#    And user selects "50%" Confidence level
-#    And user taps on "Save Changes" displayed
-#    Then user verifies under Confidence level, "50%" is displayed with message "Customer Wants It-Currently Seeking Funding"
-#
-#  Scenario[RE-40]: Verify details added during RE Creation are displayed in Info Tab of that RE
-#    Given user is on BOH FPU homepage
-#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
+#    And User navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user taps on "+" symbol
 #    And user selects "Add RE"
@@ -554,16 +556,22 @@ Scenario: [RE-16] Verify user can remove dates from Estimated order date section
 #    |  Opportunity   |  Sales Rep  | Direct | Estimated Order Dates | Default Color |
 #    | Opportunity#56 | RT Riling   |  West  |        5/7/2022       |      TAN      |
 #
-#  Scenario[RE-41]: Verify user can delete RE successfully
-#    Given user is on BOH FPU homepage
-#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-#    And user navigated to "Customer Management" page
+#  Due to unavailability of locators, steps are not going ahead
+#  Scenario: [RE-41] Verify user can delete RE successfully
+#    Given User is on BOH FPU homepage
+#    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+#    And User navigated to "Customer Management" page
 #    And user taps on RE tab
 #    And user creates test_RE with following details
+#      | Field                    | Value          |
+#      | Sub-Title (optional)     | Col            |
+#      | Opportunity              | Opp 17 • Joe M |
+#      | Pre-RE Footprint (sq ft) | 100            |
+#      | Select Lift Capabilities | 10k Forklift   |
 #    And user selects test_RE
-#    And user taps on Info tab
-#    And user taps on Delete Requirements Estimate
-#    And user taps on "Yes" button
+#    And User tap on "INFO" button
+#    And User taps on "Delete Requirements Estimate" option
+#    And user taps on "Yes" option
 #    Then user verifies test_RE is not displayed in RE list
 #
 #

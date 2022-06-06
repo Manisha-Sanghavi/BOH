@@ -54,7 +54,7 @@ def step_impl(context, Message):
 @step("User deletes newly created opportunity")
 def step_impl(context):
     context.cust.tap_option_index("opportunities")
-    context.op.select_opportunity()
+    context.op.choose_opportunity()
     context.boh.tap_option("Delete Opportunity")
 
 

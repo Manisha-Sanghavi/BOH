@@ -3,6 +3,8 @@ from behave import *
 #use_step_matcher("re")
 use_step_matcher("parse")
 
+new_RE_no = ""
+
 @step("user taps on RE tab")
 def step_impl(context):
     context.re.re_tab()
@@ -306,3 +308,34 @@ def step_impl(context):
 def step_impl(context):
     context.boh.tap_option("+")
     context.boh.tap_option("Add RE")
+
+
+@step("user creates test_RE with following details")
+def step_impl(context):
+    context.boh.tap_option("+")
+    context.boh.tap_option("Add RE")
+    for row in context.table:
+        context.re.fill_info_details(row['Field'], row['Value'])
+    context.boh.tap_option("CREATE REQUIREMENTS ESTIMATE")
+
+
+@step("user selects test_RE")
+def step_impl(context):
+    context.cust.tap_option_index("new_RE")
+    new_RE_no = context.re.delete_RE()
+
+@then("user verifies test_RE is not displayed in RE list")
+def step_impl(context):
+    old_RE_no = context.re.delete_RE()
+    assert new_RE_no != old_RE_no
+
+
+@step("user selects RE")
+def step_impl(context):
+    context.re.select_RE()
+
+
+@step("User came to previous position for re-usability")
+def step_impl(context):
+    context.boh.tap_option("25%")
+    context.boh.tap_option("SAVE CHANGES 25%")

@@ -335,9 +335,42 @@ class RE_Page(Basepage):
             cont_phone = a.get_attribute('content-desc')
             return cont_phone
 
-    #def fill_info_details(self):
-
-
+    def fill_info_details(self, field, value):
+        if field == "Sub-Title (optional)" or field == "Pre-RE Footprint (sq ft)":
+            element = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.EditText[@text='"+field+"']")))
+            element.click()
+            element.send_keys(value)
+            self.wait.until(
+                EC.presence_of_element_located((MobileBy.XPATH, "//android.view.View[@content-desc='New Requirements Estimate']"))).click()
+        elif field == "Opportunity":
+            element = self.wait.until(
+                EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View[@content-desc='Opportunity'])[2]")))
+            element.click()
+            # to click on suggested search option
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, "//android.widget.EditText[@text='Search Opportunities']"))).send_keys(value)
+            # Its taking option from suggested list
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "//android.view.View[@content-desc='"+value+"']"))).click()
+            size = self.driver.get_window_size()
+            startX = int(size["width"] / 2)
+            startY = int(size["height"] / 2)*2
+            endY = int(size["height"] / 4)*2
+            print("startx" + str(startX) + " startY" + str(startY) + " EndY" + str(endY))
+            self.driver.swipe(startX, startY, startX, endY)
+            sleep(2)
+        elif field == "Select Lift Capabilities":
+            # user_action = TouchAction(self.driver)
+            # self.scroll_down()
+            # user_action.tap(x=516, y=1052).perform()  # individual locators for checkbox not available
+            # user_action.tap(x=739, y=1558).perform()
+            element = self.wait.until(
+                EC.presence_of_element_located(
+                    (MobileBy.XPATH, "//android.widget.CheckBox[@content-desc='"+value+"']")))
+            value = element.get_atrribute('checked')
+            print("value before setting attribute: " +value)
+            change_value = element.setattr(value, 'true')
+            print("The value of attribute after set new attribute: " +change_value)
 
     def enter_pre_re(self, num):
         a = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.EditText'))).click()
@@ -433,6 +466,18 @@ class RE_Page(Basepage):
 
     #def tap_symbol_plus(self):
 
+    def delete_RE(self):
+        RE_element = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[15]')))
+        value = RE_element.get_attribute('content-desc')
+        print("Text of RE_element: " +value)
+        text = value.split()
+        print("The splitted text: " +text)
+        msg = text[0]+ " "+text[1]
+        print("Required new RE number: "+msg)
+        return msg
+
+    def select_RE(self):
+        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[21]'))).click()
 
 
 
