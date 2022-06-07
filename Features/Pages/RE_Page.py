@@ -60,9 +60,18 @@ class RE_Page(Basepage):
         self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.ImageView[@content-desc='Add RE']"))).click()
 
-    def tap_date(self):
+    def tap_option_to_select(self, option):
+        time.sleep(1)
+        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="'+option+'"]'))).click()
+
+    def tap_to_selects(self, option):
+        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="'+option+'"]'))).click()
+
+
+
+    def tap_to_select_op(self, option):
         self.wait.until(
-            EC.presence_of_element_located((MobileBy.XPATH, "//android.view.View[@content-desc='MM/DD/YYYY']"))).click()
+            EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.Button[@content-desc="'+option+'"]'))).click()
 
     def order_date(self, date):
         self.wait.until(
@@ -89,9 +98,9 @@ class RE_Page(Basepage):
             self.wait.until(
                 EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View[@content-desc="'+value+'"])'))).click()
 
-    def tap_new(self):
-        self.wait.until(
-            EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.Button[@content-desc="New"]'))).click()
+    # def tap_new(self):
+    #     self.wait.until(
+    #         EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.Button[@content-desc="New"]'))).click()
 
     def primary_contact(self, field,value):
         ele = self.driver.find_element(MobileBy.XPATH, '//android.widget.EditText[@text="'+field+'"]').click()
@@ -114,10 +123,10 @@ class RE_Page(Basepage):
         user_action.tap(x=739, y=1328).perform()      #individual locators for checkbox not avalable
         user_action.tap(x=739, y=1558).perform()
 
-    def select_color(self, color):
-        self.wait.until(
-                EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='"+color+"']"))).click()
-        self.scroll_down()
+    # def select_color(self, color):
+    #     self.wait.until(
+    #             EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='"+color+"']"))).click()
+    #
 
     def verify_re(self):
         ele = self.wait.until(
@@ -127,9 +136,9 @@ class RE_Page(Basepage):
         num = self.get_re_num(re_string)
         return num
 
-    def create_estimation(self):
-        self.wait.until(
-            EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='CREATE REQUIREMENTS ESTIMATE']"))).click()
+    # def create_estimation(self):
+    #     self.wait.until(
+    #         EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='CREATE REQUIREMENTS ESTIMATE']"))).click()
 
     def get_test_RE(self):
         global test_re_num
@@ -162,23 +171,46 @@ class RE_Page(Basepage):
             return opp
 
     def tap_search(self):
-        self.wait.until(
-            EC.presence_of_element_located(
-                (MobileBy.XPATH, "//android.widget.Button[@content-desc='Search']"))).click()
+        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='Search']"))).click()
+
+    def tap_re_to_select(self, re_num):
+        if re_num == "942":
+            try:
+                self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[9]"))).click()
+            except:
+                self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[9]"))).click()
+        if re_num == "940":
+            try:
+                self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[10]"))).click()
+            except:
+                self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[10]"))).click()
 
     def search_re(self, number):
-        re_num = self.wait.until(
-            EC.presence_of_element_located(
-                (MobileBy.XPATH, "//android.widget.EditText[@text='Search REs']")))
-        re_num.send_keys(number)
+        try:
+            re_num = self.wait.until(
+                EC.presence_of_element_located(
+                    (MobileBy.XPATH, "//android.widget.EditText[@text='Search REs']")))
+            re_num.send_keys(number)
+        except:
+            re_num = self.wait.until(
+                EC.presence_of_element_located(
+                    (MobileBy.XPATH, "//android.widget.EditText[@text='Search REs']")))
+            re_num.send_keys(number)
 
     def select_re(self):
-        time.sleep(5)
-        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[8]'))).click()
+        time.sleep(10)
+        try:
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[8]'))).click()
+        except:
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[8]'))).click()
 
     def tap_arrow(self):
-        self.wait.until(
+        try:
+            self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[18]"))).click()
+        except:
+            self.wait.until(
+                EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[18]"))).click()
 
     def get_first_re(self):
         ele = self.wait.until(
@@ -196,10 +228,26 @@ class RE_Page(Basepage):
 
     def verify_fields(self, field):
         ele = self.wait.until(
-            EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.ImageView[@content-desc='"+field+"']")))
+            EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.Button[@content-desc="'+field+'"]')))
+        time.sleep(1)
         s = ele.get_attribute('content-desc')
         print(s)
         return s
+
+    def verify_options(self, field):
+        ele = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.ImageView[@content-desc="' + field + '"]')))
+        s = ele.get_attribute('content-desc')
+        print(s)
+        return s
+
+    def verify_alternatives(self, field):
+        ele = self.wait.until(
+            EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="' + field + '"]')))
+        s = ele.get_attribute('content-desc')
+        print(s)
+        return s
+
 
     def select_re_from_list(self, re_num):
         self.wait.until(
@@ -238,8 +286,8 @@ class RE_Page(Basepage):
     def tap_info_tab(self):
         self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "(//android.view.View)[11]"))).click()
 
-    def tap_swap_contact(self):
-        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='Swap Contact']"))).click()
+    # def tap_swap_contact(self):
+    #     self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='Swap Contact']"))).click()
 
     def select_contact(self, contact):
         self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, "//android.view.View[@content-desc='"+contact+"']"))).click()
@@ -361,7 +409,11 @@ class RE_Page(Basepage):
         self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.Button[@content-desc="Yes"]'))).click()
 
     def re_back(self):
-        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.Button[@content-desc="Back"]'))).click()
+        try:
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.Button[@content-desc="Back"]'))).click()
+        except:
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.Button[@content-desc="Back"]'))).click()
+
 
 
     # def save_changes(self):
@@ -399,11 +451,11 @@ class RE_Page(Basepage):
                 sales_string = ele.get_attribute('content-desc')
                 return sales_string
 
-    def tap_add_date(self):
-        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.Button[@content-desc="Add Another Date"]'))).click()
+    # def tap_add_date(self):
+    #     self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.Button[@content-desc="Add Another Date"]'))).click()
 
-    def tap_save_changes(self):
-        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="SAVE CHANGES"]'))).click()
+    # def tap_save_changes(self):
+    #     self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="SAVE CHANGES"]'))).click()
 
     def verify_dates(self, i):
             ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH,
@@ -424,6 +476,7 @@ class RE_Page(Basepage):
         # return first_date, second_date
 
     def delete_dates(self):
+        time.sleep(2)
         self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[8]'))).click()
         self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[5]'))).click()
 
@@ -448,11 +501,21 @@ class RE_Page(Basepage):
         self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.Button[@content-desc="Back"]'))).click()
         self.select_re_from_list(re_num)
         self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[10]'))).click()
-        ele =  self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.ImageView)[1]')))
-        b = ele.get_attribute('content-desc')
-        string_TB = b.split()
-        cust_name = string_TB[-2] + ' ' + string_TB[-1]
-        return cust_name
+        try:
+            ele =  self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.ImageView)[1]')))
+            b = ele.get_attribute('content-desc')
+            string_TB = b.split()
+            cust_name = string_TB[-2] + ' ' + string_TB[-1]
+            return cust_name
+        except:
+            ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.ImageView)[1]')))
+            b = ele.get_attribute('content-desc')
+            string_TB = b.split()
+            cust_name = string_TB[-2] + ' ' + string_TB[-1]
+            return cust_name
+
+    def tap_symbol_plus(self):
+        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.ImageView)[1]'))).click()
 
     def tap_add_config(self):
         self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.ImageView)[1]'))).click()
@@ -462,6 +525,7 @@ class RE_Page(Basepage):
         if config_sys == "Configuration System":
             self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button)[1]'))).click()
         if config_sys == "Loose Products":
+            time.sleep(2)
             self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button)[2]'))).click()
 
 
@@ -481,6 +545,7 @@ class RE_Page(Basepage):
         user_action.tap(x=991, y=1025).perform()
 
     def verify_system(self):
+        time.sleep(2)
         ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button)[2]')))
         get_string = ele.get_attribute('content-desc')
         string_split = get_string.split()
@@ -498,28 +563,107 @@ class RE_Page(Basepage):
             self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button)[8]'))).click()
 
     def verify_products(self, field):
-        ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.ImageView[@content-desc="'+field+'"]')))
-        ele_str = ele.get_attribute('content-desc')
-        return ele_str
+        try:
+            ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.ImageView[@content-desc="'+field+'"]')))
+            ele_str = ele.get_attribute('content-desc')
+            return ele_str
+        except:
+            ele = self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, '//android.widget.ImageView[@content-desc="' + field + '"]')))
+            ele_str = ele.get_attribute('content-desc')
+            return ele_str
 
-    def verify_prod_no(self):
+    def verify_prod_no(self, option):
+        time.sleep(2)
         element = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[21]')))
         element_str = element.get_attribute('content-desc')
         num = element_str.split()
-        return num[2], num[5]
+        if option == "Products":
+            return num[2], num[5]
+        if option == "Duplicates":
+            return num[2]
 
-    def change_name(self, sys_name):
-        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button)[3]'))).click()
-        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="Edit system name"]'))).click()
-        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button)[3]'))).clear()
-        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button)[3]'))).send_keys(sys_name)
-        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.Button[@content-desc="Change"]'))).click()
 
     def verify_name(self):
         element = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button)[2]')))
         ele_str = element.get_attribute('content-desc')
         name = ele_str.split()
         return name[0] + ' ' + name[1]
+
+    def tap_to_select(self):
+        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button)[3]'))).click()
+
+    def tap_to_perform(self, option):
+        if option == "System 1":
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, '//android.view.View[@content-desc="Edit system name"]'))).click()
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.EditText'))).clear()
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.EditText'))).send_keys(option)
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, '//android.widget.Button[@content-desc="Change"]'))).click()
+        if option == "Configuration 1":
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, '//android.view.View[@content-desc="Edit configuration name"]'))).click()
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.EditText'))).clear()
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.EditText'))).send_keys(option)
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, '//android.widget.Button[@content-desc="Change"]'))).click()
+        if option == "2":
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, '//android.view.View[@content-desc="Duplicate New System"]'))).click()
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.EditText'))).clear()
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.EditText'))).send_keys(option)
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.Button[@content-desc="Add"]'))).click()
+        if option == "3":
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, '//android.view.View[@content-desc="Duplicate New Configuration"]'))).click()
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.EditText'))).clear()
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.EditText'))).send_keys(option)
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.Button[@content-desc="Add"]'))).click()
+
+    def delete_dup(self, num):
+        if num == "3":
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button)[9]'))).click()
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[8]'))).click()
+        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button)[7]'))).click()
+        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[8]'))).click()
+        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button)[5]'))).click()
+        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[8]'))).click()
+
+    def verify_deleted(self):
+        time.sleep(2)
+        element = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[21]')))
+        ele_str = element.get_attribute('content-desc')
+        return ele_str
+
+    def tap_re(self):
+        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[23]'))).click()
+
+    # def tap_status(self, re_status):
+    #     self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="'+re_status+'"]'))).click()
+
+    def verify_state_change(self):
+        ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="INACTIVE"]')))
+        ele_str = ele.get_attribute('content-desc')
+        return ele_str
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
