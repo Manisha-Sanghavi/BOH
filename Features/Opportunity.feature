@@ -2,6 +2,7 @@ Feature: Verify Feature: Verify Functionalities for Opportunity module
 #@smoke
   Scenario: [Opportunity-1] Verify that the user can create a new opportunity successfully.
     Given User is on BOH FPU homepage
+    When User login with "harish.ekal@spurqlabs.com" and "Test123!BOH
     When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     And User taps on "+" option
     And User taps on "Add Opportunity" option

@@ -53,10 +53,8 @@ def step_impl(context, username, password):
 
 @then('User verifies "{message}" page is displayed')
 def step_impl(context, message):
-
     context.boh.verify_page(message)
     context.boh.verify_message(message)
-
 
 @then("User verifies following options are displayed on page")
 def step_impl(context):
@@ -73,17 +71,18 @@ def step_impl(context, Forgot_your_password):
     flag = context.boh.page_navigate(Forgot_your_password)
     assert flag == True
 
-
 @step('User enters email "{email}" in type your BOH email field')
 def step_impl(context,email):
     context.boh.enter_mail(email)
 
+@step('user is navigated to "{message}" page')
+def step_impl(context, message):
+     context.boh.verify_page(message)
 
 @then('User verifies message "{message}" is displayed')
 def step_impl(context,message):
     flag = context.boh.verify_message(message)
     assert flag == True
-
 
 @when('User login with "{username}" and "{password}" for validation')
 def step_impl(context, username, password):
@@ -96,16 +95,13 @@ def step_impl(context):
     for row in context.table:
         context.boh.fill_data(row['Field'], row['Value'])
 
-
 @then('user verifies "{message}" is displayed on page')
 def step_impl(context,message):
     context.boh.verify_message(message)
 
-
 @step("User click on created touchbase")
 def step_impl(context):
     context.boh.Create_touchbase()
-
 
 @then('User verifies "Customer" is deleted successfully.')
 def step_impl(context):

@@ -6,11 +6,13 @@ import allure
 
 if __name__=='__main__':
     sys.stdout.flush()
-    reporting_folder_name='Report_Json'
+    reporting_folder_name='Report_Json_RE'
     shutil.rmtree(reporting_folder_name,ignore_errors=True)  # removes if any reporting folder exists
 
-    Path1 = 'Features/SignIn.feature'
-    Path2 = 'Features/Customer.feature'
+    Path1 = 'Features/RE.feature'
+    Path2 = 'Features/Feature2/Feature1.feature'
+    #Path1 = 'Features/SignIn.feature'
+    #Path2 = 'Features/Customer.feature'
     FolderPath1 = 'Features/Feature1'
     FolderPath2 = 'Feature2'
     path = 'Features'
@@ -21,8 +23,9 @@ if __name__=='__main__':
     taglist4 = "--tags=101 --tags=calc"  # with both tag compulsary tag 101 & tag calc
     # pythnoic_runner_example.main(commonrunneroptions+" "+FolderPath1+" "+taglist1)
     reportingrelated = ' -f allure_behave.formatter:AllureFormatter -o' + reporting_folder_name + ' '  # reporting in json format
+    pythnoic_runner.main(Path1  + reportingrelated + " " + commonrunneroptions)
     # pythnoic_runner.main(path + " " + taglist1 + " " + reportingrelated + " " + commonrunneroptions)
-    pythnoic_runner.main(path + " " + reportingrelated + " " + commonrunneroptions)
+    pythnoic_runner.main(Path1 + " " + reportingrelated + " " + commonrunneroptions)
 
 
 

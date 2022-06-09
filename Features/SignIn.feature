@@ -39,6 +39,9 @@ Feature: Verify Functionalities for Sigin, Sign out and Home Page
   Scenario: [BOH-5] Verify user can sign out successfully from app
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    And User tap on "Administrator" option
+    And User taps on Sign Out button
+    When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     And User taps on "Administrator" option
     And User taps on Sign Out button
     Then User verifies "Homepage" is displayed
