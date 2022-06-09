@@ -102,6 +102,8 @@ Feature: Verify Functionalities for RE module
     And user selects Color "TAN"
     And user taps "CREATE REQUIREMENTS ESTIMATE" to select
     Then user verifies "RE" page is displayed with details "Joe M" and "london"
+    And user deletes created RE by tapping "Delete Requirements Estimate"
+
 
   Scenario: [RE-08] Verify user can search existing RE by tapping on Search (Q) option
     Given user is on BOH FPU homepage
@@ -109,9 +111,9 @@ Feature: Verify Functionalities for RE module
     #And user is navigated to "Customer Management" page
     And user taps on RE tab
     And user taps "Search" to select
-    And user enters "772" in search field
-    And user selects RE# "772"
-    Then user verifies searched RE# "772" details page is displayed
+    And user enters "943" in search field
+    And user selects RE# "943" with location "london"
+    Then user verifies searched RE# "943" details page is displayed
 
     Scenario: [RE-09] Verify user can create RE from Opportunity
     Given user is on BOH FPU homepage
@@ -126,8 +128,8 @@ Feature: Verify Functionalities for RE module
     And user enter Pre-RE Footprint(Sq ft) as "70"
     And user selects Color "GREEN"
     And user taps "CREATE REQUIREMENTS ESTIMATE" to select
-    Then user verifies RE details page is displayed with "opportunity" number "Opp #15"
-    And user deletes created RE
+    Then user verifies RE details page is displayed with "Opportunity" number "Opp #15"
+    And user deletes created RE by tapping "Delete Requirements Estimate"
 
   Scenario: [RE-10] Verify user can "Add Subtitle" to RE if its not already added
     Given user is on BOH FPU homepage
@@ -141,6 +143,7 @@ Feature: Verify Functionalities for RE module
          | Customer Location  |          london             |
     And user enters subtitle as "Requirements process"
     Then user verifies "Requirements process" subtitle is displayed
+    And user deletes created RE by tapping "Delete Requirements Estimate"
 
   Scenario: [RE-11] Verify user can Edit existing Subtitle successfully
     Given user is on BOH FPU homepage
@@ -157,7 +160,7 @@ Feature: Verify Functionalities for RE module
     When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     #And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user "Search" RE# "943" from RE list
+    And user "Search" RE# "943" with location "london" from RE list
     And user taps on "Info" tab
     And user edits the following details displayed
         |      Field       |       Value        |
@@ -214,6 +217,7 @@ Feature: Verify Functionalities for RE module
     And user taps on "Info" tab
     And user taps on Touchbase with "Collin"
     Then user verifies Touchbase is created with 'Collin Woods' for RE# '864'
+    And user "Delete Touchbase"
 #
   Scenario: [RE-16] Verify user can add multiple dates for Estimated Order Dates section in Info tab of RE details page
     Given user is on BOH FPU homepage
@@ -252,7 +256,7 @@ Feature: Verify Functionalities for RE module
     When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     #And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user "Search" RE# "940" from list
+    And user "Search" RE# "940" with location "Amsterdam" from list
     And user taps on plus symbol to Add Configuration
     And user creates "Configuration System" name as "New System"
     And user adds product "Boh Cargo -6"
@@ -264,7 +268,7 @@ Feature: Verify Functionalities for RE module
     When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     #And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user "Search" RE# "940" from list
+    And user "Search" RE# "940" with location "Amsterdam" from list
     And user taps on plus symbol to Add Configuration
     And user creates "Loose Products" name as "New Configuration"
     And user adds product "Boh Cargo -6 Shelf"
@@ -276,7 +280,7 @@ Feature: Verify Functionalities for RE module
     When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     #And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user "Search" RE# "942" from list
+    And user "Search" RE# "942" with location "Aberdeen" from list
     Then user verifies number of Configured Systems: '3' and Loose Products: '1' are displayed as RE 'Products'
 
   Scenario: [RE-21] Verify that after tapping on System under Configured Systems user can see the product details
@@ -284,7 +288,7 @@ Feature: Verify Functionalities for RE module
     When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     #And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user "Search" RE# "942" from list
+    And user "Search" RE# "942" with location "Aberdeen" from list
     And user taps on System Product "New System"
     Then user verifies following details about Products are displayed
              |           Field            |
@@ -296,7 +300,7 @@ Feature: Verify Functionalities for RE module
     When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     #And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user "Search" RE# "942" from list
+    And user "Search" RE# "942" with location "Aberdeen" from list
     And user taps on System Product "New Configuration"
     Then user verifies following details about Products are displayed
                 |           Field            |
@@ -308,7 +312,7 @@ Feature: Verify Functionalities for RE module
     When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     #And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user "Search" RE# "943" from RE list
+    And user "Search" RE# "943" with location "london" from RE list
     And user taps on plus symbol to Add Configuration
     And user creates "Configuration System" name as "New System"
     And user adds product "Boh Cargo -6"
@@ -322,13 +326,13 @@ Feature: Verify Functionalities for RE module
     When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     #And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user "Search" RE# "943" from RE list
+    And user "Search" RE# "943" with location "london" from RE list
     And user taps on plus symbol to Add Configuration
     And user creates "Configuration System" name as "New System"
     And user adds product "Boh Cargo -6"
     And user taps on three dots "..." of "New System" in the list
     And user selects Duplicate "New System" to create "2" duplicates
-    Then user verifies "2" "Duplicates" of the system is created for RE# "933"
+    Then user verifies "2" "Duplicates" of the system is created for RE# "943" with location "london"
     And user deletes the "2" duplicates
     And user deletes the "New System"
 
@@ -337,7 +341,7 @@ Feature: Verify Functionalities for RE module
     When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     #And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user "Search" RE# "943" from RE list
+    And user "Search" RE# "943" with location "london" from RE list
     And user taps on plus symbol to Add Configuration
     And user creates "Configuration System" name as "New System"
     And user adds product "Boh Cargo -6"
@@ -349,7 +353,7 @@ Feature: Verify Functionalities for RE module
     When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     #And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user "Search" RE# "943" from RE list
+    And user "Search" RE# "943" with location "london" from RE list
     And user taps on plus symbol to Add Configuration
     And user creates "Loose Products" name as "New Configuration"
     And user adds product "Boh Cargo -6 Shelf"
@@ -363,13 +367,13 @@ Feature: Verify Functionalities for RE module
     When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     #And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user "Search" RE# "943" from RE list
+    And user "Search" RE# "943" with location "london" from RE list
     And user taps on plus symbol to Add Configuration
     And user creates "Loose Products" name as "New Configuration"
     And user adds product "Boh Cargo -6 Shelf"
     And user taps on three dots "..." of "New Configuration" in the list
     And user selects Duplicate "New Configuration" to create "3" duplicates
-    Then user verifies "3" "Duplicates" of the system is created for RE# "932"
+    Then user verifies "3" "Duplicates" of the system is created for RE# "943" with location "london"
     And user deletes the "3" duplicates
     And user deletes the "New Configuration"
 
@@ -378,7 +382,7 @@ Feature: Verify Functionalities for RE module
     When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     #And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user "Search" RE# "943" from RE list
+    And user "Search" RE# "943" with location "london" from RE list
     And user taps on plus symbol to Add Configuration
     And user creates "Loose Products" name as "New Configuration"
     And user adds product "Boh Cargo -6 Shelf"
@@ -391,7 +395,7 @@ Feature: Verify Functionalities for RE module
     When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     #And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user "Search" RE# "943" from RE list
+    And user "Search" RE# "943" with location "london" from RE list
     And user taps on plus symbol to check the options
     Then user verifies following options are displayed
      |        Field      |
@@ -415,7 +419,7 @@ Feature: Verify Functionalities for RE module
     When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     #And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user "Search" RE# "943" from RE list
+    And user "Search" RE# "943" with location "london" from RE list
     And user taps "DRAFT"
     Then user verifies following alternatives are displayed
      |        Field              |
@@ -428,7 +432,7 @@ Feature: Verify Functionalities for RE module
     When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     #And user is navigated to "Customer Management" page
     And user taps on RE tab
-    And user "Search" RE# "876" from RE list
+    And user "Search" RE# "876" with location "london" from RE list
     And user taps "VALIDATE"
     Then user verifies following alternatives are displayed
      |        Field              |
@@ -517,8 +521,8 @@ Feature: Verify Functionalities for RE module
 #    And user taps on "+" symbol
 #    And user taps "Send NSN" button
 #    Then user verifies RE page is displayed
-#    # Mail is received with attached "NSN worksheet"  //if success msg is
-#    #added then we can verify that msg (defect 54)
+#    # Mail is received with attached "NSN worksheet"
+#    //if success msg is added then we can verify that msg (defect 54)
 #
 #  Scenario Outline[RE-39]: Verify that for RE in Info tab, user can select Confidence level to see their respective message displayed
 #    Given user is on BOH FPU homepage

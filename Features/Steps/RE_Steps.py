@@ -85,9 +85,9 @@ def step_impl(context):
 def step_impl(context, number):
     context.re.search_re(number)
 
-@step('user selects RE# "{re_num}"')
-def step_impl(context, re_num):
-    context.re.select_re()
+@step('user selects RE# "{re_num}" with location "{loc}"')
+def step_impl(context, re_num, loc):
+    context.re.select_re(re_num, loc)
 
 # @then("user verifies following options are available for filter by")
 # def step_impl(context):
@@ -156,17 +156,17 @@ def step_impl(context):
 def step_impl(context):
     context.re.tap_info_tab()
 
-@step('user "{option}" RE# "{re_num}" from list')
-def step_impl(context, option, re_num):
+@step('user "{option}" RE# "{re_num}" with location "{loc}" from list')
+def step_impl(context, option, re_num, loc):
     context.re.tap_to_select_op(option)
-    context.re.tap_re_to_select(re_num)
+    context.re.tap_re_to_select(loc, re_num)
 
 
-@step('user "{option}" RE# "{num}" from RE list')
-def step_impl(context, option, num):
+@step('user "{option}" RE# "{num}" with location "{loc}" from RE list')
+def step_impl(context, option, num, loc):
     context.re.tap_to_select_op(option)
     context.re.search_re(num)
-    context.re.select_re()
+    context.re.select_re(num, loc)
 
 @step("user selects Contact '{contact}' displayed in the list")
 def step_impl(context, contact):
@@ -229,12 +229,18 @@ def step_impl(context, opportunity, opp):
     get_opp = context.re.verify_page_displayed(opportunity)
     assert get_opp == opp
 
+@step('user deletes created RE by tapping "{option}"')
+def step_impl(context, option):
+    context.re.tap_info_tab()
+    for i in range(5):
+        context.re.scroll_down()
+    context.re.tap_option_to_select(option)
+    context.re.confirm_delete()
 
 # @step("user taps and selects following details as")
 # def step_impl(context):
 #     for row in context.table:
 #         context.re.fill_details(row['Field'], row['Value'])
-
 
 @step("user edits the following details displayed")
 def step_impl(context):
@@ -282,7 +288,7 @@ def step_impl(context):
 @step('user taps on x symbol to delete dates and "{option}"')
 def step_impl(context, option):
     context.re.delete_dates()
-    context.re.tap_to_selects(option)
+    context.re.tap_option_to_select(option)
 
 
 @then("user verifies that the dates are removed successfully")
@@ -299,11 +305,13 @@ def step_impl(context, cust, re_num):
     get_TB = context.re.verify_TB(re_num)
     assert get_TB == cust
 
+@step('user "{option}"')
+def step_impl(context, option):
+    context.re.delete_TB(option)
 
 @step("user taps on '+' symbol")
 def step_impl(context):
     context.re.tap_symbol_plus()
-
 
 @step("user edits the following details")
 def step_impl(context):
@@ -311,18 +319,16 @@ def step_impl(context):
         context.re.fill_info_details(row['Field'], row['Value'])
     context.re.save_info_changes()
 
-
-@then("user verifies that following details in Info tab of RE# test_RE are displayed")
-def step_impl(context):
-    context.re.re_back()
-    context.re.tap_search()
-    context.re.search_re()
-    context.re.select_re()
-    context.re.tap_info_tab()
-    for row in context.table:
-        s = context.re.verify_info_change(row['Field'], row['Value'])
-        assert s == row['Value']
-
+# @then("user verifies that following details in Info tab of RE# test_RE are displayed")
+# def step_impl(context):
+#     context.re.re_back()
+#     context.re.tap_search()
+#     context.re.search_re()
+#     context.re.select_re()
+#     context.re.tap_info_tab()
+#     for row in context.table:
+#         s = context.re.verify_info_change(row['Field'], row['Value'])
+#         assert s == row['Value']
 
 @step("user taps on plus symbol to Add Configuration")
 def step_impl(context):
@@ -400,12 +406,12 @@ def step_impl(context, prod_name, num):
     context.re.tap_to_perform(num)
 
 
-@then('user verifies "{num}" "{duplicates}" of the system is created for RE# "{re_num}"')
-def step_impl(context,num, duplicates, re_num):
+@then('user verifies "{num}" "{duplicates}" of the system is created for RE# "{re_num}" with location "{loc}"')
+def step_impl(context,num, duplicates, re_num, loc):
     context.re.re_back()
     context.re.tap_search()
     context.re.search_re(re_num)
-    context.re.select_re()
+    context.re.select_re(re_num, loc)
     number = context.re.verify_prod_no(duplicates)
     assert int(number) == int(num) + 1
 
@@ -460,7 +466,7 @@ def step_impl(context, status):
 
 
 @step('user changes status "{opt1}" to "{opt3}" by tapping "{opt2}"')
-def step_impl(context, opt1, opt2, opt3):
+def step_impl(context, opt1, opt3, opt2):
     context.re.tap_option_to_select(opt1)
     context.re.tap_option_to_select(opt2)
     context.re.tap_option_to_select(opt3)
