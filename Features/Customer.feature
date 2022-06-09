@@ -175,7 +175,7 @@ Feature: Verify Functionalities for Customer module
     And User taps on "contact name" option
     Then User verifies "(123)456-7890" is displayed on page
     And User taps on "Edit Contact" option
-    And User enter "(089)674-5131" in contact phone
+    And User enter "(098)765-4321" in contact phone
 
   Scenario: [Customer-16] Verify that the push button functionality works.
     Given User is on BOH FPU homepage

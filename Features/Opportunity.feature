@@ -71,9 +71,9 @@ Feature: Verify Feature: Verify Functionalities for Opportunity module
     Given User is on BOH FPU homepage
     When User login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
     And User tap on "opportunities" button
-    And User selects "opportunity #16" option
+    And User selects "opportunity #17" option
     And User tap on "REs" button
-    Then User verifies "No requirement Estimates for opportunity #16" is displayed on page
+    Then User verifies "No requirement Estimates for opportunity #17" is displayed on page
 
 #Locators are not available for win probability message
 #  Scenario Outline: [Opportunity-6] Verify that the user can see the win probability and their respective responses on screen.

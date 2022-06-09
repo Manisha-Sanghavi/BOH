@@ -11,6 +11,8 @@ if __name__=='__main__':
 
     Path1 = 'Features/SignIn.feature'
     Path2 = 'Features/Customer.feature'
+    Path3 = 'Features/Opportunity.feature'
+    Path4 = 'Features/CSM.feature'
     FolderPath1 = 'Features/Feature1'
     FolderPath2 = 'Feature2'
     path = 'Features'
@@ -22,7 +24,7 @@ if __name__=='__main__':
     # pythnoic_runner_example.main(commonrunneroptions+" "+FolderPath1+" "+taglist1)
     reportingrelated = ' -f allure_behave.formatter:AllureFormatter -o' + reporting_folder_name + ' '  # reporting in json format
     # pythnoic_runner.main(path + " " + taglist1 + " " + reportingrelated + " " + commonrunneroptions)
-    pythnoic_runner.main(path + " " + reportingrelated + " " + commonrunneroptions)
+    pythnoic_runner.main(Path1 + " " + reportingrelated + " " + commonrunneroptions)
 
 
 
