@@ -6,7 +6,7 @@ import allure
 
 if __name__=='__main__':
     sys.stdout.flush()
-    reporting_folder_name='Report_Json_RE'
+    reporting_folder_name='Report_Json'
     shutil.rmtree(reporting_folder_name,ignore_errors=True)  # removes if any reporting folder exists
 
     Path1 = 'Features/SignIn.feature'
