@@ -503,8 +503,12 @@ class RE_Page(Basepage):
     #     self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="SAVE CHANGES"]'))).click()
 
     def verify_dates(self, i):
+        try:
             ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH,
                          f'(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[{i + 3}]')))
+        except:
+            ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH,
+                        f'(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[{i + 3}]')))
             b = ele.get_attribute('content-desc')
             date_string = b.split()
             date = date_string[0]
@@ -562,7 +566,9 @@ class RE_Page(Basepage):
 
     def delete_TB(self, option):
         self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.ImageView)[1]'))).click()
+        self.scroll_down()
         self.tap_option_to_select(option)
+        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.Button[@content-desc="Yes"]'))).click()
 
     def tap_symbol_plus(self):
         self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.ImageView)[1]'))).click()
@@ -572,6 +578,7 @@ class RE_Page(Basepage):
         self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.ImageView[@content-desc="Add Configuration"]'))).click()
 
     def select_config(self, config_sys):
+        #self.tap_option_to_select(config_sys)
         if config_sys == "Configuration System":
             self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button)[1]'))).click()
         if config_sys == "Loose Products":
@@ -712,6 +719,52 @@ class RE_Page(Basepage):
 
     def select_RE(self):
         self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[21]'))).click()
+
+    def enter_email(self):
+        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[23]'))).click()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

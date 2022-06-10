@@ -290,7 +290,7 @@ def step_impl(context):
 @step('user taps on x symbol to delete dates and "{option}"')
 def step_impl(context, option):
     context.re.delete_dates()
-    context.re.tap_option_to_select(option)
+    context.re.tap_to_selects(option)
 
 
 @then("user verifies that the dates are removed successfully")
@@ -361,9 +361,9 @@ def step_impl(context, test_System):
     context.re.delete_sys()
 
 
-@step('user selects "{config_sys}"')
-def step_impl(context, config_sys):
-    context.re.select_config(config_sys)
+# @step('user selects "{config_sys}"')
+# def step_impl(context, config_sys):
+#     context.re.tap_option_to_select(config_sys)
 
 
 @then('user verifies "{test_Config}" is displayed in Loose Products list')
@@ -509,3 +509,6 @@ def step_impl(context, opt1, opt3, opt2):
     context.re.tap_option_to_select(opt2)
     context.re.tap_option_to_select(opt3)
 
+@step('user enters email "{username}"')
+def step_impl(context, username):
+    context.boh.enter_email(username)
