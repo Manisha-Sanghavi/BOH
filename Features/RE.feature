@@ -261,7 +261,8 @@ Feature: Verify Functionalities for RE module
     And user creates "Configuration System" name as "New System"
     And user adds product "Boh Cargo -6"
     Then user verifies "New System" is displayed in Configured Systems list
-    And user deletes the "New System"
+    And user taps on three dots "..." of "New Configuration" in the list
+    And user taps "Delete New System"
 
   Scenario: [RE-19] Verify that for RE user can Create Configuration under Loose Products successfully
     Given user is on BOH FPU homepage
@@ -273,7 +274,8 @@ Feature: Verify Functionalities for RE module
     And user creates "Loose Products" name as "New Configuration"
     And user adds product "Boh Cargo -6 Shelf"
     Then user verifies "New Configuration" is displayed in Loose Products list
-    And user deletes the "New Configuration"
+    And user taps on three dots "..." of "New Configuration" in the list
+    And user taps "Delete New Configuration"
 
   Scenario: [RE-20] Verify that for RE user can see the details about Configured Systems and Loose Products
     Given user is on BOH FPU homepage
@@ -319,7 +321,8 @@ Feature: Verify Functionalities for RE module
     And user taps on three dots "..." of "New System" in the list
     And user changes Configured System name as "System 1"
     Then user verifies "System 1" name is displayed
-    And user deletes the "System 1"
+    And user taps on three dots "..." of "New Configuration" in the list
+    And user taps "Delete System 1"
 
   Scenario: [RE-24] Verify that user can duplicate System for Configured Systems of RE successfully
     Given user is on BOH FPU homepage
@@ -334,7 +337,8 @@ Feature: Verify Functionalities for RE module
     And user selects Duplicate "New System" to create "2" duplicates
     Then user verifies "2" "Duplicates" of the system is created for RE# "943" with location "london"
     And user deletes the "2" duplicates
-    And user deletes the "New System"
+    And user taps on three dots "..." of "New Configuration" in the list
+    And user taps "Delete New System"
 
   Scenario: [RE-25] Verify that user can delete System for Configured Systems of RE successfully
     Given user is on BOH FPU homepage
@@ -345,7 +349,8 @@ Feature: Verify Functionalities for RE module
     And user taps on plus symbol to Add Configuration
     And user creates "Configuration System" name as "New System"
     And user adds product "Boh Cargo -6"
-    And user selects Delete "New System"
+    And user taps on three dots "..." of "New Configuration" in the list
+    And user taps "Delete New System"
     Then user verifies "New System" is deleted with message "Tap the + to add the first system or loose product configuration"
 
   Scenario: [RE-26] Verify that user can edit Configuration name for Loose Products of RE successfully
@@ -360,7 +365,8 @@ Feature: Verify Functionalities for RE module
     And user taps on three dots "..." of "New Configuration" in the list
     And user changes Configured System name as "Configuration 1"
     Then user verifies "Configuration 1" name is displayed
-    And user deletes the "Configuration 1"
+    And user taps on three dots "..." of "New Configuration" in the list
+    And user taps "Delete Configuration 1"
 
   Scenario: [RE-27] Verify that user can duplicate Configuration for Loose Products of RE
     Given user is on BOH FPU homepage
@@ -375,7 +381,8 @@ Feature: Verify Functionalities for RE module
     And user selects Duplicate "New Configuration" to create "3" duplicates
     Then user verifies "3" "Duplicates" of the system is created for RE# "943" with location "london"
     And user deletes the "3" duplicates
-    And user deletes the "New Configuration"
+    And user taps on three dots "..." of "New Configuration" in the list
+    And user taps "Delete New Configuration"
 
   Scenario: [RE-28] Verify that user can delete Configuration for Loose Products of RE
     Given user is on BOH FPU homepage
@@ -387,7 +394,7 @@ Feature: Verify Functionalities for RE module
     And user creates "Loose Products" name as "New Configuration"
     And user adds product "Boh Cargo -6 Shelf"
     And user taps on three dots "..." of "New Configuration" in the list
-    And user selects Delete "New Configuration"
+    And user taps "Delete New Configuration"
     Then user verifies "New System" is deleted with message "Tap the + to add the first system or loose product configuration"
 #
   Scenario:[RE-29] Verify that for any RE, the user can see various options for "+" symbol
@@ -502,13 +509,13 @@ Feature: Verify Functionalities for RE module
 #    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
 #    And user is navigated to "Customer Management" page
 #    And user taps on RE tab
-#    And user selects "RE #826"
-#    And user taps on Draft status
-#    And user selects "Email NSN Worksheet" option
+#    And user selects RE# 861
+#    And user taps "DRAFT"
+#    And user taps "Email NSN Worksheet"
 #    And user enters email "harish.ekal@spurqlabs.com"
 #    And user taps on "+" symbol
 #    Then user verifies email "harish.ekal@spurqlabs.com" is displayed under Added Recipient
-#
+
 #  Scenario[RE-38]: Verify that for RE, user can send NSN Worksheet successfully
 #    Given user is on BOH FPU homepage
 #    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
