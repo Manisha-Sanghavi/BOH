@@ -67,6 +67,7 @@ class RE_Page(Basepage):
     def tap_to_select_op(self, option):
         self.wait.until(
             EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.Button[@content-desc="'+option+'"]'))).click()
+        time.sleep(2)
 
     def order_date(self, date):
         self.wait.until(
@@ -170,16 +171,16 @@ class RE_Page(Basepage):
 
     def tap_re_to_select(self, loc, re_num):
         num = str(re_num)
-        if re_num == "942":
-            try:
-                self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="'+loc+' - RE '+num+'"]'))).click()
-            except:
-                self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="'+loc+' - RE '+num+'"]'))).click()
-        if re_num == "940":
-            try:
-                self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="'+loc+' - RE '+num+'"]'))).click()
-            except:
-                self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="'+loc+' - RE '+num+'"]'))).click()
+        #if re_num == "942":
+        try:
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="'+loc+' - RE '+num+'"]'))).click()
+        except:
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="'+loc+' - RE '+num+'"]'))).click()
+        # if re_num == "940":
+        #     try:
+        #         self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="'+loc+' - RE '+num+'"]'))).click()
+        #     except:
+        #         self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="'+loc+' - RE '+num+'"]'))).click()
 
     def search_re(self, number):
         try:
@@ -280,8 +281,13 @@ class RE_Page(Basepage):
         return full_string
 
     def select_re_status(self, re_status):
-        self.wait.until(
-            EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='"+re_status+"']"))).click()
+        try:
+            self.wait.until(
+                EC.presence_of_element_located((MobileBy.XPATH, "//android.widget.Button[@content-desc='"+re_status+"']"))).click()
+        except:
+            self.wait.until(
+                EC.presence_of_element_located(
+                    (MobileBy.XPATH, "//android.widget.Button[@content-desc='" + re_status + "']"))).click()
 
     def verify_re_status(self, re_status):
         self.wait.until(
@@ -502,17 +508,31 @@ class RE_Page(Basepage):
     # def tap_save_changes(self):
     #     self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.view.View[@content-desc="SAVE CHANGES"]'))).click()
 
-    def verify_dates(self, i):
+    def verify_dates(self):
         try:
-            ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH,
-                         f'(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[{i + 3}]')))
+            ele1 = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH,
+                         '(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[6]')))
+            ele2 = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH,
+                            '(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[3]')))
+            a = ele1.get_attribute('content-desc')
+            date1_string = a.split()
+            date2 = date1_string[0]
+            b = ele2.get_attribute('content-desc')
+            date2_string = b.split()
+            date1 = date2_string[0]
+            return date2, date1
         except:
-            ele = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH,
-                        f'(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[{i + 3}]')))
-            b = ele.get_attribute('content-desc')
-            date_string = b.split()
-            date = date_string[0]
-            return date
+            ele1 = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH,
+                                                '(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[6]')))
+            ele2 = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH,
+                                                '(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[3]')))
+            a = ele1.get_attribute('content-desc')
+            date1_string = a.split()
+            date1 = date1_string[0]
+            b = ele2.get_attribute('content-desc')
+            date2_string = b.split()
+            date2 = date2_string[0]
+            return date1, date2
 
         # a = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[3]')))
         # b = a.get_attribute('content-desc')
@@ -525,9 +545,13 @@ class RE_Page(Basepage):
         # return first_date, second_date
 
     def delete_dates(self):
-        time.sleep(2)
-        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[8]'))).click()
-        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[5]'))).click()
+        #time.sleep(2)
+        try:
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[8]'))).click()
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[5]'))).click()
+        except:
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[8]'))).click()
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.Button[@content-desc="10%"]/following-sibling::android.view.View)[5]'))).click()
 
     def verify_dates_removed(self):
         try:
@@ -574,8 +598,13 @@ class RE_Page(Basepage):
         self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.ImageView)[1]'))).click()
 
     def tap_add_config(self):
-        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.ImageView)[1]'))).click()
-        self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.ImageView[@content-desc="Add Configuration"]'))).click()
+        try:
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.ImageView)[1]'))).click()
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.ImageView[@content-desc="Add Configuration"]'))).click()
+        except:
+            self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.widget.ImageView)[1]'))).click()
+            self.wait.until(EC.presence_of_element_located(
+                (MobileBy.XPATH, '//android.widget.ImageView[@content-desc="Add Configuration"]'))).click()
 
     def select_config(self, config_sys):
         #self.tap_option_to_select(config_sys)
@@ -634,8 +663,12 @@ class RE_Page(Basepage):
             return ele_str
 
     def verify_prod_no(self, option):
-        time.sleep(2)
-        element = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[21]')))
+        self.refresh_page()
+        #time.sleep(2)
+        try:
+            element = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[21]')))
+        except:
+            element = self.wait.until(EC.presence_of_element_located((MobileBy.XPATH, '(//android.view.View)[21]')))
         element_str = element.get_attribute('content-desc')
         num = element_str.split()
         if option == "Products":

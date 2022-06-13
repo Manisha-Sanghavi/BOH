@@ -274,23 +274,19 @@ def step_impl(context, num):
 
 @then("user verifies dates '{date1}' and '{date2}' are added successfully")
 def step_impl(context, date1, date2):
-    x = 0
-    y = 0
-    values = [date1,x ,y,date2]
-    for i in [0, 3]:
-         a = context.re.verify_dates(i)
-         assert a == values[i]
-    #assert b == date2
+    get_date2, get_date1 = context.re.verify_dates()
+    assert get_date1 == date1
+    assert get_date2 == date2
 
 @step("user scrolls down")
 def step_impl(context):
-    for i in range(3):
+    for i in range(2):
         context.re.scroll_down()
 
 @step('user taps on x symbol to delete dates and "{option}"')
 def step_impl(context, option):
     context.re.delete_dates()
-    context.re.tap_to_selects(option)
+    context.re.tap_option_to_select(option)
 
 
 @then("user verifies that the dates are removed successfully")
@@ -410,10 +406,10 @@ def step_impl(context, prod_name, num):
 
 @then('user verifies "{num}" "{duplicates}" of the system is created for RE# "{re_num}" with location "{loc}"')
 def step_impl(context,num, duplicates, re_num, loc):
-    context.re.re_back()
-    context.re.tap_search()
-    context.re.search_re(re_num)
-    context.re.select_re(re_num, loc)
+    #context.re.re_back()
+    #context.re.tap_search()
+    #context.re.search_re(re_num)
+    #context.re.select_re(re_num, loc)
     number = context.re.verify_prod_no(duplicates)
     assert int(number) == int(num) + 1
 
