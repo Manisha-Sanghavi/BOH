@@ -15,8 +15,8 @@ Feature: Verify Functionalities for Sigin, Sign out and Home Page
       | username                  | password    | message                     |
       | harish.ekalspurqlabs.com  | Test123!BOH | Incorrect username/password |
       | harish.ekal@spurqlabs.com | test123     | Incorrect username/password |
-      |                           |             | Incorrect username/password |
-#      |                           | test123     | Incorrect username/password |
+#      |                           |             | Incorrect username/password |
+      | harish.ekal               | test123     | Incorrect username/password |
 #      |harish.ekal@spurqlabs.com  |             | Incorrect username/password |
 
   Scenario: [BOH-3] Verify the Headers and Tabs displayed on Customer Management Page.
