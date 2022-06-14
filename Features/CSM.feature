@@ -33,12 +33,12 @@ Feature: Verify Functionalities for CSM user
     And user taps on RE tab
     And user taps on plus symbol
     And user taps on Add RE
-    And user taps on MM/DD/YYYYY
+    And user taps "MM/DD/YYYY"
     And user selects Estimated Order Date "06/06/2022"
     And user selects Opportunity "15" with name "Joe M"
     And user enter Pre-RE Footprint(Sq ft) as "70"
     And user selects Color "GREEN"
-    And user taps Create Requirements Estimate
+    And user taps "CREATE REQUIREMENTS ESTIMATE" to select
     And user tap on "INFO" button
     Then User verifies "Delete Requirements Estimate" is displayed on RE_Page
     And User taps on "Delete Requirements Estimate" option
