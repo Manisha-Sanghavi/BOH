@@ -15,6 +15,8 @@ class SignIn_Page(Basepage):
     def __init__(self, context):
         Basepage.__init__(self, context.driver)
         self.context = context
+        self.wait = WebDriverWait(self.driver, 60)
+        self.implicit_wait = 25
 
     form_xpath = "//android.view.View[@content-desc='XXX']"
     option_xpath = "//android.widget.Button[@content-desc='XXX']"
