@@ -180,21 +180,22 @@ Feature: Verify Functionalities for RE module
 #    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
 #    And user is navigated to "Customer Management" page
 #    And user taps on RE tab
-#    And user selects RE# "864" from RE list
+#    And user "Search" RE# "937" with location "london" from list
 #    And user taps on "Info" tab
-#    And user edits the following details are displayed
+#    And user edits the following details are displayed and tap "SAVE CHANGES"
 #        |         Field         |       Value        |
-#        |      Opportunity      |    Opportunity #15 |
-#        |       RE Date         |     9/23/2022      |
+#        |      Opportunity      |    Opp 15 • Joe M  |
 #        |      Sales Rep        |    Mike Gentry     |
 #        |        Direct         |    Europe/Africa   |
 #        |Pre-RE Footprint(sq ft)|          700       |
-#        |     Default Color     |         GREEN      |
-#    Then user verifies that following details in RE Info tab are displayed
-#          |      Field       |         Value         |
-#          |   Customer Name  |    Fredrick Jackson   |
-#          |   Contact Email  |    f.j@email.com      |
-#          |  Contact Phone   |   (020) 992-2888      |
+#        |     Default Color     |         TAN        |
+#    Then user verifies that following details in Info tab are displayed
+#        |         Field         |       Value        |
+#        |      Opportunity      |    Opporunity #15  |
+#        |      Sales Rep        |    Mike Gentry     |
+#        |        Direct         |    Europe/Africa   |
+#        |Pre-RE Footprint(sq ft)|          700       |
+#        |     Default Color     |         TAN        |
 
   Scenario: [RE-14] Verify user can Swap contact from Info tab in RE details page
     Given user is on BOH FPU homepage
@@ -577,14 +578,17 @@ Feature: Verify Functionalities for RE module
 #    |  Opportunity   |  Sales Rep  | Direct | Estimated Order Dates | Default Color |
 #    | Opportunity#56 | RT Riling   |  West  |        5/7/2022       |      TAN      |
 #
-#  Scenario[RE-42]: Verify user can delete RE successfully
-#    Given user is on BOH FPU homepage
-#    And user creates test_RE
-#    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
-#    And user is navigated to "Customer Management" page
-#    And user taps on RE tab
-#    And user selects test_RE
-#    And user taps on Info tab
-#    And user taps on Delete Requirements Estimate
-#    And user taps on "Yes" button
-#    Then user verifies test_RE is not displayed in RE list
+  Scenario: [RE-42] Verify user can delete RE successfully
+    Given user is on BOH FPU homepage
+    When user login with username "harish.ekal@spurqlabs.com" and password "Ekal@BOH123!"
+    #And user is navigated to "Customer Management" page
+    And user taps on RE tab
+    And user adds new RE as test_RE by tapping 'CREATE REQUIREMENTS ESTIMATE' with following customer info details
+         |       Field        |            Value            |
+         |     RE Region      |             East            |
+         |   Customer Name    |           Joe M             |
+         | Customer Location  |          london             |
+    And user is navigated to Config tab of test_RE
+    And user taps on "Info" tab
+    And user deletes created RE by tapping "Delete Requirements Estimate"
+    Then user verifies test_RE for location "london" is not displayed in RE list

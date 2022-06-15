@@ -194,6 +194,15 @@ def step_impl(context, option):
         context.re.scroll_down()
     context.re.tap_to_select_op(option)
 
+@step("user is navigated to Config tab of test_RE")
+def step_impl(context):
+    context.re.get_RE_num()
+
+@then('user verifies test_RE for location "{loc}" is not displayed in RE list')
+def step_impl(context, loc):
+    re_del = context.re.verify_RE_deleted(loc)
+    assert re_del == True
+
 @step("user search test_RE")
 def step_impl(context):
     context.re.get_test_RE()
@@ -471,3 +480,24 @@ def step_impl(context, opt1, opt3, opt2):
 @step('user enters email "{username}"')
 def step_impl(context, username):
     context.boh.enter_email(username)
+
+
+@step("user selects RE# 858 from RE list")
+def step_impl(context):
+    context.re.tap_second_re()
+
+
+@step('user edits the following details are displayed and tap "{option}"')
+def step_impl(context, option):
+    for row in context.table:
+        context.re.edit_details(row['Field'], row['Value'])
+    context.re.tap_option_to_select(option)
+
+@then("user verifies that following details in Info tab are displayed")
+def step_impl(context):
+    context.re.check_info()
+    for row in context.table:
+        s = context.re.verify_info(row['Field'], ['Value'])
+        assert s == row['Value']
+
+
